@@ -12,7 +12,8 @@ license = { file = "LICENSE" }
 
 dependencies = [
     "typer>=0.12",
-    "rich>=13.7"
+    "rich>=13.7",
+    "psutil>=6.0"
 ]
 
 [project.scripts]
