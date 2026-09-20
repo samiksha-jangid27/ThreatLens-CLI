@@ -352,3 +352,123 @@ def test_pipeline_uses_behavioral_baseline():
         result["behavioral"]["is_anomaly"]
         is True
     )
+def test_pipeline_uses_network_and_process_baselines():
+    baseline = [
+        {
+            "cpu_percent": 20.0,
+            "memory_percent": 40.0,
+            "memory_available_mb": 8000.0,
+            "load_average_1m": 1.0,
+            "process_count": 100.0,
+            "uptime_seconds": 10000.0,
+            "disk_percent": 50.0,
+        }
+        for _ in range(5)
+    ]
+
+    network_baseline = [
+        {
+            "connection_count": 5,
+            "tcp_connection_count": 4,
+            "udp_connection_count": 1,
+            "listening_port_count": 1,
+            "connections": [],
+        }
+        for _ in range(5)
+    ]
+
+    process_baseline = [
+        {
+            "process_count": 100,
+            "processes": [],
+        }
+        for _ in range(5)
+    ]
+
+    detector = IsolationForestDetector(
+        contamination=0.2,
+        random_state=42,
+    )
+
+    detector.fit(baseline)
+
+    pipeline = ThreatScanPipeline(
+        isolation_forest=detector,
+    )
+
+    previous = make_telemetry(
+        20.0,
+        40.0,
+        1.0,
+        100,
+        50.0,
+    )
+
+    current = make_telemetry(
+        21.0,
+        41.0,
+        1.1,
+        101,
+        50.0,
+    )
+
+    current_network = {
+        "connection_count": 50,
+        "tcp_connection_count": 45,
+        "udp_connection_count": 5,
+        "listening_port_count": 8,
+        "connections": [],
+    }
+
+    previous_network = {
+        "connection_count": 5,
+        "tcp_connection_count": 4,
+        "udp_connection_count": 1,
+        "listening_port_count": 1,
+        "connections": [],
+    }
+
+    current_processes = {
+        "process_count": 200,
+        "processes": [],
+    }
+
+    previous_processes = {
+        "process_count": 100,
+        "processes": [],
+    }
+
+    result = pipeline.scan(
+        current=current,
+        previous=previous,
+        baseline=baseline,
+        network_baseline=network_baseline,
+        process_baseline=process_baseline,
+        current_network=current_network,
+        previous_network=previous_network,
+        current_processes=current_processes,
+        previous_processes=previous_processes,
+    )
+
+    assert result["network"] is not None
+    assert result["process"] is not None
+
+    assert (
+        result["network"]["behavioral"]
+        is not None
+    )
+
+    assert (
+        result["process"]["behavioral"]
+        is not None
+    )
+
+    assert (
+        "network_anomaly"
+        in result["signals"]
+    )
+
+    assert (
+        "process_anomaly"
+        in result["signals"]
+    )

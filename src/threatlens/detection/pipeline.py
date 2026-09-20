@@ -70,6 +70,8 @@ class ThreatScanPipeline:
         current: SystemTelemetry,
         previous: SystemTelemetry,
         baseline: list[dict[str, float]] | None = None,
+        network_baseline: list[dict[str, Any]] | None = None,
+        process_baseline: list[dict[str, Any]] | None = None,
         current_network: NetworkTelemetry | dict[str, Any] | None = None,
         previous_network: NetworkTelemetry | dict[str, Any] | None = None,
         current_processes: dict[str, Any] | None = None,
@@ -176,10 +178,33 @@ class ThreatScanPipeline:
                 )
             )
 
-            network_anomaly = any(
-                abs(value) >= 5.0
-                for value in network_temporal.values()
-            )
+            network_behavioral_result = None
+
+            if network_baseline:
+                network_feature_baseline = [
+                    extract_network_features(
+                        observation
+                    )
+                    for observation in network_baseline
+                ]
+
+                network_behavioral_result = (
+                    self.behavioral_detector.analyze(
+                        current_network_features,
+                        network_feature_baseline,
+                    )
+                )
+
+                network_anomaly = bool(
+                    network_behavioral_result[
+                        "is_anomaly"
+                    ]
+                )
+            else:
+                network_anomaly = any(
+                    abs(value) >= 5.0
+                    for value in network_temporal.values()
+                )
 
             signals["network_anomaly"] = (
                 network_anomaly
@@ -194,6 +219,9 @@ class ThreatScanPipeline:
                 ),
                 "temporal_features": (
                     network_temporal
+                ),
+                "behavioral": (
+                    network_behavioral_result
                 ),
                 "is_anomaly": network_anomaly,
             }
@@ -231,10 +259,33 @@ class ThreatScanPipeline:
                 for key in current_process_features
             }
 
-            process_anomaly = any(
-                abs(value) >= 10.0
-                for value in process_deltas.values()
-            )
+            process_behavioral_result = None
+
+            if process_baseline:
+                process_feature_baseline = [
+                    extract_process_features(
+                        observation
+                    )
+                    for observation in process_baseline
+                ]
+
+                process_behavioral_result = (
+                    self.behavioral_detector.analyze(
+                        current_process_features,
+                        process_feature_baseline,
+                    )
+                )
+
+                process_anomaly = bool(
+                    process_behavioral_result[
+                        "is_anomaly"
+                    ]
+                )
+            else:
+                process_anomaly = any(
+                    abs(value) >= 10.0
+                    for value in process_deltas.values()
+                )
 
             signals["process_anomaly"] = (
                 process_anomaly
@@ -248,6 +299,9 @@ class ThreatScanPipeline:
                     previous_process_features
                 ),
                 "deltas": process_deltas,
+                "behavioral": (
+                    process_behavioral_result
+                ),
                 "is_anomaly": process_anomaly,
             }
 

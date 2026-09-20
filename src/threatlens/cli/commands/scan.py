@@ -274,15 +274,16 @@ def scan() -> None:
     )
 
     result = pipeline.scan(
-        current=current,
-        previous=previous,
-        baseline=baseline,
-        current_network=current_network,
-        previous_network=previous_network,
-        current_processes=current_processes,
-        previous_processes=previous_processes,
+    current=current,
+    previous=previous,
+    baseline=baseline,
+    network_baseline=network_baseline,
+    process_baseline=process_baseline,
+    current_network=current_network,
+    previous_network=previous_network,
+    current_processes=current_processes,
+    previous_processes=previous_processes,
     )
-
     # ---------------------------------------------------------
     # SUSPICIOUS RESULT
     # ---------------------------------------------------------
