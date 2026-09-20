@@ -7,8 +7,15 @@ from rich.panel import Panel
 from threatlens.detection.investigation import (
     IncidentInvestigator,
 )
-from threatlens.storage.database import ThreatLensDatabase
-from threatlens.storage.repositories import IncidentRepository
+from threatlens.explainability.explainer import (
+    ThreatExplainer,
+)
+from threatlens.storage.database import (
+    ThreatLensDatabase,
+)
+from threatlens.storage.repositories import (
+    IncidentRepository,
+)
 
 
 console = Console()
@@ -17,7 +24,12 @@ console = Console()
 def _get_repository() -> IncidentRepository:
     """Create the default ThreatLens incident repository."""
 
-    database_path = Path.home() / ".threatlens" / "threatlens.db"
+    database_path = (
+        Path.home()
+        / ".threatlens"
+        / "threatlens.db"
+    )
+
     database_path.parent.mkdir(
         parents=True,
         exist_ok=True,
@@ -38,7 +50,9 @@ def investigate(
 
     repository = _get_repository()
 
-    incident = repository.get(incident_id)
+    incident = repository.get(
+        incident_id
+    )
 
     if incident is None:
         console.print(
@@ -46,8 +60,27 @@ def investigate(
         )
         raise typer.Exit(code=1)
 
-    investigation = IncidentInvestigator().investigate(
-        incident
+    investigation = (
+        IncidentInvestigator().investigate(
+            incident
+        )
+    )
+
+    explanation = ThreatExplainer().explain(
+        {
+            "signals": incident.get(
+                "signals",
+                {},
+            ),
+            "risk": {
+                "risk_score": incident[
+                    "risk_score"
+                ],
+                "severity": incident[
+                    "severity"
+                ],
+            },
+        }
     )
 
     console.print(
@@ -66,16 +99,39 @@ def investigate(
         )
     )
 
-    console.print("\n[bold]Triggered Signals[/bold]")
+    console.print(
+        "\n[bold]Triggered Signals[/bold]"
+    )
 
-    if investigation["triggered_signals"]:
-        for signal in investigation["triggered_signals"]:
+    if investigation[
+        "triggered_signals"
+    ]:
+        for signal in investigation[
+            "triggered_signals"
+        ]:
             console.print(
                 f"  [red]●[/red] {signal}"
             )
     else:
         console.print(
             "  [green]No anomalous signals[/green]"
+        )
+
+    console.print(
+        "\n[bold]Behavioral Evidence[/bold]"
+    )
+
+    if explanation["evidence"]:
+        for evidence in explanation[
+            "evidence"
+        ]:
+            console.print(
+                f"  [yellow]→[/yellow] "
+                f"{evidence['description']}"
+            )
+    else:
+        console.print(
+            "  [green]No additional evidence available.[/green]"
         )
 
     console.print(

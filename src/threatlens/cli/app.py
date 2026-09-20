@@ -2,6 +2,9 @@ import typer
 from threatlens.cli.commands.report import (
     report,
 )
+from threatlens.cli.commands.benchmark import (
+    benchmark,
+)
 
 from threatlens.cli.commands.explain import (
     explain,
@@ -35,6 +38,7 @@ app.command()(incidents)
 app.command()(investigate)
 app.command()(explain)
 app.command()(report)
+app.command()(benchmark)
 app.command()(scan)
 
 if __name__ == "__main__":
