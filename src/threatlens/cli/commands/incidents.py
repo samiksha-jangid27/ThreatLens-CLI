@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+import typer
 from rich.console import Console
 from rich.table import Table
 
@@ -25,11 +26,31 @@ def _get_repository() -> IncidentRepository:
     )
 
 
-def incidents() -> None:
+def incidents(
+    json_output: bool = typer.Option(
+        False,
+        "--json",
+        help="Output incidents as JSON.",
+    ),
+) -> None:
     """List stored ThreatLens incidents."""
 
     repository = _get_repository()
     records = repository.list_all()
+
+    if json_output:
+        payload = {
+            "incidents": records,
+            "count": len(records),
+        }
+
+        print(
+            json.dumps(
+                payload,
+                indent=2,
+            )
+        )
+        return
 
     if not records:
         console.print(
