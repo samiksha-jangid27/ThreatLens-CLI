@@ -84,6 +84,12 @@ def test_empty_process_data():
         "high_cpu_process_count": 0.0,
         "high_memory_process_count": 0.0,
         "root_process_count": 0.0,
+        "running_process_count": 0.0,
+        "sleeping_process_count": 0.0,
+        "stopped_process_count": 0.0,
+        "unique_parent_processes": 0.0,
+        "average_cpu_percent": 0.0,
+        "average_memory_percent": 0.0,
     }
 
 
