@@ -1,23 +1,15 @@
 import typer
-from rich.console import Console
 
 from threatlens.cli.commands.status import status
+from threatlens.cli.commands.version import version
 
 app = typer.Typer(
     name="threatlens",
     help="AI-powered behavioral threat detection CLI.",
 )
 
-console = Console()
-
-
-@app.command()
-def version() -> None:
-    """Display the ThreatLens version."""
-    console.print("[bold cyan]ThreatLens[/bold cyan] v0.1.0")
-
-
-app.command(name="status")(status)
+app.command()(version)
+app.command()(status)
 
 
 if __name__ == "__main__":
