@@ -17,6 +17,11 @@ dependencies = [
     "scikit-learn>=1.5"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0"
+]
+
 [project.scripts]
 threatlens = "threatlens.cli.app:app"
 

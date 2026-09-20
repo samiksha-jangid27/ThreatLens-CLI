@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.coverage
+htmlcov
+dist
+build
+*.egg-info
+datasets/raw
+datasets/processed
+models/artifacts
