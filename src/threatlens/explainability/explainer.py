@@ -1,194 +1,243 @@
-from threatlens.explainability.explainer import (
-    ThreatExplainer,
-)
+from typing import Any
 
 
-def test_explainer_reports_isolation_forest():
-    explainer = ThreatExplainer()
+class ThreatExplainer:
+    """
+    Convert detection signals into human-readable evidence.
+    """
 
-    result = explainer.explain(
-        {
-            "signals": {
-                "isolation_forest": True,
-            },
-            "model": {
-                "anomaly_score": -0.25,
-            },
-            "risk": {
-                "risk_score": 40.0,
-                "severity": "MEDIUM",
-            },
+    def explain(
+        self,
+        detection_result: dict[str, Any],
+    ) -> dict[str, Any]:
+        evidence: list[dict[str, Any]] = []
+
+        signals = detection_result.get(
+            "signals",
+            {},
+        )
+
+        model = detection_result.get(
+            "model",
+            {},
+        )
+
+        behavioral = detection_result.get(
+            "behavioral"
+        )
+
+        network = detection_result.get(
+            "network"
+        )
+
+        process = detection_result.get(
+            "process"
+        )
+
+        risk = detection_result.get(
+            "risk",
+            {},
+        )
+
+        # -------------------------------------------------
+        # ISOLATION FOREST
+        # -------------------------------------------------
+
+        if signals.get("isolation_forest"):
+            evidence.append(
+                {
+                    "signal": "isolation_forest",
+                    "description": (
+                        "Current system behavior was "
+                        "classified as anomalous by "
+                        "the Isolation Forest model."
+                    ),
+                    "details": {
+                        "anomaly_score": model.get(
+                            "anomaly_score"
+                        )
+                    },
+                }
+            )
+
+        # -------------------------------------------------
+        # TEMPORAL ANOMALY
+        # -------------------------------------------------
+
+        if signals.get("temporal_anomaly"):
+            temporal = detection_result.get(
+                "temporal",
+                {},
+            )
+
+            evidence.append(
+                {
+                    "signal": "temporal_anomaly",
+                    "description": (
+                        "System telemetry changed "
+                        "significantly compared with "
+                        "the previous observation."
+                    ),
+                    "details": {
+                        "signal_count": temporal.get(
+                            "signal_count",
+                            0,
+                        ),
+                        "triggered_signals": temporal.get(
+                            "triggered_signals",
+                            {},
+                        ),
+                    },
+                }
+            )
+
+        # -------------------------------------------------
+        # SYSTEM BEHAVIORAL DEVIATION
+        # -------------------------------------------------
+
+        if signals.get("behavioral_deviation"):
+            anomalous_features = []
+
+            if behavioral:
+                anomalous_features = behavioral.get(
+                    "anomalous_features",
+                    [],
+                )
+
+            evidence.append(
+                {
+                    "signal": "behavioral_deviation",
+                    "description": (
+                        "Current system behavior "
+                        "deviates significantly from "
+                        "the learned behavioral baseline."
+                    ),
+                    "details": {
+                        "anomalous_features": (
+                            anomalous_features
+                        )
+                    },
+                }
+            )
+
+        # -------------------------------------------------
+        # NETWORK ANOMALY
+        # -------------------------------------------------
+
+        if signals.get("network_anomaly"):
+            network_behavioral = None
+
+            if network:
+                network_behavioral = network.get(
+                    "behavioral"
+                )
+
+            anomalous_features = []
+
+            if network_behavioral:
+                anomalous_features = (
+                    network_behavioral.get(
+                        "anomalous_features",
+                        [],
+                    )
+                )
+
+            evidence.append(
+                {
+                    "signal": "network_anomaly",
+                    "description": (
+                        "Network behavior deviates "
+                        "from the learned network baseline."
+                    ),
+                    "details": {
+                        "anomalous_features": (
+                            anomalous_features
+                        )
+                    },
+                }
+            )
+
+        # -------------------------------------------------
+        # PROCESS ANOMALY
+        # -------------------------------------------------
+
+        if signals.get("process_anomaly"):
+            process_behavioral = None
+
+            if process:
+                process_behavioral = process.get(
+                    "behavioral"
+                )
+
+            anomalous_features = []
+
+            if process_behavioral:
+                anomalous_features = (
+                    process_behavioral.get(
+                        "anomalous_features",
+                        [],
+                    )
+                )
+
+            evidence.append(
+                {
+                    "signal": "process_anomaly",
+                    "description": (
+                        "Process behavior deviates "
+                        "from the learned process baseline."
+                    ),
+                    "details": {
+                        "anomalous_features": (
+                            anomalous_features
+                        )
+                    },
+                }
+            )
+
+        # -------------------------------------------------
+        # SUMMARY
+        # -------------------------------------------------
+
+        risk_score = float(
+            risk.get(
+                "risk_score",
+                0.0,
+            )
+        )
+
+        severity = str(
+            risk.get(
+                "severity",
+                "LOW",
+            )
+        )
+
+        return {
+            "risk_score": risk_score,
+            "severity": severity,
+            "evidence_count": len(evidence),
+            "evidence": evidence,
+            "summary": self._build_summary(
+                evidence,
+                risk_score,
+                severity,
+            ),
         }
-    )
 
-    assert result["evidence_count"] == 1
+    @staticmethod
+    def _build_summary(
+        evidence: list[dict[str, Any]],
+        risk_score: float,
+        severity: str,
+    ) -> str:
+        if not evidence:
+            return (
+                "No anomalous behavioral evidence "
+                "was identified."
+            )
 
-    assert (
-        result["evidence"][0]["signal"]
-        == "isolation_forest"
-    )
-
-    assert (
-        result["evidence"][0]["details"][
-            "anomaly_score"
-        ]
-        == -0.25
-    )
-
-
-def test_explainer_reports_multiple_signals():
-    explainer = ThreatExplainer()
-
-    result = explainer.explain(
-        {
-            "signals": {
-                "isolation_forest": True,
-                "temporal_anomaly": True,
-                "behavioral_deviation": True,
-                "network_anomaly": True,
-                "process_anomaly": True,
-            },
-            "model": {
-                "anomaly_score": -0.4,
-            },
-            "temporal": {
-                "signal_count": 3,
-                "triggered_signals": {
-                    "cpu_percent": 60.0,
-                },
-            },
-            "behavioral": {
-                "anomalous_features": [
-                    "cpu_percent",
-                    "process_count",
-                ],
-            },
-            "network": {
-                "behavioral": {
-                    "anomalous_features": [
-                        "connection_count",
-                    ],
-                },
-            },
-            "process": {
-                "behavioral": {
-                    "anomalous_features": [
-                        "total_processes",
-                    ],
-                },
-            },
-            "risk": {
-                "risk_score": 90.0,
-                "severity": "CRITICAL",
-            },
-        }
-    )
-
-    assert result["evidence_count"] == 5
-
-    assert result["risk_score"] == 90.0
-
-    assert result["severity"] == "CRITICAL"
-
-    assert (
-        "5 behavioral signal(s)"
-        in result["summary"]
-    )
-
-
-def test_explainer_reports_no_anomaly():
-    explainer = ThreatExplainer()
-
-    result = explainer.explain(
-        {
-            "signals": {},
-            "risk": {
-                "risk_score": 0.0,
-                "severity": "LOW",
-            },
-        }
-    )
-
-    assert result["evidence_count"] == 0
-
-    assert (
-        result["evidence"] == []
-    )
-
-    assert (
-        result["summary"]
-        == "No anomalous behavioral evidence "
-        "was identified."
-    )
-
-
-def test_explainer_reports_network_evidence():
-    explainer = ThreatExplainer()
-
-    result = explainer.explain(
-        {
-            "signals": {
-                "network_anomaly": True,
-            },
-            "network": {
-                "behavioral": {
-                    "anomalous_features": [
-                        "connection_count",
-                        "unique_remote_addresses",
-                    ],
-                },
-            },
-            "risk": {
-                "risk_score": 20.0,
-                "severity": "LOW",
-            },
-        }
-    )
-
-    assert result["evidence_count"] == 1
-
-    assert (
-        result["evidence"][0]["signal"]
-        == "network_anomaly"
-    )
-
-    assert (
-        result["evidence"][0]["details"][
-            "anomalous_features"
-        ]
-        == [
-            "connection_count",
-            "unique_remote_addresses",
-        ]
-    )
-
-
-def test_explainer_reports_process_evidence():
-    explainer = ThreatExplainer()
-
-    result = explainer.explain(
-        {
-            "signals": {
-                "process_anomaly": True,
-            },
-            "process": {
-                "behavioral": {
-                    "anomalous_features": [
-                        "total_processes",
-                        "root_process_count",
-                    ],
-                },
-            },
-            "risk": {
-                "risk_score": 15.0,
-                "severity": "LOW",
-            },
-        }
-    )
-
-    assert result["evidence_count"] == 1
-
-    assert (
-        result["evidence"][0]["signal"]
-        == "process_anomaly"
-    )
+        return (
+            f"{len(evidence)} behavioral signal(s) "
+            f"contributed to a {severity} risk assessment "
+            f"with a score of {risk_score:.0f}/100."
+        )

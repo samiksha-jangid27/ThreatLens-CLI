@@ -4,6 +4,9 @@ from pathlib import Path
 from rich.console import Console
 from rich.panel import Panel
 
+from threatlens.explainability.explainer import (
+    ThreatExplainer,
+)
 from threatlens.collectors.network import (
     collect_network_telemetry,
 )
@@ -142,6 +145,45 @@ def _get_repository() -> IncidentRepository:
         ThreatLensDatabase(DATABASE_PATH)
     )
 
+def _format_explanation(
+    explanation: dict,
+) -> str:
+    """Format detection evidence for terminal output."""
+
+    lines = []
+
+    if not explanation["evidence"]:
+        return "No anomalous behavioral evidence identified."
+
+    for evidence in explanation["evidence"]:
+        lines.append(
+            f"• {evidence['description']}"
+        )
+
+        details = evidence.get(
+            "details",
+            {},
+        )
+
+        anomalous_features = details.get(
+            "anomalous_features"
+        )
+
+        if anomalous_features:
+            lines.append(
+                "  Features: "
+                + ", ".join(
+                    anomalous_features
+                )
+            )
+
+    lines.append("")
+    lines.append(
+        f"Summary: {explanation['summary']}"
+    )
+
+    return "\n".join(lines)
+
 
 def scan() -> None:
     """Run a multi-signal behavioral system scan."""
@@ -272,6 +314,7 @@ def scan() -> None:
     pipeline = ThreatScanPipeline(
         isolation_forest=detector,
     )
+    explainer = ThreatExplainer()
 
     result = pipeline.scan(
     current=current,
@@ -284,6 +327,7 @@ def scan() -> None:
     current_processes=current_processes,
     previous_processes=previous_processes,
     )
+    explanation = explainer.explain(result)
     # ---------------------------------------------------------
     # SUSPICIOUS RESULT
     # ---------------------------------------------------------
@@ -316,6 +360,14 @@ def scan() -> None:
                 f"[bold red]Incident created:[/bold red] "
                 f"#{incident_id}",
                 title="ThreatLens Scan",
+            )
+        )
+
+        console.print()
+        console.print(
+            Panel(
+                _format_explanation(explanation),
+                title="ThreatLens Evidence",
             )
         )
 
