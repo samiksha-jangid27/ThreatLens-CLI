@@ -926,28 +926,33 @@ ThreatLens-CLI/
 ├── models/
 │   └── artifacts/
 │
-├── scripts/
-│
 ├── src/
 │   └── threatlens/
+│       ├── __init__.py
+│       ├── __main__.py
 │       │
 │       ├── cli/
+│       │   ├── __init__.py
 │       │   ├── app.py
 │       │   └── commands/
+│       │       ├── __init__.py
 │       │       ├── benchmark.py
 │       │       ├── explain.py
 │       │       ├── incidents.py
 │       │       ├── investigate.py
 │       │       ├── report.py
 │       │       ├── scan.py
-│       │       └── status.py
+│       │       ├── status.py
+│       │       └── version.py
 │       │
 │       ├── collectors/
+│       │   ├── __init__.py
 │       │   ├── network.py
 │       │   ├── processes.py
 │       │   └── system.py
 │       │
 │       ├── detection/
+│       │   ├── __init__.py
 │       │   ├── baseline.py
 │       │   ├── behavioral.py
 │       │   ├── correlation.py
@@ -958,44 +963,61 @@ ThreatLens-CLI/
 │       │   └── temporal.py
 │       │
 │       ├── evaluation/
+│       │   ├── __init__.py
 │       │   └── benchmark.py
 │       │
 │       ├── explainability/
+│       │   ├── __init__.py
 │       │   └── explainer.py
 │       │
 │       ├── features/
+│       │   ├── __init__.py
 │       │   ├── network.py
 │       │   ├── network_temporal.py
 │       │   ├── process.py
-│       │   └── system.py
+│       │   ├── system.py
+│       │   └── temporal.py
 │       │
 │       ├── ingestion/
+│       │   ├── __init__.py
 │       │   ├── normalizer.py
-│       │   ├── parser.py
 │       │   └── validator.py
 │       │
 │       ├── models/
+│       │   ├── __init__.py
 │       │   └── isolation_forest.py
 │       │
 │       ├── reporting/
+│       │   ├── __init__.py
 │       │   ├── html.py
 │       │   ├── json.py
 │       │   └── terminal.py
 │       │
 │       ├── schema/
+│       │   ├── __init__.py
 │       │   ├── network.py
 │       │   ├── process.py
 │       │   └── telemetry.py
 │       │
 │       └── storage/
+│           ├── __init__.py
 │           ├── database.py
 │           └── repositories.py
 │
 ├── tests/
-│   ├── unit/
-│   └── integration/
+│   └── unit/
+│       ├── cli/
+│       ├── collectors/
+│       ├── detection/
+│       ├── evaluation/
+│       ├── features/
+│       ├── ingestion/
+│       ├── models/
+│       ├── reporting/
+│       └── storage/
 │
 ├── .dockerignore
+├── .env.example
 ├── .gitignore
 ├── CHANGELOG.md
 ├── Dockerfile
