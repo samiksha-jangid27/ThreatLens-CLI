@@ -49,7 +49,7 @@ def explain(
         )
         raise typer.Exit(code=1)
 
-    explanation = ThreatExplainer().explain(
+    explanation = incident.get("explanation") or ThreatExplainer().explain(
         {
             "signals": incident.get(
                 "signals",

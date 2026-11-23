@@ -51,7 +51,7 @@ def investigate(
         )
     )
 
-    explanation = ThreatExplainer().explain(
+    explanation = incident.get("explanation") or ThreatExplainer().explain(
         {
             "signals": incident.get(
                 "signals",

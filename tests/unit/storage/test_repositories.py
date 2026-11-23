@@ -130,3 +130,26 @@ def test_list_incidents(tmp_path):
     assert incidents[1]["id"] == 1
     assert incidents[0]["risk_score"] == 40.0
     assert incidents[1]["risk_score"] == 80.0
+
+def test_full_feature_evidence_survives_reopening(tmp_path):
+    path = tmp_path / "incidents.db"
+    result = sample_detection_result()
+    result["explanation"] = {"evidence": [{"feature": "bytes_out", "current": 10000, "median": 100}]}
+    result["device_id"] = "router-a"
+    incident_id = IncidentRepository(ThreatLensDatabase(path)).create(result)
+    reopened = IncidentRepository(ThreatLensDatabase(path)).get(incident_id)
+    assert reopened["explanation"] == result["explanation"]
+    assert reopened["device_id"] == "router-a"
+
+
+def test_original_schema_migrates_without_losing_records(tmp_path):
+    import sqlite3
+    path = tmp_path / "old.db"
+    connection = sqlite3.connect(path)
+    connection.execute("CREATE TABLE incidents (id INTEGER PRIMARY KEY, timestamp TEXT, risk_score REAL, severity TEXT, is_suspicious INTEGER, signals TEXT)")
+    connection.execute("INSERT INTO incidents VALUES (7, 'old', 65, 'HIGH', 1, '{}')")
+    connection.commit()
+    connection.close()
+    repository = IncidentRepository(ThreatLensDatabase(path))
+    assert repository.get(7)["risk_score"] == 65
+    assert repository.create(sample_detection_result()) == 8
