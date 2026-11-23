@@ -15,7 +15,6 @@ def test_extract_system_features():
         "memory_available_mb",
         "load_average_1m",
         "process_count",
-        "uptime_seconds",
         "disk_percent",
     }
 

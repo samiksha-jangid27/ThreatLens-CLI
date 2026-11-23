@@ -31,7 +31,15 @@ class IsolationForestDetector:
                 "At least one observation is required."
             )
 
-        self.feature_names = list(observations[0].keys())
+        self.feature_names = sorted(set(observations[0]) - {"uptime_seconds"})
+        if not self.feature_names:
+            raise ValueError("At least one behavioral feature is required.")
+        expected = set(self.feature_names)
+        for observation in observations:
+            if set(observation) - {"uptime_seconds"} != expected:
+                raise ValueError("Baseline observations must have identical feature names.")
+            if any(isinstance(observation[name], bool) or not np.isfinite(observation[name]) for name in self.feature_names):
+                raise ValueError("Features must be finite numbers.")
 
         matrix = np.array(
             [
@@ -56,6 +64,11 @@ class IsolationForestDetector:
             raise RuntimeError(
                 "Detector must be fitted before prediction."
             )
+
+        if set(observation) - {"uptime_seconds"} != set(self.feature_names):
+            raise ValueError("Observation feature names do not match the model baseline.")
+        if any(isinstance(observation[name], bool) or not np.isfinite(observation[name]) for name in self.feature_names):
+            raise ValueError("Features must be finite numbers.")
 
         values = np.array(
             [[

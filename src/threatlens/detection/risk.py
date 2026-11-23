@@ -1,21 +1,25 @@
-from typing import Any
+from typing import Any, ClassVar
+from math import isfinite
 
 
 class RiskScorer:
     """Calculate a compromise risk score from detection signals."""
 
-    DEFAULT_WEIGHTS = {
+    DEFAULT_WEIGHTS: ClassVar[dict[str, float]] = {
         "isolation_forest": 40,
         "temporal_anomaly": 25,
         "network_anomaly": 20,
         "process_anomaly": 15,
+        "behavioral_deviation": 15,
     }
 
     def __init__(
         self,
         weights: dict[str, float] | None = None,
     ) -> None:
-        self.weights = weights or dict(self.DEFAULT_WEIGHTS)
+        self.weights = dict(self.DEFAULT_WEIGHTS) if weights is None else dict(weights)
+        if any(not isfinite(value) or value < 0 for value in self.weights.values()):
+            raise ValueError("Risk weights must be finite and nonnegative.")
 
     def score(
         self,

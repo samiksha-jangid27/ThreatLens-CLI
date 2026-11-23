@@ -6,6 +6,7 @@ class BehavioralBaseline:
 
     def __init__(self) -> None:
         self.count = 0
+        self.feature_counts: dict[str, int] = {}
         self.means: dict[str, float] = {}
         self.minimums: dict[str, float] = {}
         self.maximums: dict[str, float] = {}
@@ -18,17 +19,18 @@ class BehavioralBaseline:
         for name, value in features.items():
             value = float(value)
 
+            self.feature_counts[name] = self.feature_counts.get(name, 0) + 1
             if name not in self.means:
                 self.means[name] = value
                 self.minimums[name] = value
                 self.maximums[name] = value
                 continue
 
-            previous_count = self.count - 1
+            previous_count = self.feature_counts[name] - 1
 
             self.means[name] = (
                 self.means[name] * previous_count + value
-            ) / self.count
+            ) / self.feature_counts[name]
 
             self.minimums[name] = min(
                 self.minimums[name],

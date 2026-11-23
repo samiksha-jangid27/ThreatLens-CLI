@@ -1,4 +1,5 @@
 from statistics import median
+from math import isfinite
 from typing import Any
 
 
@@ -64,6 +65,12 @@ class BehavioralDeviationDetector:
                 "At least one baseline observation is required."
             )
 
+        if not current or any(not set(current).issubset(row) for row in baseline):
+            raise ValueError("Baseline must contain every current feature; missing is not zero.")
+        for row in [current, *baseline]:
+            if any(isinstance(row[name], bool) or not isfinite(row[name]) for name in current):
+                raise ValueError("Features must be finite numbers.")
+
         signals: dict[
             str,
             dict[str, float | bool],
@@ -123,8 +130,8 @@ class BehavioralDeviationDetector:
                 )
 
                 is_anomalous = (
-                    abs(z_score)
-                    >= self.threshold
+                    abs(z_score) >= self.threshold
+                    and absolute_deviation >= meaningful_deviation
                 )
 
             # -------------------------------------------------

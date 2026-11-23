@@ -82,8 +82,8 @@ def test_detector_fits():
 
     assert detector.feature_names == [
         "cpu_percent",
-        "memory_percent",
         "load_average_1m",
+        "memory_percent",
         "process_count",
     ]
 

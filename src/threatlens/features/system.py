@@ -18,9 +18,6 @@ def extract_system_features(
         "process_count": float(
             telemetry["process_count"]
         ),
-        "uptime_seconds": float(
-            telemetry["uptime_seconds"]
-        ),
         "disk_percent": float(
             telemetry["disk_percent"]
         ),

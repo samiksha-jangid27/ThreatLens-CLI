@@ -1,4 +1,6 @@
 from typing import Any
+from math import isfinite
+from datetime import datetime
 
 
 REQUIRED_FIELDS = {
@@ -22,6 +24,20 @@ def validate_system_telemetry(data: dict[str, Any]) -> None:
         raise ValueError(
             f"Missing telemetry fields: {sorted(missing)}"
         )
+
+    for field in REQUIRED_FIELDS - {"timestamp"}:
+        value = data[field]
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not isfinite(value):
+            raise ValueError(f"{field} must be a finite number")
+    try:
+        stamp = datetime.fromisoformat(data["timestamp"])
+        if stamp.tzinfo is None:
+            raise ValueError("timestamp must include a timezone")
+    except (TypeError, ValueError) as error:
+        raise ValueError("timestamp must be an ISO-8601 datetime with timezone") from error
+    for field in ("process_count", "uptime_seconds"):
+        if not float(data[field]).is_integer():
+            raise ValueError(f"{field} must be an integer")
 
     if not 0 <= data["cpu_percent"] <= 100:
         raise ValueError("cpu_percent must be between 0 and 100")
