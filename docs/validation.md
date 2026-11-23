@@ -16,10 +16,10 @@ Recorded on 23 November 2026 for ThreatLens 0.2.0. This record separates observe
 | Four-device demo | Trusted learning, benign checks, suspicious checks and JSON/HTML reports completed |
 | Synthetic evaluation | 32 scenarios; TP 8, TN 16, FP 4, FN 4 |
 | GitHub CI | Six OS/Python combinations and the package job passed in the linked run |
-| Docker runtime | Not verified locally because the daemon was stopped |
+| Docker runtime | CI image build, non-root identity, help and benchmark smoke checks passed; local daemon stopped |
 | Physical router/firewall or confirmed compromise | Not tested; imports and synthetic profiles validated |
 
-The cross-platform [GitHub run](https://github.com/samiksha-jangid27/ThreatLens-CLI/actions/runs/45190502068) assessed commit `8cc370e`. It passed Linux, macOS and Windows on Python 3.11 and 3.14, plus wheel/source packaging and installed-entry-point checks. Later regression and documentation changes also receive CI on direct pushes to `main`; consult the latest run for exact revision status. Scheduled vulnerability audits replace automatic dependency-update PR creation.
+The cross-platform [GitHub run](https://github.com/samiksha-jangid27/ThreatLens-CLI/actions/runs/45192122716) assessed commit `4b132fb`. It passed Linux, macOS and Windows on Python 3.11 and 3.14, plus wheel/source packaging, installed-entry-point checks, dependency audit and container smoke checks. Later regression and documentation changes also receive CI on direct pushes to `main`; consult the latest run for exact revision status. Scheduled vulnerability audits replace automatic dependency-update PR creation.
 
 Reproduction commands:
 
