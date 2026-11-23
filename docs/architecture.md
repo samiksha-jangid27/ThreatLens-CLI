@@ -1,242 +1,63 @@
-# ThreatLens Architecture
+# Architecture
 
-## Overview
+ThreatLens 0.2 is a local Python CLI with an offline import path. There is no Electron renderer, web backend, cloud API, or mandatory external inference service. The runtime detector is `detection/device.py`; the original endpoint pipeline remains as a tested component implementation for reference, not the CLI's current orchestration path.
 
-ThreatLens is a CLI-based behavioral threat detection system designed to identify significant deviations from normal system behavior without relying only on known IoCs.
+## Components
 
-Current telemetry sources:
-
-- System
-- Network
-- Process
-
-## High-Level Architecture
-
-```text
-System / Network / Process Telemetry
-                  |
-                  v
-        Validation / Normalization
-                  |
-                  v
-          Feature Extraction
-                  |
-                  v
-        Behavioral Baseline
-                  |
-        +---------+---------+
-        |         |         |
-        v         v         v
-   Isolation   Temporal  Behavioral
-    Forest     Detection  Deviation
-        |         |         |
-        +---------+---------+
-                  |
-                  v
-       Network / Process Analysis
-                  |
-                  v
-        Multi-Signal Correlation
-                  |
-                  v
-             Risk Scoring
-                  |
-                  v
-           Explainability
-                  |
-                  v
-          Incident Storage
-                  |
-          +-------+-------+
-          |               |
-          v               v
-     Investigation     Reporting
+```mermaid
+flowchart TD
+    A[CLI Typer commands] --> B{Telemetry origin}
+    B --> C[psutil system network process collectors]
+    B --> D[JSON device observations]
+    B --> E[Zeek TSV converter]
+    C --> F[Aggregate feature maps]
+    E --> D
+    D --> G[Strict device parser]
+    F --> G
+    G --> H[DeviceDetectionService]
+    H --> I[Trusted baseline and previous observation]
+    H --> J[assess_observation]
+    J --> K[Isolation Forest per source]
+    J --> L[Median MAD per feature]
+    K --> M[Source corroboration and persistence]
+    L --> M
+    M --> N[Evidence and risk priority]
+    N --> O[SQLite incident repository]
+    O --> P[Explain investigate and reports]
 ```
 
-## Architectural Layers
+| Layer | Main implementation | Responsibility |
+| --- | --- | --- |
+| CLI | `cli/app.py`, `cli/commands/` | Arguments, exit codes, terminal and JSON output |
+| Local adapters | `collectors/device.py` and source collectors | Concurrent sampling, explicit visibility failures |
+| Import adapters | `ingestion/device.py`, `ingestion/zeek.py` | Bounded parsing and log conversion |
+| Contract | `schema/device.py` | Device identity, source vocabulary, finite metrics, timestamps |
+| Features | `features/` | Aggregate system, socket and process behavior |
+| Detection | `detection/device.py` | Baseline policy, scoring, consensus, persistence, transactions |
+| Models | `models/isolation_forest.py`, `detection/behavioral.py` | Seeded unsupervised ML and robust statistics |
+| Persistence | `storage/database.py`, `storage/repositories.py` | SQLite migrations, evidence and per-device state |
+| Reporting | `reporting/`, incident commands | Saved evidence, JSON and escaped standalone HTML |
+| Evaluation | `evaluation/device_benchmark.py` | Shared production assessment function, scenarios and ablations |
 
-### Collectors
+## State and transactions
 
-Collect telemetry from the host.
+`THREATLENS_DATA_DIR` selects the directory; the default is `~/.threatlens`. The database contains:
 
-```text
-collectors/
-├── system.py
-├── network.py
-└── processes.py
-```
+- `incidents`: original incident columns plus a `detection` JSON column containing the full original assessment, feature evidence, device identity and algorithm version.
+- `device_state`: one JSON state per `device_type:device_id`, containing up to 500 explicitly trusted training observations, the last observed window, anomaly streaks and any continuing incident episode.
 
-### Schema
+An additive migration retains original incident IDs and signal-only records. New evidence cannot be reconstructed for old records that never stored it. The three legacy JSON baseline files from 0.1 are not imported automatically: the new profile contract and explicit trust policy require relearning.
 
-Provides structured telemetry representations.
+Learning and scan batches use `BEGIN IMMEDIATE`. State updates and incident creation commit together. If a later window in a batch is invalid or replayed, earlier updates from that batch roll back. SQLite serializes writers with a 10-second lock timeout. Connections close after each operation. This is suitable for a class prototype and modest local workloads, not a distributed event store.
 
-```text
-schema/
-├── telemetry.py
-├── network.py
-└── process.py
-```
+Database and exported report files are created with owner-only POSIX permissions. Existing files are not overwritten by report and telemetry exports. OS filesystem permissions and the security of the user account remain part of the trust boundary; there is no encryption or tamper-evident log.
 
-### Ingestion
+## Model lifecycle
 
-Validates and normalizes collected telemetry.
+A per-source Isolation Forest is rebuilt from the bounded trusted baseline for each assessment. This keeps the model reproducible from inspectable numeric state and avoids loading executable pickle artifacts. It costs CPU and limits high-rate scalability. The baseline is frozen during scans; retraining happens only through an explicit `learn` operation. There is no claim of automatic concept-drift correction.
 
-```text
-ingestion/
-├── normalizer.py
-└── validator.py
-```
+Device identity includes the type and supplied ID. IDs are operator assertions, not authenticated device certificates. Profiles must keep metric meaning, units and observation window consistent. An added source or changed feature set requires deliberate relearning.
 
-```text
-Raw Telemetry
-      |
-      v
-Validation
-      |
-      v
-Normalization
-      |
-      v
-Structured Observation
-```
+## Local visibility
 
-### Features
-
-Converts telemetry into behavioral features.
-
-```text
-features/
-├── system.py
-├── network.py
-├── network_temporal.py
-├── process.py
-└── temporal.py
-```
-
-### Detection
-
-ThreatLens uses multiple detection signals:
-
-```text
-Isolation Forest
-       +
-Temporal Detection
-       +
-Behavioral Deviation
-       +
-Network Detection
-       +
-Process Detection
-```
-
-### Correlation
-
-Combines multiple detection signals before risk assessment.
-
-```text
-Detection Signals
-       |
-       v
-Signal Correlation
-       |
-       v
-Combined Evidence
-```
-
-### Risk Scoring
-
-Triggered signals are converted into a bounded risk score and severity level.
-
-The score is an investigation aid, not proof of compromise.
-
-### Explainability
-
-Converts detection signals into human-readable behavioral evidence.
-
-```text
-Detection
-   |
-   v
-Explainability
-   |
-   v
-Evidence
-```
-
-### Storage
-
-Suspicious detections are stored locally using SQLite.
-
-```text
-storage/
-├── database.py
-└── repositories.py
-```
-
-### Reporting
-
-ThreatLens supports:
-
-- Terminal reports
-- JSON reports
-- HTML reports
-
-## Detection Flow
-
-```text
-Collect
-   |
-   v
-Normalize
-   |
-   v
-Extract Features
-   |
-   v
-Compare with Baseline
-   |
-   v
-Detect Anomalies
-   |
-   v
-Correlate Signals
-   |
-   v
-Calculate Risk
-   |
-   v
-Explain Evidence
-   |
-   v
-Create Incident
-   |
-   v
-Investigate / Report
-```
-
-## CLI Flow
-
-```text
-threatlens scan
-      |
-      v
-Detection + Correlation
-      |
-      v
-Risk Assessment
-      |
-      v
-Incident
-      |
-      +----> threatlens incidents
-      |
-      +----> threatlens investigate <id>
-      |
-      +----> threatlens explain <id>
-      |
-      +----> threatlens report
-```
-
-## Design Goal
-
-ThreatLens keeps collection, feature extraction, detection, storage, and reporting modular so future capabilities can be added without rewriting the core detection pipeline.
+CPU and process samples run concurrently; socket data is a snapshot during that collection. Uptime remains raw context but is excluded from model features. Process CPU is measured after priming instead of trusting the first zero reading. If processes exit or are inaccessible, the process source is conservatively unavailable. Network denial is reported as unavailable, never an empty healthy network. A selected narrower profile is assessed only for its trained sources.
