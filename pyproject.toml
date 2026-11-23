@@ -29,6 +29,8 @@ dev = [
     "pip-audit>=2.9,<3"
 ]
 
+docs = ["python-docx>=1.1,<2"]
+
 [project.scripts]
 threatlens = "threatlens.cli.app:app"
 

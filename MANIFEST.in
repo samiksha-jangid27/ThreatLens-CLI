@@ -1,5 +1,5 @@
 include README.md LICENSE CHANGELOG.md Makefile Dockerfile .env.example uv.lock
-recursive-include docs *.md *.json *.docx *.pdf
+recursive-include docs *.md *.json *.docx *.pdf *.svg
 recursive-include examples *.json *.tsv
 recursive-include scripts *.py
 recursive-include tests *.py

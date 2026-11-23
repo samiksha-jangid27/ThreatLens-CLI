@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="590" viewBox="0 0 1440 590" role="img" aria-label="ThreatLens behavioral detection architecture">
+<rect width="1440" height="590" fill="white"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#333"/></marker></defs>
+<g font-family="Arial, sans-serif" text-anchor="middle" fill="#111">
+<g fill="#f4f6f8" stroke="#555" stroke-width="2">
+<rect x="30" y="40" width="290" height="120" rx="10"/><rect x="400" y="40" width="290" height="120" rx="10"/><rect x="770" y="40" width="290" height="120" rx="10"/><rect x="1140" y="40" width="270" height="120" rx="10"/>
+<rect x="30" y="350" width="290" height="150" rx="10"/><rect x="400" y="350" width="290" height="150" rx="10"/><rect x="770" y="350" width="290" height="150" rx="10"/><rect x="1140" y="350" width="270" height="150" rx="10"/>
+</g>
+<g font-size="26" font-weight="600"><text x="175" y="88">Telemetry</text><text x="545" y="88">Validation</text><text x="915" y="88">Trusted baseline</text><text x="1275" y="88">Source models</text><text x="175" y="402">Reports</text><text x="545" y="402">SQLite evidence</text><text x="915" y="402">Source consensus</text><text x="1275" y="402">Feature evidence</text></g>
+<g font-size="22"><text x="175" y="126">Local or exported data</text><text x="545" y="126">Identity time and schema</text><text x="915" y="126">Per device and frozen</text><text x="1275" y="126">Forest and median MAD</text><text x="175" y="442">Explain investigate</text><text x="175" y="474">JSON and HTML</text><text x="545" y="442">Original values and scores</text><text x="545" y="474">Atomic state updates</text><text x="915" y="442">Multiple domains</text><text x="915" y="474">or repeated windows</text><text x="1275" y="442">Current versus baseline</text><text x="1275" y="474">ML score and coverage</text></g>
+</g>
+<g fill="none" stroke="#333" stroke-width="3" marker-end="url(#arrow)"><path d="M320 100 H390"/><path d="M690 100 H760"/><path d="M1060 100 H1130"/><path d="M1275 160 V340"/><path d="M1140 425 H1070"/><path d="M770 425 H700"/><path d="M400 425 H330"/></g>
+<text x="720" y="560" text-anchor="middle" font-family="Arial" font-size="23" fill="#333">All inference stays local. Behavioral anomalies require contextual investigation.</text>
+</svg>
