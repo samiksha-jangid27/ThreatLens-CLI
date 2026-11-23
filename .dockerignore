@@ -12,3 +12,9 @@ build
 datasets/raw
 datasets/processed
 models/artifacts
+.env
+*.db
+*.db-journal
+.threatlens-data
+.ruff_cache
+demo-artifacts
