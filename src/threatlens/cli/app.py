@@ -6,6 +6,7 @@ from threatlens.cli.commands.benchmark import (
 from threatlens.cli.commands.explain import (
     explain,
 )
+from threatlens.cli.commands.import_zeek import import_zeek
 from threatlens.cli.commands.incidents import (
     incidents,
 )
@@ -43,6 +44,7 @@ app.command()(benchmark)
 app.command()(scan)
 app.command()(learn)
 app.command()(collect)
+app.command()(import_zeek)
 
 if __name__ == "__main__":
     app()
