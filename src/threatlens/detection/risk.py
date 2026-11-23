@@ -1,5 +1,5 @@
-from typing import Any, ClassVar
 from math import isfinite
+from typing import Any, ClassVar
 
 
 class RiskScorer:

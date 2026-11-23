@@ -1,5 +1,5 @@
-from statistics import median
 from math import isfinite
+from statistics import median
 from typing import Any
 
 
@@ -23,33 +23,21 @@ class BehavioralDeviationDetector:
         minimum_absolute_deviation: float = 1.0,
     ) -> None:
         if threshold <= 0:
-            raise ValueError(
-                "threshold must be greater than zero."
-            )
+            raise ValueError("threshold must be greater than zero.")
 
         if minimum_std <= 0:
-            raise ValueError(
-                "minimum_std must be greater than zero."
-            )
+            raise ValueError("minimum_std must be greater than zero.")
 
         if minimum_relative_deviation < 0:
-            raise ValueError(
-                "minimum_relative_deviation must not be negative."
-            )
+            raise ValueError("minimum_relative_deviation must not be negative.")
 
         if minimum_absolute_deviation < 0:
-            raise ValueError(
-                "minimum_absolute_deviation must not be negative."
-            )
+            raise ValueError("minimum_absolute_deviation must not be negative.")
 
         self.threshold = threshold
         self.minimum_std = minimum_std
-        self.minimum_relative_deviation = (
-            minimum_relative_deviation
-        )
-        self.minimum_absolute_deviation = (
-            minimum_absolute_deviation
-        )
+        self.minimum_relative_deviation = minimum_relative_deviation
+        self.minimum_absolute_deviation = minimum_absolute_deviation
 
     def analyze(
         self,
@@ -61,9 +49,7 @@ class BehavioralDeviationDetector:
         """
 
         if not baseline:
-            raise ValueError(
-                "At least one baseline observation is required."
-            )
+            raise ValueError("At least one baseline observation is required.")
 
         if not current or any(not set(current).issubset(row) for row in baseline):
             raise ValueError("Baseline must contain every current feature; missing is not zero.")
@@ -87,34 +73,19 @@ class BehavioralDeviationDetector:
                 for observation in baseline
             ]
 
-            baseline_median = float(
-                median(values)
-            )
+            baseline_median = float(median(values))
 
-            absolute_deviations = [
-                abs(value - baseline_median)
-                for value in values
-            ]
+            absolute_deviations = [abs(value - baseline_median) for value in values]
 
-            mad = float(
-                median(
-                    absolute_deviations
-                )
-            )
+            mad = float(median(absolute_deviations))
 
-            raw_deviation = (
-                float(current_value)
-                - baseline_median
-            )
+            raw_deviation = float(current_value) - baseline_median
 
-            absolute_deviation = abs(
-                raw_deviation
-            )
+            absolute_deviation = abs(raw_deviation)
 
             meaningful_deviation = max(
                 self.minimum_absolute_deviation,
-                abs(baseline_median)
-                * self.minimum_relative_deviation,
+                abs(baseline_median) * self.minimum_relative_deviation,
                 self.minimum_std,
             )
 
@@ -123,15 +94,10 @@ class BehavioralDeviationDetector:
             # -------------------------------------------------
 
             if mad > self.minimum_std:
-                z_score = (
-                    0.6745
-                    * raw_deviation
-                    / mad
-                )
+                z_score = 0.6745 * raw_deviation / mad
 
                 is_anomalous = (
-                    abs(z_score) >= self.threshold
-                    and absolute_deviation >= meaningful_deviation
+                    abs(z_score) >= self.threshold and absolute_deviation >= meaningful_deviation
                 )
 
             # -------------------------------------------------
@@ -141,56 +107,29 @@ class BehavioralDeviationDetector:
             else:
                 # When historical variance is almost zero,
                 # do not treat every tiny change as anomalous.
-                z_score = (
-                    raw_deviation
-                    / meaningful_deviation
-                )
+                z_score = raw_deviation / meaningful_deviation
 
-                is_anomalous = (
-                    absolute_deviation
-                    >= (
-                        meaningful_deviation
-                        * self.threshold
-                    )
-                )
+                is_anomalous = absolute_deviation >= (meaningful_deviation * self.threshold)
 
             signals[feature_name] = {
                 "is_anomalous": is_anomalous,
                 "current": float(current_value),
-                "baseline_mean": (
-                    sum(values) / len(values)
-                ),
+                "baseline_mean": (sum(values) / len(values)),
                 "baseline_median": baseline_median,
-                "baseline_std": (
-                    self._standard_deviation(
-                        values
-                    )
-                ),
+                "baseline_std": (self._standard_deviation(values)),
                 "mad": mad,
-                "minimum_meaningful_deviation": (
-                    meaningful_deviation
-                ),
+                "minimum_meaningful_deviation": (meaningful_deviation),
                 "z_score": z_score,
             }
 
         anomalous_features = [
-            feature_name
-            for feature_name, result in signals.items()
-            if bool(
-                result["is_anomalous"]
-            )
+            feature_name for feature_name, result in signals.items() if bool(result["is_anomalous"])
         ]
 
         return {
-            "is_anomaly": bool(
-                anomalous_features
-            ),
-            "anomalous_features": (
-                anomalous_features
-            ),
-            "signal_count": len(
-                anomalous_features
-            ),
+            "is_anomaly": bool(anomalous_features),
+            "anomalous_features": (anomalous_features),
+            "signal_count": len(anomalous_features),
             "signals": signals,
         }
 
@@ -207,9 +146,6 @@ class BehavioralDeviationDetector:
 
         mean = sum(values) / len(values)
 
-        variance = sum(
-            (value - mean) ** 2
-            for value in values
-        ) / len(values)
+        variance = sum((value - mean) ** 2 for value in values) / len(values)
 
-        return variance ** 0.5
+        return variance**0.5

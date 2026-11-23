@@ -22,17 +22,11 @@ class ThreatExplainer:
             {},
         )
 
-        behavioral = detection_result.get(
-            "behavioral"
-        )
+        behavioral = detection_result.get("behavioral")
 
-        network = detection_result.get(
-            "network"
-        )
+        network = detection_result.get("network")
 
-        process = detection_result.get(
-            "process"
-        )
+        process = detection_result.get("process")
 
         risk = detection_result.get(
             "risk",
@@ -52,11 +46,7 @@ class ThreatExplainer:
                         "classified as anomalous by "
                         "the Isolation Forest model."
                     ),
-                    "details": {
-                        "anomaly_score": model.get(
-                            "anomaly_score"
-                        )
-                    },
+                    "details": {"anomaly_score": model.get("anomaly_score")},
                 }
             )
 
@@ -112,11 +102,7 @@ class ThreatExplainer:
                         "deviates significantly from "
                         "the learned behavioral baseline."
                     ),
-                    "details": {
-                        "anomalous_features": (
-                            anomalous_features
-                        )
-                    },
+                    "details": {"anomalous_features": (anomalous_features)},
                 }
             )
 
@@ -128,32 +114,21 @@ class ThreatExplainer:
             network_behavioral = None
 
             if network:
-                network_behavioral = network.get(
-                    "behavioral"
-                )
+                network_behavioral = network.get("behavioral")
 
             anomalous_features = []
 
             if network_behavioral:
-                anomalous_features = (
-                    network_behavioral.get(
-                        "anomalous_features",
-                        [],
-                    )
+                anomalous_features = network_behavioral.get(
+                    "anomalous_features",
+                    [],
                 )
 
             evidence.append(
                 {
                     "signal": "network_anomaly",
-                    "description": (
-                        "Network behavior deviates "
-                        "from the learned network baseline."
-                    ),
-                    "details": {
-                        "anomalous_features": (
-                            anomalous_features
-                        )
-                    },
+                    "description": ("Network behavior deviates from the learned network baseline."),
+                    "details": {"anomalous_features": (anomalous_features)},
                 }
             )
 
@@ -165,32 +140,21 @@ class ThreatExplainer:
             process_behavioral = None
 
             if process:
-                process_behavioral = process.get(
-                    "behavioral"
-                )
+                process_behavioral = process.get("behavioral")
 
             anomalous_features = []
 
             if process_behavioral:
-                anomalous_features = (
-                    process_behavioral.get(
-                        "anomalous_features",
-                        [],
-                    )
+                anomalous_features = process_behavioral.get(
+                    "anomalous_features",
+                    [],
                 )
 
             evidence.append(
                 {
                     "signal": "process_anomaly",
-                    "description": (
-                        "Process behavior deviates "
-                        "from the learned process baseline."
-                    ),
-                    "details": {
-                        "anomalous_features": (
-                            anomalous_features
-                        )
-                    },
+                    "description": ("Process behavior deviates from the learned process baseline."),
+                    "details": {"anomalous_features": (anomalous_features)},
                 }
             )
 
@@ -231,10 +195,7 @@ class ThreatExplainer:
         severity: str,
     ) -> str:
         if not evidence:
-            return (
-                "No anomalous behavioral evidence "
-                "was identified."
-            )
+            return "No anomalous behavioral evidence was identified."
 
         return (
             f"{len(evidence)} behavioral signal(s) "

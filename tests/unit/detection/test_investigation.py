@@ -64,10 +64,7 @@ def test_investigates_single_signal_incident():
     assert result["status"] == "SINGLE_SIGNAL"
     assert result["priority"] == "MEDIUM"
     assert result["signal_count"] == 1
-    assert (
-        result["recommendation"]
-        == "Collect additional telemetry before escalating."
-    )
+    assert result["recommendation"] == "Collect additional telemetry before escalating."
 
 
 def test_investigates_incident_without_signals():

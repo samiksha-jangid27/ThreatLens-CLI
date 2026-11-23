@@ -16,11 +16,7 @@ class EventCorrelator:
     ) -> dict[str, Any]:
         """Correlate independent detection signals."""
 
-        triggered = [
-            name
-            for name, triggered in signals.items()
-            if bool(triggered)
-        ]
+        triggered = [name for name, triggered in signals.items() if bool(triggered)]
 
         signal_count = len(triggered)
 

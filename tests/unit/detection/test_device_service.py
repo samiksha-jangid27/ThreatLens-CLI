@@ -1,5 +1,4 @@
-from datetime import datetime, timedelta, timezone
-import json
+from datetime import UTC, datetime, timedelta
 
 import pytest
 
@@ -10,8 +9,14 @@ from threatlens.storage.repositories import IncidentRepository
 
 
 def observation(n, network=100, cpu=20, device_id="router-1", sources=None):
-    return DeviceObservation(device_id, "router", (datetime(2026, 1, 1, tzinfo=timezone.utc) + timedelta(minutes=n)).isoformat(),
-                             60, sources or {"system": {"cpu_percent": cpu}, "network": {"bytes_out": network}}, {})
+    return DeviceObservation(
+        device_id,
+        "router",
+        (datetime(2026, 1, 1, tzinfo=UTC) + timedelta(minutes=n)).isoformat(),
+        60,
+        sources or {"system": {"cpu_percent": cpu}, "network": {"bytes_out": network}},
+        {},
+    )
 
 
 @pytest.fixture
@@ -62,7 +67,10 @@ def test_replay_and_schema_drift_roll_back(service):
 
 def test_device_baselines_are_isolated(service):
     train(service)
-    assert service.scan([observation(30, device_id="router-2")])[0]["status"] == "INSUFFICIENT_BASELINE"
+    assert (
+        service.scan([observation(30, device_id="router-2")])[0]["status"]
+        == "INSUFFICIENT_BASELINE"
+    )
 
 
 def test_missing_source_is_degraded_not_zero(service):

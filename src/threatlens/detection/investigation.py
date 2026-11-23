@@ -15,15 +15,13 @@ class IncidentInvestigator:
 
         signals = incident.get("signals", {})
 
-        triggered_signals = [
-            name
-            for name, triggered in signals.items()
-            if bool(triggered)
-        ]
+        triggered_signals = [name for name, triggered in signals.items() if bool(triggered)]
 
         signal_count = len(triggered_signals)
 
-        if incident.get("is_suspicious") and incident.get("correlation", {}).get("persistent_sources"):
+        if incident.get("is_suspicious") and incident.get("correlation", {}).get(
+            "persistent_sources"
+        ):
             status = "PERSISTENT_ANOMALY"
             recommendation = "Investigate repeated behavioral deviation; check workload context and corroborate with independent evidence."
         elif signal_count == 0:
@@ -31,14 +29,10 @@ class IncidentInvestigator:
             recommendation = "Continue monitoring."
         elif signal_count == 1:
             status = "SINGLE_SIGNAL"
-            recommendation = (
-                "Collect additional telemetry before escalating."
-            )
+            recommendation = "Collect additional telemetry before escalating."
         else:
             status = "MULTI_SIGNAL"
-            recommendation = (
-                "Investigate correlated behavioral anomalies."
-            )
+            recommendation = "Investigate correlated behavioral anomalies."
 
         if risk_score >= 80:
             priority = "CRITICAL"

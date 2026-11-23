@@ -27,9 +27,7 @@ class IsolationForestDetector:
         """Train the detector on historical behavioral observations."""
 
         if not observations:
-            raise ValueError(
-                "At least one observation is required."
-            )
+            raise ValueError("At least one observation is required.")
 
         self.feature_names = sorted(set(observations[0]) - {"uptime_seconds"})
         if not self.feature_names:
@@ -38,15 +36,15 @@ class IsolationForestDetector:
         for observation in observations:
             if set(observation) - {"uptime_seconds"} != expected:
                 raise ValueError("Baseline observations must have identical feature names.")
-            if any(isinstance(observation[name], bool) or not np.isfinite(observation[name]) for name in self.feature_names):
+            if any(
+                isinstance(observation[name], bool) or not np.isfinite(observation[name])
+                for name in self.feature_names
+            ):
                 raise ValueError("Features must be finite numbers.")
 
         matrix = np.array(
             [
-                [
-                    float(observation[name])
-                    for name in self.feature_names
-                ]
+                [float(observation[name]) for name in self.feature_names]
                 for observation in observations
             ]
         )
@@ -61,21 +59,17 @@ class IsolationForestDetector:
         """Predict whether an observation is anomalous."""
 
         if not self.is_fitted:
-            raise RuntimeError(
-                "Detector must be fitted before prediction."
-            )
+            raise RuntimeError("Detector must be fitted before prediction.")
 
         if set(observation) - {"uptime_seconds"} != set(self.feature_names):
             raise ValueError("Observation feature names do not match the model baseline.")
-        if any(isinstance(observation[name], bool) or not np.isfinite(observation[name]) for name in self.feature_names):
+        if any(
+            isinstance(observation[name], bool) or not np.isfinite(observation[name])
+            for name in self.feature_names
+        ):
             raise ValueError("Features must be finite numbers.")
 
-        values = np.array(
-            [[
-                float(observation[name])
-                for name in self.feature_names
-            ]]
-        )
+        values = np.array([[float(observation[name]) for name in self.feature_names]])
 
         prediction = self.model.predict(values)[0]
         score = self.model.decision_function(values)[0]

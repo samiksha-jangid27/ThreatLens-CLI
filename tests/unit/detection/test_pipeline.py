@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from threatlens.detection.pipeline import ThreatScanPipeline
 from threatlens.detection.temporal import TemporalAnomalyDetector
@@ -14,7 +14,7 @@ def make_telemetry(
     disk: float,
 ) -> SystemTelemetry:
     return SystemTelemetry(
-        timestamp=datetime.now(timezone.utc),
+        timestamp=datetime.now(UTC),
         cpu_percent=cpu,
         memory_percent=memory,
         memory_available_mb=8000.0,
@@ -198,10 +198,7 @@ def test_pipeline_detects_temporal_anomaly():
 
     assert result["temporal"]["is_anomaly"] is True
 
-    assert (
-        result["temporal"]["signal_count"]
-        > 0
-    )
+    assert result["temporal"]["signal_count"] > 0
 
 
 def test_pipeline_accepts_network_and_process_signals():
@@ -283,15 +280,9 @@ def test_pipeline_accepts_network_and_process_signals():
     assert result["network"] is not None
     assert result["process"] is not None
 
-    assert (
-        "network_anomaly"
-        in result["signals"]
-    )
+    assert "network_anomaly" in result["signals"]
 
-    assert (
-        "process_anomaly"
-        in result["signals"]
-    )
+    assert "process_anomaly" in result["signals"]
 
 
 def test_pipeline_uses_behavioral_baseline():
@@ -343,15 +334,11 @@ def test_pipeline_uses_behavioral_baseline():
 
     assert result["behavioral"] is not None
 
-    assert (
-        "behavioral_deviation"
-        in result["signals"]
-    )
+    assert "behavioral_deviation" in result["signals"]
 
-    assert (
-        result["behavioral"]["is_anomaly"]
-        is True
-    )
+    assert result["behavioral"]["is_anomaly"] is True
+
+
 def test_pipeline_uses_network_and_process_baselines():
     baseline = [
         {
@@ -453,22 +440,10 @@ def test_pipeline_uses_network_and_process_baselines():
     assert result["network"] is not None
     assert result["process"] is not None
 
-    assert (
-        result["network"]["behavioral"]
-        is not None
-    )
+    assert result["network"]["behavioral"] is not None
 
-    assert (
-        result["process"]["behavioral"]
-        is not None
-    )
+    assert result["process"]["behavioral"] is not None
 
-    assert (
-        "network_anomaly"
-        in result["signals"]
-    )
+    assert "network_anomaly" in result["signals"]
 
-    assert (
-        "process_anomaly"
-        in result["signals"]
-    )
+    assert "process_anomaly" in result["signals"]

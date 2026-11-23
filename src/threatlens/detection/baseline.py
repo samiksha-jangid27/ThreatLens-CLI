@@ -28,9 +28,9 @@ class BehavioralBaseline:
 
             previous_count = self.feature_counts[name] - 1
 
-            self.means[name] = (
-                self.means[name] * previous_count + value
-            ) / self.feature_counts[name]
+            self.means[name] = (self.means[name] * previous_count + value) / self.feature_counts[
+                name
+            ]
 
             self.minimums[name] = min(
                 self.minimums[name],

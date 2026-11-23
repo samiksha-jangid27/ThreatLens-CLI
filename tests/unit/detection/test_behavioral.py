@@ -6,9 +6,7 @@ from threatlens.detection.behavioral import (
 
 
 def test_detector_finds_large_deviation():
-    detector = BehavioralDeviationDetector(
-        threshold=3.0
-    )
+    detector = BehavioralDeviationDetector(threshold=3.0)
 
     baseline = [
         {"cpu_percent": 20.0},
@@ -25,16 +23,11 @@ def test_detector_finds_large_deviation():
 
     assert result["is_anomaly"] is True
 
-    assert (
-        "cpu_percent"
-        in result["anomalous_features"]
-    )
+    assert "cpu_percent" in result["anomalous_features"]
 
 
 def test_detector_accepts_normal_behavior():
-    detector = BehavioralDeviationDetector(
-        threshold=3.0
-    )
+    detector = BehavioralDeviationDetector(threshold=3.0)
 
     baseline = [
         {"cpu_percent": 20.0},
@@ -55,9 +48,7 @@ def test_detector_accepts_normal_behavior():
 
 
 def test_detector_returns_robust_z_score():
-    detector = BehavioralDeviationDetector(
-        threshold=3.0
-    )
+    detector = BehavioralDeviationDetector(threshold=3.0)
 
     baseline = [
         {"cpu_percent": 20.0},
@@ -72,26 +63,15 @@ def test_detector_returns_robust_z_score():
         baseline,
     )
 
-    assert (
-        "cpu_percent"
-        in result["signals"]
-    )
+    assert "cpu_percent" in result["signals"]
 
-    assert (
-        result["signals"]["cpu_percent"]["z_score"]
-        > 0
-    )
+    assert result["signals"]["cpu_percent"]["z_score"] > 0
 
-    assert (
-        result["signals"]["cpu_percent"]["mad"]
-        == 0.0
-    )
+    assert result["signals"]["cpu_percent"]["mad"] == 0.0
 
 
 def test_detector_handles_zero_variance_without_false_alarm():
-    detector = BehavioralDeviationDetector(
-        threshold=3.0
-    )
+    detector = BehavioralDeviationDetector(threshold=3.0)
 
     baseline = [
         {"process_count": 100.0},
@@ -110,9 +90,7 @@ def test_detector_handles_zero_variance_without_false_alarm():
 
 
 def test_detector_detects_large_zero_variance_deviation():
-    detector = BehavioralDeviationDetector(
-        threshold=3.0
-    )
+    detector = BehavioralDeviationDetector(threshold=3.0)
 
     baseline = [
         {"process_count": 100.0},
@@ -129,16 +107,11 @@ def test_detector_detects_large_zero_variance_deviation():
 
     assert result["is_anomaly"] is True
 
-    assert (
-        "process_count"
-        in result["anomalous_features"]
-    )
+    assert "process_count" in result["anomalous_features"]
 
 
 def test_detector_is_resistant_to_baseline_outliers():
-    detector = BehavioralDeviationDetector(
-        threshold=3.0
-    )
+    detector = BehavioralDeviationDetector(threshold=3.0)
 
     baseline = [
         {"cpu_percent": 20.0},
@@ -156,9 +129,7 @@ def test_detector_is_resistant_to_baseline_outliers():
 
     assert result["is_anomaly"] is False
 
-    assert (
-        result["anomalous_features"] == []
-    )
+    assert result["anomalous_features"] == []
 
 
 def test_detector_requires_baseline():
@@ -173,20 +144,14 @@ def test_detector_requires_baseline():
 
 def test_detector_rejects_invalid_threshold():
     with pytest.raises(ValueError):
-        BehavioralDeviationDetector(
-            threshold=0
-        )
+        BehavioralDeviationDetector(threshold=0)
 
 
 def test_detector_rejects_invalid_relative_deviation():
     with pytest.raises(ValueError):
-        BehavioralDeviationDetector(
-            minimum_relative_deviation=-0.1
-        )
+        BehavioralDeviationDetector(minimum_relative_deviation=-0.1)
 
 
 def test_detector_rejects_invalid_absolute_deviation():
     with pytest.raises(ValueError):
-        BehavioralDeviationDetector(
-            minimum_absolute_deviation=-1.0
-        )
+        BehavioralDeviationDetector(minimum_absolute_deviation=-1.0)

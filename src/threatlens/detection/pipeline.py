@@ -50,20 +50,11 @@ class ThreatScanPipeline:
     ) -> None:
         self.isolation_forest = isolation_forest
 
-        self.temporal_detector = (
-            temporal_detector
-            or TemporalAnomalyDetector()
-        )
+        self.temporal_detector = temporal_detector or TemporalAnomalyDetector()
 
-        self.behavioral_detector = (
-            behavioral_detector
-            or BehavioralDeviationDetector()
-        )
+        self.behavioral_detector = behavioral_detector or BehavioralDeviationDetector()
 
-        self.detection_engine = (
-            detection_engine
-            or DetectionEngine()
-        )
+        self.detection_engine = detection_engine or DetectionEngine()
 
     def scan(
         self,
@@ -82,72 +73,44 @@ class ThreatScanPipeline:
         and process anomaly detection.
         """
 
-        current_normalized = (
-            normalize_system_telemetry(current)
+        current_normalized = normalize_system_telemetry(current)
+
+        previous_normalized = normalize_system_telemetry(previous)
+
+        validate_system_telemetry(current_normalized)
+
+        validate_system_telemetry(previous_normalized)
+
+        current_features = extract_system_features(current_normalized)
+
+        previous_features = extract_system_features(previous_normalized)
+
+        temporal_features = self._system_temporal_features(
+            current_features,
+            previous_features,
         )
 
-        previous_normalized = (
-            normalize_system_telemetry(previous)
-        )
+        model_result = self.isolation_forest.predict(current_features)
 
-        validate_system_telemetry(
-            current_normalized
-        )
-
-        validate_system_telemetry(
-            previous_normalized
-        )
-
-        current_features = extract_system_features(
-            current_normalized
-        )
-
-        previous_features = extract_system_features(
-            previous_normalized
-        )
-
-        temporal_features = (
-            self._system_temporal_features(
-                current_features,
-                previous_features,
-            )
-        )
-
-        model_result = (
-            self.isolation_forest.predict(
-                current_features
-            )
-        )
-
-        temporal_result = (
-            self.temporal_detector.analyze(
-                current_features,
-                previous_features,
-            )
+        temporal_result = self.temporal_detector.analyze(
+            current_features,
+            previous_features,
         )
 
         signals: dict[str, bool] = {
-            "isolation_forest": bool(
-                model_result["is_anomaly"]
-            ),
-            "temporal_anomaly": bool(
-                temporal_result["is_anomaly"]
-            ),
+            "isolation_forest": bool(model_result["is_anomaly"]),
+            "temporal_anomaly": bool(temporal_result["is_anomaly"]),
         }
 
         behavioral_result = None
 
         if baseline:
-            behavioral_result = (
-                self.behavioral_detector.analyze(
-                    current_features,
-                    baseline,
-                )
+            behavioral_result = self.behavioral_detector.analyze(
+                current_features,
+                baseline,
             )
 
-            signals["behavioral_deviation"] = bool(
-                behavioral_result["is_anomaly"]
-            )
+            signals["behavioral_deviation"] = bool(behavioral_result["is_anomaly"])
 
         # -------------------------------------------------
         # NETWORK ANALYSIS
@@ -155,74 +118,39 @@ class ThreatScanPipeline:
 
         network_result = None
 
-        if (
-            current_network is not None
-            and previous_network is not None
-        ):
-            current_network_features = (
-                extract_network_features(
-                    current_network
-                )
-            )
+        if current_network is not None and previous_network is not None:
+            current_network_features = extract_network_features(current_network)
 
-            previous_network_features = (
-                extract_network_features(
-                    previous_network
-                )
-            )
+            previous_network_features = extract_network_features(previous_network)
 
-            network_temporal = (
-                extract_network_temporal_features(
-                    current_network_features,
-                    previous_network_features,
-                )
+            network_temporal = extract_network_temporal_features(
+                current_network_features,
+                previous_network_features,
             )
 
             network_behavioral_result = None
 
             if network_baseline:
                 network_feature_baseline = [
-                    extract_network_features(
-                        observation
-                    )
-                    for observation in network_baseline
+                    extract_network_features(observation) for observation in network_baseline
                 ]
 
-                network_behavioral_result = (
-                    self.behavioral_detector.analyze(
-                        current_network_features,
-                        network_feature_baseline,
-                    )
+                network_behavioral_result = self.behavioral_detector.analyze(
+                    current_network_features,
+                    network_feature_baseline,
                 )
 
-                network_anomaly = bool(
-                    network_behavioral_result[
-                        "is_anomaly"
-                    ]
-                )
+                network_anomaly = bool(network_behavioral_result["is_anomaly"])
             else:
-                network_anomaly = any(
-                    abs(value) >= 5.0
-                    for value in network_temporal.values()
-                )
+                network_anomaly = any(abs(value) >= 5.0 for value in network_temporal.values())
 
-            signals["network_anomaly"] = (
-                network_anomaly
-            )
+            signals["network_anomaly"] = network_anomaly
 
             network_result = {
-                "current_features": (
-                    current_network_features
-                ),
-                "previous_features": (
-                    previous_network_features
-                ),
-                "temporal_features": (
-                    network_temporal
-                ),
-                "behavioral": (
-                    network_behavioral_result
-                ),
+                "current_features": (current_network_features),
+                "previous_features": (previous_network_features),
+                "temporal_features": (network_temporal),
+                "behavioral": (network_behavioral_result),
                 "is_anomaly": network_anomaly,
             }
 
@@ -232,21 +160,10 @@ class ThreatScanPipeline:
 
         process_result = None
 
-        if (
-            current_processes is not None
-            and previous_processes is not None
-        ):
-            current_process_features = (
-                extract_process_features(
-                    current_processes
-                )
-            )
+        if current_processes is not None and previous_processes is not None:
+            current_process_features = extract_process_features(current_processes)
 
-            previous_process_features = (
-                extract_process_features(
-                    previous_processes
-                )
-            )
+            previous_process_features = extract_process_features(previous_processes)
 
             process_deltas = {
                 key: (
@@ -263,45 +180,25 @@ class ThreatScanPipeline:
 
             if process_baseline:
                 process_feature_baseline = [
-                    extract_process_features(
-                        observation
-                    )
-                    for observation in process_baseline
+                    extract_process_features(observation) for observation in process_baseline
                 ]
 
-                process_behavioral_result = (
-                    self.behavioral_detector.analyze(
-                        current_process_features,
-                        process_feature_baseline,
-                    )
+                process_behavioral_result = self.behavioral_detector.analyze(
+                    current_process_features,
+                    process_feature_baseline,
                 )
 
-                process_anomaly = bool(
-                    process_behavioral_result[
-                        "is_anomaly"
-                    ]
-                )
+                process_anomaly = bool(process_behavioral_result["is_anomaly"])
             else:
-                process_anomaly = any(
-                    abs(value) >= 10.0
-                    for value in process_deltas.values()
-                )
+                process_anomaly = any(abs(value) >= 10.0 for value in process_deltas.values())
 
-            signals["process_anomaly"] = (
-                process_anomaly
-            )
+            signals["process_anomaly"] = process_anomaly
 
             process_result = {
-                "current_features": (
-                    current_process_features
-                ),
-                "previous_features": (
-                    previous_process_features
-                ),
+                "current_features": (current_process_features),
+                "previous_features": (previous_process_features),
                 "deltas": process_deltas,
-                "behavioral": (
-                    process_behavioral_result
-                ),
+                "behavioral": (process_behavioral_result),
                 "is_anomaly": process_anomaly,
             }
 
@@ -309,11 +206,7 @@ class ThreatScanPipeline:
         # CORRELATION + RISK
         # -------------------------------------------------
 
-        detection_result = (
-            self.detection_engine.analyze(
-                signals
-            )
-        )
+        detection_result = self.detection_engine.analyze(signals)
 
         return {
             "current": current_normalized,
@@ -338,8 +231,4 @@ class ThreatScanPipeline:
         system observations.
         """
 
-        return {
-            key: current[key] - previous[key]
-            for key in current
-            if key in previous
-        }
+        return {key: current[key] - previous[key] for key in current if key in previous}
