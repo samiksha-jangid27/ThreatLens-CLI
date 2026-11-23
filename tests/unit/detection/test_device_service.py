@@ -87,3 +87,16 @@ def test_relearning_requires_explicit_replace_for_profile_change(service):
         service.learn([observation(30, sources={"system": {"cpu_percent": 20}})])
     result = service.learn([observation(30, sources={"system": {"cpu_percent": 20}})], replace=True)
     assert not result["ready"]
+
+
+def test_repeated_alerts_reuse_episode_but_recovery_allows_new_incident(service):
+    train(service)
+    first = service.scan([observation(30, 10000, 95)])[0]
+    second = service.scan([observation(31, 10000, 95)])[0]
+    assert second["incident_id"] == first["incident_id"]
+    assert not second["incident_created"]
+    service.scan([observation(32)])
+    third = service.scan([observation(33, 10000, 95)])[0]
+    assert third["incident_created"]
+    assert third["incident_id"] != first["incident_id"]
+    assert len(service.repository.list_all()) == 2

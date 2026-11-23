@@ -102,7 +102,8 @@ def scan(
             else:
                 text += "\nRun 'threatlens learn' on trusted normal telemetry first."
             if "incident_id" in result:
-                text += f"\nIncident created: #{result['incident_id']}"
+                action = "created" if result.get("incident_created", True) else "continuing"
+                text += f"\nIncident {action}: #{result['incident_id']}"
             console.print(Panel(Text(text), title="ThreatLens Scan"))
     if any(row["status"] == "INSUFFICIENT_BASELINE" for row in results):
         raise typer.Exit(4)

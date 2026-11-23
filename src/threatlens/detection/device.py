@@ -194,6 +194,7 @@ class DeviceDetectionService:
                 state["previous"] = data
             state["baseline"] = baseline[-MAX_BASELINE:]
             state["streaks"] = {}
+            state.pop("active_incident", None)
             self._save(connection, key, state)
             return {
                 "device": key,
@@ -236,7 +237,22 @@ class DeviceDetectionService:
                     )
                 result = assess_observation(observation, baseline, previous, state.get("streaks"))
                 if result["is_suspicious"]:
-                    result["incident_id"] = self.repository.create(result, connection)
+                    active = state.get("active_incident")
+                    # One incident per uninterrupted episode, retaining the onset evidence.
+                    same_episode = active and set(
+                        result["correlation"]["triggered_signals"]
+                    ) == set(active["sources"])
+                    result["incident_created"] = not bool(same_episode)
+                    if same_episode:
+                        result["incident_id"] = active["id"]
+                    else:
+                        result["incident_id"] = self.repository.create(result, connection)
+                        state["active_incident"] = {
+                            "id": result["incident_id"],
+                            "sources": result["correlation"]["triggered_signals"],
+                        }
+                else:
+                    state.pop("active_incident", None)
                 # Previous means the last scan, even if suspicious. Never train on it.
                 state["previous"] = observation.to_dict()
                 state["streaks"] = result["streaks"]
