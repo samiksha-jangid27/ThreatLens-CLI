@@ -4,6 +4,7 @@ import typer
 from rich.console import Console
 
 from threatlens.config import database_path
+from threatlens.storage.files import write_private_text
 from threatlens.reporting.html import (
     generate_html_report,
 )
@@ -87,10 +88,11 @@ def report(
         or Path.cwd() / default_name
     )
 
-    output_path.write_text(
-        content,
-        encoding="utf-8",
-    )
+    try:
+        write_private_text(output_path, content)
+    except OSError as error:
+        typer.echo(f"Cannot write report: {error}", err=True)
+        raise typer.Exit(2)
 
     console.print(
         f"[green]Report written to:[/green] "

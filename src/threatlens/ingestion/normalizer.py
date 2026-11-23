@@ -1,6 +1,7 @@
 from typing import Any
 
 from threatlens.schema.telemetry import SystemTelemetry
+from threatlens.ingestion.validator import validate_system_telemetry
 
 
 def normalize_system_telemetry(
@@ -9,6 +10,7 @@ def normalize_system_telemetry(
     """Convert system telemetry into a stable ML-ready dictionary."""
 
     data = telemetry.to_dict()
+    validate_system_telemetry(data)
 
     return {
         "timestamp": data["timestamp"],

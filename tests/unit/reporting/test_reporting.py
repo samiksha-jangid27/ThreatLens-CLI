@@ -107,3 +107,16 @@ def test_html_report_empty():
     )
 
     assert "Total Incidents" in content
+
+
+def test_html_includes_escaped_feature_evidence():
+    from threatlens.reporting.html import generate_html_report
+    report = generate_html_report([{
+        "id": 1, "timestamp": "2026-01-01", "risk_score": 50, "severity": "MEDIUM",
+        "is_suspicious": True, "signals": {"network": True},
+        "explanation": {"description": "<script>alert(1)</script>", "current": 999},
+    }])
+    assert "&lt;script&gt;" in report
+    assert "<script>" not in report
+    assert "999" in report
+    assert "Content-Security-Policy" in report

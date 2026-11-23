@@ -23,7 +23,10 @@ class IncidentInvestigator:
 
         signal_count = len(triggered_signals)
 
-        if signal_count == 0:
+        if incident.get("is_suspicious") and incident.get("correlation", {}).get("persistent_sources"):
+            status = "PERSISTENT_ANOMALY"
+            recommendation = "Investigate repeated behavioral deviation; check workload context and corroborate with independent evidence."
+        elif signal_count == 0:
             status = "NO_ANOMALOUS_SIGNALS"
             recommendation = "Continue monitoring."
         elif signal_count == 1:

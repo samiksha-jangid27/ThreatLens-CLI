@@ -1,4 +1,5 @@
 from html import escape
+import json
 from typing import Any
 
 
@@ -16,6 +17,7 @@ def generate_html_report(
     )
 
     rows = []
+    evidence_sections = []
 
     for incident in incidents:
         status = (
@@ -33,6 +35,11 @@ def generate_html_report(
             if bool(triggered)
         ]
 
+        evidence_sections.append(
+            "<section><h2>Incident " + escape(str(incident["id"])) + " evidence</h2><pre>"
+            + escape(json.dumps({key: incident[key] for key in ("device_id", "device_type", "algorithm_version", "coverage", "features", "explanation") if key in incident}, indent=2))
+            + "</pre></section>"
+        )
         rows.append(
             f"""
             <tr>
@@ -53,7 +60,11 @@ def generate_html_report(
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>ThreatLens Security Report</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
     <style>
+        pre {{ white-space: pre-wrap; overflow-wrap: anywhere; background: white; padding: 16px; }}
+        .summary {{ flex-wrap: wrap; }}
+        section {{ break-inside: avoid; }}
         body {{
             font-family: Arial, sans-serif;
             margin: 40px;
@@ -151,6 +162,8 @@ def generate_html_report(
             {"".join(rows)}
         </tbody>
     </table>
+    <p>Risk scores prioritize investigation. Behavioral anomalies do not establish compromise.</p>
+    {"".join(evidence_sections)}
 
 </body>
 </html>
