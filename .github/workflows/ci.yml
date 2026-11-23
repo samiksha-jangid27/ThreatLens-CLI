@@ -59,7 +59,7 @@ jobs:
         run: |
           threatlens version
           python -I -m threatlens --help
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: python-distributions
           path: dist/*
