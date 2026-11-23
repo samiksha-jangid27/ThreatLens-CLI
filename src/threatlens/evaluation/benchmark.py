@@ -201,6 +201,11 @@ def calculate_metrics(
     Calculate binary classification metrics.
     """
 
+    if len(expected) != len(predicted):
+        raise ValueError("Expected and predicted labels must have equal lengths")
+    if any(type(value) is not bool for value in [*expected, *predicted]):
+        raise ValueError("Classification labels must be booleans")
+
     true_positive = sum(
         expected_value and predicted_value
         for expected_value, predicted_value

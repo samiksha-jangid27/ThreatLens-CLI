@@ -4,15 +4,15 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from threatlens.evaluation.benchmark import (
-    run_benchmark,
-)
+from threatlens.evaluation.benchmark import run_benchmark
+from threatlens.evaluation.device_benchmark import run_device_benchmark
 
 
 console = Console()
 
 
 def benchmark(
+    component: bool = typer.Option(False, "--component", help="Run the legacy statistical component benchmark."),
     json_output: bool = typer.Option(
         False,
         "--json",
@@ -21,7 +21,7 @@ def benchmark(
 ) -> None:
     """Run the ThreatLens behavioral detection benchmark."""
 
-    result = run_benchmark()
+    result = run_benchmark() if component else run_device_benchmark()
 
     if json_output:
         print(
@@ -75,6 +75,7 @@ def benchmark(
     )
 
     console.print(table)
+    console.print("Synthetic scenarios only. No real-world detection guarantee.")
 
     console.print(
         f"\nScenarios tested: "
