@@ -45,7 +45,7 @@ Documentation = "https://github.com/samiksha-jangid27/ThreatLens-CLI/tree/main/d
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = "--strict-markers"
+addopts = "--strict-markers --import-mode=importlib"
 
 [tool.ruff]
 target-version = "py311"
