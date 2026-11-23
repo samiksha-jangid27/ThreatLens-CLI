@@ -54,9 +54,7 @@ def sample_network_data():
 
 
 def test_extracts_network_features():
-    features = extract_network_features(
-        sample_network_data()
-    )
+    features = extract_network_features(sample_network_data())
 
     assert features["connection_count"] == 5.0
     assert features["tcp_connection_count"] == 4.0

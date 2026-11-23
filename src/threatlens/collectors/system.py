@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import psutil
@@ -12,10 +12,10 @@ def collect_system_telemetry() -> SystemTelemetry:
     memory = psutil.virtual_memory()
     disk = psutil.disk_usage(Path.home().anchor)
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
 
     cpu = psutil.cpu_percent(interval=1)
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     return SystemTelemetry(
         timestamp=now,
         cpu_percent=cpu,

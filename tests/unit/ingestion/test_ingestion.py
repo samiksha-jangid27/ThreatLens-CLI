@@ -33,6 +33,4 @@ def test_validate_rejects_invalid_cpu(fake_host):
     except ValueError:
         pass
     else:
-        raise AssertionError(
-            "Expected validation to reject invalid CPU value"
-        )
+        raise AssertionError("Expected validation to reject invalid CPU value")

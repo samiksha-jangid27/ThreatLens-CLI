@@ -29,51 +29,19 @@ def extract_network_temporal_features(
             float(previous_features.get("udp_connection_count", 0.0)),
         ),
         "established_connection_delta": calculate_delta(
-            float(
-                current_features.get(
-                    "established_connection_count", 0.0
-                )
-            ),
-            float(
-                previous_features.get(
-                    "established_connection_count", 0.0
-                )
-            ),
+            float(current_features.get("established_connection_count", 0.0)),
+            float(previous_features.get("established_connection_count", 0.0)),
         ),
         "listening_port_delta": calculate_delta(
-            float(
-                current_features.get(
-                    "listening_port_count", 0.0
-                )
-            ),
-            float(
-                previous_features.get(
-                    "listening_port_count", 0.0
-                )
-            ),
+            float(current_features.get("listening_port_count", 0.0)),
+            float(previous_features.get("listening_port_count", 0.0)),
         ),
         "unique_remote_address_delta": calculate_delta(
-            float(
-                current_features.get(
-                    "unique_remote_addresses", 0.0
-                )
-            ),
-            float(
-                previous_features.get(
-                    "unique_remote_addresses", 0.0
-                )
-            ),
+            float(current_features.get("unique_remote_addresses", 0.0)),
+            float(previous_features.get("unique_remote_addresses", 0.0)),
         ),
         "unique_remote_port_delta": calculate_delta(
-            float(
-                current_features.get(
-                    "unique_remote_ports", 0.0
-                )
-            ),
-            float(
-                previous_features.get(
-                    "unique_remote_ports", 0.0
-                )
-            ),
+            float(current_features.get("unique_remote_ports", 0.0)),
+            float(previous_features.get("unique_remote_ports", 0.0)),
         ),
     }

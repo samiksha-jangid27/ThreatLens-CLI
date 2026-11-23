@@ -19,26 +19,15 @@ def extract_network_features(
         raise ValueError("Network telemetry unavailable")
 
     if isinstance(network_data, NetworkTelemetry):
-        connections = [
-            connection.to_dict()
-            for connection in network_data.connections
-        ]
+        connections = [connection.to_dict() for connection in network_data.connections]
 
-        connection_count = float(
-            network_data.connection_count
-        )
+        connection_count = float(network_data.connection_count)
 
-        tcp_connection_count = float(
-            network_data.tcp_connection_count
-        )
+        tcp_connection_count = float(network_data.tcp_connection_count)
 
-        udp_connection_count = float(
-            network_data.udp_connection_count
-        )
+        udp_connection_count = float(network_data.udp_connection_count)
 
-        listening_port_count = float(
-            network_data.listening_port_count
-        )
+        listening_port_count = float(network_data.listening_port_count)
 
     else:
         connections = network_data.get(
@@ -95,51 +84,29 @@ def extract_network_features(
         if status == "LISTEN":
             listening_connection_count += 1
 
-        remote_address = connection.get(
-            "remote_address"
-        )
+        remote_address = connection.get("remote_address")
 
         if remote_address:
-            remote_addresses.add(
-                str(remote_address)
-            )
+            remote_addresses.add(str(remote_address))
 
-        remote_port = connection.get(
-            "remote_port"
-        )
+        remote_port = connection.get("remote_port")
 
         if remote_port is not None:
-            remote_ports.add(
-                int(remote_port)
-            )
+            remote_ports.add(int(remote_port))
 
-        local_port = connection.get(
-            "local_port"
-        )
+        local_port = connection.get("local_port")
 
         if local_port is not None:
-            local_ports.add(
-                int(local_port)
-            )
+            local_ports.add(int(local_port))
 
     return {
         "connection_count": connection_count,
         "tcp_connection_count": tcp_connection_count,
         "udp_connection_count": udp_connection_count,
-        "established_connection_count": float(
-            established_connection_count
-        ),
-        "listening_connection_count": float(
-            listening_connection_count
-        ),
+        "established_connection_count": float(established_connection_count),
+        "listening_connection_count": float(listening_connection_count),
         "listening_port_count": listening_port_count,
-        "unique_remote_addresses": float(
-            len(remote_addresses)
-        ),
-        "unique_remote_ports": float(
-            len(remote_ports)
-        ),
-        "unique_local_ports": float(
-            len(local_ports)
-        ),
+        "unique_remote_addresses": float(len(remote_addresses)),
+        "unique_remote_ports": float(len(remote_ports)),
+        "unique_local_ports": float(len(local_ports)),
     }

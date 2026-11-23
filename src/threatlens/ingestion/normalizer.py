@@ -1,7 +1,7 @@
 from typing import Any
 
-from threatlens.schema.telemetry import SystemTelemetry
 from threatlens.ingestion.validator import validate_system_telemetry
+from threatlens.schema.telemetry import SystemTelemetry
 
 
 def normalize_system_telemetry(

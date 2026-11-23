@@ -66,11 +66,13 @@ def test_network_telemetry_serializes_connections(fake_host):
 
 def test_denied_network_is_unavailable(monkeypatch):
     import psutil
-    from threatlens.features.network import extract_network_features
     import pytest
+
+    from threatlens.features.network import extract_network_features
 
     def denied(kind):
         raise psutil.AccessDenied()
+
     monkeypatch.setattr(psutil, "net_connections", denied)
     data = collect_network_telemetry()
     assert not data.available

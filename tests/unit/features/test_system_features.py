@@ -1,6 +1,6 @@
 from threatlens.collectors.system import collect_system_telemetry
-from threatlens.ingestion.normalizer import normalize_system_telemetry
 from threatlens.features.system import extract_system_features
+from threatlens.ingestion.normalizer import normalize_system_telemetry
 
 
 def test_extract_system_features(fake_host):

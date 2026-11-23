@@ -1,9 +1,9 @@
 """Local adapter; device imports use the same aggregate feature contract."""
 
-from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
 import platform
 import re
+from concurrent.futures import ThreadPoolExecutor
+from datetime import UTC, datetime
 
 import psutil
 
@@ -45,5 +45,11 @@ def collect_device_observation(device_id: str | None = None) -> DeviceObservatio
                 unavailable[name] = f"{name} unavailable: {type(error).__name__}"
     if not sources:
         raise ValueError("No telemetry available; check OS permissions or supply --input")
-    return DeviceObservation(device_id or local_device_id(), "system", datetime.now(timezone.utc).isoformat(),
-                             1.0, sources, unavailable)
+    return DeviceObservation(
+        device_id or local_device_id(),
+        "system",
+        datetime.now(UTC).isoformat(),
+        1.0,
+        sources,
+        unavailable,
+    )

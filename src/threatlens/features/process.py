@@ -35,18 +35,12 @@ def extract_process_features(
         name = process.get("name")
 
         if name:
-            unique_names.add(
-                str(name)
-            )
+            unique_names.add(str(name))
 
-        username = process.get(
-            "username"
-        )
+        username = process.get("username")
 
         if username:
-            unique_users.add(
-                str(username)
-            )
+            unique_users.add(str(username))
 
         cpu_percent = float(
             process.get(
@@ -93,64 +87,28 @@ def extract_process_features(
         }:
             stopped_process_count += 1
 
-        parent_pid = process.get(
-            "parent_pid"
-        )
+        parent_pid = process.get("parent_pid")
 
         if parent_pid is not None:
-            parent_process_ids.add(
-                int(parent_pid)
-            )
+            parent_process_ids.add(int(parent_pid))
 
     process_count = len(processes)
 
-    average_cpu_percent = (
-        total_cpu_percent / process_count
-        if process_count
-        else 0.0
-    )
+    average_cpu_percent = total_cpu_percent / process_count if process_count else 0.0
 
-    average_memory_percent = (
-        total_memory_percent / process_count
-        if process_count
-        else 0.0
-    )
+    average_memory_percent = total_memory_percent / process_count if process_count else 0.0
 
     return {
-        "total_processes": float(
-            process_count
-        ),
-        "unique_process_names": float(
-            len(unique_names)
-        ),
-        "unique_users": float(
-            len(unique_users)
-        ),
-        "high_cpu_process_count": float(
-            high_cpu_process_count
-        ),
-        "high_memory_process_count": float(
-            high_memory_process_count
-        ),
-        "root_process_count": float(
-            root_process_count
-        ),
-        "running_process_count": float(
-            running_process_count
-        ),
-        "sleeping_process_count": float(
-            sleeping_process_count
-        ),
-        "stopped_process_count": float(
-            stopped_process_count
-        ),
-        "unique_parent_processes": float(
-            len(parent_process_ids)
-        ),
-        "average_cpu_percent": float(
-            average_cpu_percent
-        ),
-        "average_memory_percent": float(
-            average_memory_percent
-        ),
+        "total_processes": float(process_count),
+        "unique_process_names": float(len(unique_names)),
+        "unique_users": float(len(unique_users)),
+        "high_cpu_process_count": float(high_cpu_process_count),
+        "high_memory_process_count": float(high_memory_process_count),
+        "root_process_count": float(root_process_count),
+        "running_process_count": float(running_process_count),
+        "sleeping_process_count": float(sleeping_process_count),
+        "stopped_process_count": float(stopped_process_count),
+        "unique_parent_processes": float(len(parent_process_ids)),
+        "average_cpu_percent": float(average_cpu_percent),
+        "average_memory_percent": float(average_memory_percent),
     }

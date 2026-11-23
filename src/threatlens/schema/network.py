@@ -49,8 +49,5 @@ class NetworkTelemetry:
             "tcp_connection_count": self.tcp_connection_count,
             "udp_connection_count": self.udp_connection_count,
             "listening_port_count": self.listening_port_count,
-            "connections": [
-                connection.to_dict()
-                for connection in self.connections
-            ],
+            "connections": [connection.to_dict() for connection in self.connections],
         }

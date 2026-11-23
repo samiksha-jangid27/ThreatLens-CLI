@@ -47,9 +47,7 @@ def sample_process_data():
 
 
 def test_extracts_process_features():
-    features = extract_process_features(
-        sample_process_data()
-    )
+    features = extract_process_features(sample_process_data())
 
     assert features["total_processes"] == 4.0
     assert features["unique_process_names"] == 3.0

@@ -1,5 +1,5 @@
-from copy import deepcopy
 import json
+from copy import deepcopy
 
 import pytest
 
@@ -8,9 +8,19 @@ from threatlens.schema.device import parse_document
 
 
 def document(device_type="router"):
-    return {"schema_version": 1, "device_id": "lab-router", "device_type": device_type,
-            "observations": [{"timestamp": "2026-01-01T00:00:00Z", "window_seconds": 60,
-                              "sources": {"network": {"bytes_out": 1024}}, "unavailable": {}}]}
+    return {
+        "schema_version": 1,
+        "device_id": "lab-router",
+        "device_type": device_type,
+        "observations": [
+            {
+                "timestamp": "2026-01-01T00:00:00Z",
+                "window_seconds": 60,
+                "sources": {"network": {"bytes_out": 1024}},
+                "unavailable": {},
+            }
+        ],
+    }
 
 
 @pytest.mark.parametrize("device_type", ["system", "router", "firewall", "network"])

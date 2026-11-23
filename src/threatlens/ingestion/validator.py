@@ -1,7 +1,6 @@
-from typing import Any
-from math import isfinite
 from datetime import datetime
-
+from math import isfinite
+from typing import Any
 
 REQUIRED_FIELDS = {
     "timestamp",
@@ -21,9 +20,7 @@ def validate_system_telemetry(data: dict[str, Any]) -> None:
     missing = REQUIRED_FIELDS - data.keys()
 
     if missing:
-        raise ValueError(
-            f"Missing telemetry fields: {sorted(missing)}"
-        )
+        raise ValueError(f"Missing telemetry fields: {sorted(missing)}")
 
     for field in REQUIRED_FIELDS - {"timestamp"}:
         value = data[field]

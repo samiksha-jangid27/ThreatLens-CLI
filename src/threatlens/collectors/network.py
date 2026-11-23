@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import psutil
 
@@ -39,9 +39,7 @@ def collect_network_telemetry() -> NetworkTelemetry:
         remote_port = None
 
         if connection.raddr:
-            remote_address, remote_port = _extract_address(
-                connection.raddr
-            )
+            remote_address, remote_port = _extract_address(connection.raddr)
 
         protocol = "tcp" if connection.type == 1 else "udp"
 
@@ -65,7 +63,7 @@ def collect_network_telemetry() -> NetworkTelemetry:
         )
 
     return NetworkTelemetry(
-        timestamp=datetime.now(timezone.utc),
+        timestamp=datetime.now(UTC),
         connection_count=len(connections),
         tcp_connection_count=tcp_count,
         udp_connection_count=udp_count,
