@@ -44,3 +44,9 @@ datasets/processed/*
 
 # Temporary files
 *.tmp
+.ruff_cache/
+coverage.xml
+*.db
+*.db-journal
+.threatlens-data/
+demo-artifacts/
