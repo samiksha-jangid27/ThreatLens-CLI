@@ -6,7 +6,6 @@ from threatlens.cli.app import app
 from threatlens.storage.database import ThreatLensDatabase
 from threatlens.storage.repositories import IncidentRepository
 
-
 runner = CliRunner()
 
 
@@ -45,14 +44,10 @@ def test_incidents_json_output(
 ):
     database_path = tmp_path / "threatlens.db"
 
-    repository = IncidentRepository(
-        ThreatLensDatabase(database_path)
-    )
+    repository = IncidentRepository(ThreatLensDatabase(database_path))
 
     detection_result = {
-        "timestamp": (
-            "2026-09-20T18:00:00+05:30"
-        ),
+        "timestamp": ("2026-09-20T18:00:00+05:30"),
         "signals": {
             "isolation_forest": True,
             "temporal_anomaly": True,
@@ -85,9 +80,7 @@ def test_incidents_json_output(
         "is_suspicious": True,
     }
 
-    incident_id = repository.create(
-        detection_result
-    )
+    incident_id = repository.create(detection_result)
 
     from threatlens.cli.commands import (
         incidents as incidents_module,
@@ -106,44 +99,27 @@ def test_incidents_json_output(
 
     assert result.exit_code == 0
 
-    payload = json.loads(
-        result.stdout
-    )
+    payload = json.loads(result.stdout)
 
     assert payload["count"] == 1
 
-    assert (
-        payload["incidents"][0]["id"]
-        == incident_id
-    )
+    assert payload["incidents"][0]["id"] == incident_id
 
-    assert (
-        payload["incidents"][0]["risk_score"]
-        == 80.0
-    )
+    assert payload["incidents"][0]["risk_score"] == 80.0
 
-    assert (
-        payload["incidents"][0]["severity"]
-        == "CRITICAL"
-    )
+    assert payload["incidents"][0]["severity"] == "CRITICAL"
 
 
 def test_explain_json_output(
     monkeypatch,
     tmp_path,
 ):
-    database_path = (
-        tmp_path / "threatlens.db"
-    )
+    database_path = tmp_path / "threatlens.db"
 
-    repository = IncidentRepository(
-        ThreatLensDatabase(database_path)
-    )
+    repository = IncidentRepository(ThreatLensDatabase(database_path))
 
     detection_result = {
-        "timestamp": (
-            "2026-09-20T18:00:00+05:30"
-        ),
+        "timestamp": ("2026-09-20T18:00:00+05:30"),
         "signals": {
             "isolation_forest": True,
             "temporal_anomaly": True,
@@ -173,9 +149,7 @@ def test_explain_json_output(
         "is_suspicious": True,
     }
 
-    incident_id = repository.create(
-        detection_result
-    )
+    incident_id = repository.create(detection_result)
 
     from threatlens.cli.commands import (
         explain as explain_module,
@@ -198,47 +172,27 @@ def test_explain_json_output(
 
     assert result.exit_code == 0
 
-    payload = json.loads(
-        result.stdout
-    )
+    payload = json.loads(result.stdout)
 
-    assert (
-        payload["incident_id"]
-        == incident_id
-    )
+    assert payload["incident_id"] == incident_id
 
-    assert (
-        payload["risk_score"]
-        == 65.0
-    )
+    assert payload["risk_score"] == 65.0
 
-    assert (
-        payload["severity"]
-        == "HIGH"
-    )
+    assert payload["severity"] == "HIGH"
 
-    assert (
-        payload["evidence_count"]
-        == 2
-    )
+    assert payload["evidence_count"] == 2
 
 
 def test_investigate_shows_evidence(
     monkeypatch,
     tmp_path,
 ):
-    database_path = (
-        tmp_path / "threatlens.db"
-    )
+    database_path = tmp_path / "threatlens.db"
 
-    repository = IncidentRepository(
-        ThreatLensDatabase(database_path)
-    )
+    repository = IncidentRepository(ThreatLensDatabase(database_path))
 
     detection_result = {
-        "timestamp": (
-            "2026-09-20T18:00:00+05:30"
-        ),
+        "timestamp": ("2026-09-20T18:00:00+05:30"),
         "signals": {
             "network_anomaly": True,
             "process_anomaly": True,
@@ -266,9 +220,7 @@ def test_investigate_shows_evidence(
         "is_suspicious": True,
     }
 
-    incident_id = repository.create(
-        detection_result
-    )
+    incident_id = repository.create(detection_result)
 
     from threatlens.cli.commands import (
         investigate as investigate_module,
@@ -290,17 +242,8 @@ def test_investigate_shows_evidence(
 
     assert result.exit_code == 0
 
-    assert (
-        "behavioral evidence"
-        in result.stdout.lower()
-    )
+    assert "behavioral evidence" in result.stdout.lower()
 
-    assert (
-        "network_anomaly"
-        in result.stdout
-    )
+    assert "network_anomaly" in result.stdout
 
-    assert (
-        "process_anomaly"
-        in result.stdout
-    )
+    assert "process_anomaly" in result.stdout

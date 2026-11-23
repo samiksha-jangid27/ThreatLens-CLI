@@ -1,11 +1,8 @@
 import typer
-from threatlens.cli.commands.report import (
-    report,
-)
+
 from threatlens.cli.commands.benchmark import (
     benchmark,
 )
-
 from threatlens.cli.commands.explain import (
     explain,
 )
@@ -15,8 +12,13 @@ from threatlens.cli.commands.incidents import (
 from threatlens.cli.commands.investigate import (
     investigate,
 )
+from threatlens.cli.commands.report import (
+    report,
+)
 from threatlens.cli.commands.scan import (
-    scan, learn, collect,
+    collect,
+    learn,
+    scan,
 )
 from threatlens.cli.commands.status import (
     status,
@@ -24,7 +26,6 @@ from threatlens.cli.commands.status import (
 from threatlens.cli.commands.version import (
     version,
 )
-
 
 app = typer.Typer(
     name="threatlens",

@@ -39,9 +39,7 @@ def sample_detection_result():
 
 
 def test_database_initializes(tmp_path):
-    database = ThreatLensDatabase(
-        tmp_path / "threatlens.db"
-    )
+    database = ThreatLensDatabase(tmp_path / "threatlens.db")
 
     database.initialize()
 
@@ -59,29 +57,21 @@ def test_database_initializes(tmp_path):
 
 
 def test_create_incident(tmp_path):
-    database = ThreatLensDatabase(
-        tmp_path / "threatlens.db"
-    )
+    database = ThreatLensDatabase(tmp_path / "threatlens.db")
 
     repository = IncidentRepository(database)
 
-    incident_id = repository.create(
-        sample_detection_result()
-    )
+    incident_id = repository.create(sample_detection_result())
 
     assert incident_id == 1
 
 
 def test_get_incident(tmp_path):
-    database = ThreatLensDatabase(
-        tmp_path / "threatlens.db"
-    )
+    database = ThreatLensDatabase(tmp_path / "threatlens.db")
 
     repository = IncidentRepository(database)
 
-    incident_id = repository.create(
-        sample_detection_result()
-    )
+    incident_id = repository.create(sample_detection_result())
 
     incident = repository.get(incident_id)
 
@@ -94,9 +84,7 @@ def test_get_incident(tmp_path):
 
 
 def test_get_missing_incident(tmp_path):
-    database = ThreatLensDatabase(
-        tmp_path / "threatlens.db"
-    )
+    database = ThreatLensDatabase(tmp_path / "threatlens.db")
 
     repository = IncidentRepository(database)
 
@@ -104,15 +92,11 @@ def test_get_missing_incident(tmp_path):
 
 
 def test_list_incidents(tmp_path):
-    database = ThreatLensDatabase(
-        tmp_path / "threatlens.db"
-    )
+    database = ThreatLensDatabase(tmp_path / "threatlens.db")
 
     repository = IncidentRepository(database)
 
-    repository.create(
-        sample_detection_result()
-    )
+    repository.create(sample_detection_result())
 
     second_result = sample_detection_result()
     second_result["risk"]["risk_score"] = 40.0
@@ -131,10 +115,13 @@ def test_list_incidents(tmp_path):
     assert incidents[0]["risk_score"] == 40.0
     assert incidents[1]["risk_score"] == 80.0
 
+
 def test_full_feature_evidence_survives_reopening(tmp_path):
     path = tmp_path / "incidents.db"
     result = sample_detection_result()
-    result["explanation"] = {"evidence": [{"feature": "bytes_out", "current": 10000, "median": 100}]}
+    result["explanation"] = {
+        "evidence": [{"feature": "bytes_out", "current": 10000, "median": 100}]
+    }
     result["device_id"] = "router-a"
     incident_id = IncidentRepository(ThreatLensDatabase(path)).create(result)
     reopened = IncidentRepository(ThreatLensDatabase(path)).get(incident_id)
@@ -144,9 +131,12 @@ def test_full_feature_evidence_survives_reopening(tmp_path):
 
 def test_original_schema_migrates_without_losing_records(tmp_path):
     import sqlite3
+
     path = tmp_path / "old.db"
     connection = sqlite3.connect(path)
-    connection.execute("CREATE TABLE incidents (id INTEGER PRIMARY KEY, timestamp TEXT, risk_score REAL, severity TEXT, is_suspicious INTEGER, signals TEXT)")
+    connection.execute(
+        "CREATE TABLE incidents (id INTEGER PRIMARY KEY, timestamp TEXT, risk_score REAL, severity TEXT, is_suspicious INTEGER, signals TEXT)"
+    )
     connection.execute("INSERT INTO incidents VALUES (7, 'old', 65, 'HIGH', 1, '{}')")
     connection.commit()
     connection.close()

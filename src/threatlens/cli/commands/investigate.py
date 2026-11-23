@@ -35,21 +35,13 @@ def investigate(
 
     repository = _get_repository()
 
-    incident = repository.get(
-        incident_id
-    )
+    incident = repository.get(incident_id)
 
     if incident is None:
-        console.print(
-            f"[red]Incident #{incident_id} not found.[/red]"
-        )
+        console.print(f"[red]Incident #{incident_id} not found.[/red]")
         raise typer.Exit(code=1)
 
-    investigation = (
-        IncidentInvestigator().investigate(
-            incident
-        )
-    )
+    investigation = IncidentInvestigator().investigate(incident)
 
     explanation = incident.get("explanation") or ThreatExplainer().explain(
         {
@@ -58,12 +50,8 @@ def investigate(
                 {},
             ),
             "risk": {
-                "risk_score": incident[
-                    "risk_score"
-                ],
-                "severity": incident[
-                    "severity"
-                ],
+                "risk_score": incident["risk_score"],
+                "severity": incident["severity"],
             },
         }
     )
@@ -84,45 +72,22 @@ def investigate(
         )
     )
 
-    console.print(
-        "\n[bold]Triggered Signals[/bold]"
-    )
+    console.print("\n[bold]Triggered Signals[/bold]")
 
-    if investigation[
-        "triggered_signals"
-    ]:
-        for signal in investigation[
-            "triggered_signals"
-        ]:
-            console.print(
-                f"  [red]●[/red] {signal}"
-            )
+    if investigation["triggered_signals"]:
+        for signal in investigation["triggered_signals"]:
+            console.print(f"  [red]●[/red] {signal}")
     else:
-        console.print(
-            "  [green]No anomalous signals[/green]"
-        )
+        console.print("  [green]No anomalous signals[/green]")
 
-    console.print(
-        "\n[bold]Behavioral Evidence[/bold]"
-    )
+    console.print("\n[bold]Behavioral Evidence[/bold]")
 
     if explanation["evidence"]:
-        for evidence in explanation[
-            "evidence"
-        ]:
-            console.print(
-                f"  [yellow]→[/yellow] "
-                f"{evidence['description']}"
-            )
+        for evidence in explanation["evidence"]:
+            console.print(f"  [yellow]→[/yellow] {evidence['description']}")
     else:
-        console.print(
-            "  [green]No additional evidence available.[/green]"
-        )
+        console.print("  [green]No additional evidence available.[/green]")
 
-    console.print(
-        "\n[bold]Recommendation[/bold]"
-    )
+    console.print("\n[bold]Recommendation[/bold]")
 
-    console.print(
-        f"  {investigation['recommendation']}"
-    )
+    console.print(f"  {investigation['recommendation']}")

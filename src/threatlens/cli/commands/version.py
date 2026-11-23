@@ -7,6 +7,4 @@ console = Console()
 
 def version() -> None:
     """Display the ThreatLens version."""
-    console.print(
-        f"[bold cyan]ThreatLens[/bold cyan] v{__version__}"
-    )
+    console.print(f"[bold cyan]ThreatLens[/bold cyan] v{__version__}")

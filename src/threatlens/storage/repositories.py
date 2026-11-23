@@ -12,25 +12,34 @@ class IncidentRepository:
         self.database = database
         self.database.initialize()
 
-    def create(self, detection_result: dict[str, Any], connection: sqlite3.Connection | None = None) -> int:
+    def create(
+        self, detection_result: dict[str, Any], connection: sqlite3.Connection | None = None
+    ) -> int:
         if connection is None:
             with self.database.connect() as opened:
                 return self.create(detection_result, opened)
         risk = detection_result["risk"]
-        cursor = connection.execute("""
+        cursor = connection.execute(
+            """
             INSERT INTO incidents (timestamp, risk_score, severity, is_suspicious, signals, detection)
             VALUES (?, ?, ?, ?, ?, ?)
-        """, (
-            detection_result.get("timestamp", ""), float(risk["risk_score"]),
-            str(risk["severity"]), int(bool(detection_result["is_suspicious"])),
-            json.dumps(detection_result.get("signals", {}), allow_nan=False),
-            json.dumps(detection_result, allow_nan=False),
-        ))
+        """,
+            (
+                detection_result.get("timestamp", ""),
+                float(risk["risk_score"]),
+                str(risk["severity"]),
+                int(bool(detection_result["is_suspicious"])),
+                json.dumps(detection_result.get("signals", {}), allow_nan=False),
+                json.dumps(detection_result, allow_nan=False),
+            ),
+        )
         return int(cursor.lastrowid)
 
     def get(self, incident_id: int) -> dict[str, Any] | None:
         with self.database.connect() as connection:
-            row = connection.execute("SELECT * FROM incidents WHERE id = ?", (incident_id,)).fetchone()
+            row = connection.execute(
+                "SELECT * FROM incidents WHERE id = ?", (incident_id,)
+            ).fetchone()
         return self._deserialize(row) if row is not None else None
 
     def list_all(self) -> list[dict[str, Any]]:
@@ -42,7 +51,10 @@ class IncidentRepository:
     def _deserialize(row: Any) -> dict[str, Any]:
         return {
             **json.loads(row["detection"]),
-            "id": int(row["id"]), "timestamp": row["timestamp"],
-            "risk_score": float(row["risk_score"]), "severity": row["severity"],
-            "is_suspicious": bool(row["is_suspicious"]), "signals": json.loads(row["signals"]),
+            "id": int(row["id"]),
+            "timestamp": row["timestamp"],
+            "risk_score": float(row["risk_score"]),
+            "severity": row["severity"],
+            "is_suspicious": bool(row["is_suspicious"]),
+            "signals": json.loads(row["signals"]),
         }

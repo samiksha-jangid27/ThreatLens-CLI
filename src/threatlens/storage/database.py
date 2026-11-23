@@ -1,8 +1,8 @@
 import os
 import sqlite3
+from collections.abc import Iterator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Iterator
 
 
 class ThreatLensDatabase:
@@ -38,7 +38,9 @@ class ThreatLensDatabase:
             """)
             columns = {row["name"] for row in connection.execute("PRAGMA table_info(incidents)")}
             if "detection" not in columns:
-                connection.execute("ALTER TABLE incidents ADD COLUMN detection TEXT NOT NULL DEFAULT '{}'")
+                connection.execute(
+                    "ALTER TABLE incidents ADD COLUMN detection TEXT NOT NULL DEFAULT '{}'"
+                )
             connection.execute("""
                 CREATE TABLE IF NOT EXISTS device_state (
                     device_key TEXT PRIMARY KEY,

@@ -1,5 +1,5 @@
-from html import escape
 import json
+from html import escape
 from typing import Any
 
 
@@ -10,21 +10,13 @@ def generate_html_report(
     Generate a standalone HTML security report.
     """
 
-    suspicious_count = sum(
-        1
-        for incident in incidents
-        if incident.get("is_suspicious")
-    )
+    suspicious_count = sum(1 for incident in incidents if incident.get("is_suspicious"))
 
     rows = []
     evidence_sections = []
 
     for incident in incidents:
-        status = (
-            "SUSPICIOUS"
-            if incident.get("is_suspicious")
-            else "OBSERVATION"
-        )
+        status = "SUSPICIOUS" if incident.get("is_suspicious") else "OBSERVATION"
 
         signals = [
             name
@@ -36,8 +28,26 @@ def generate_html_report(
         ]
 
         evidence_sections.append(
-            "<section><h2>Incident " + escape(str(incident["id"])) + " evidence</h2><pre>"
-            + escape(json.dumps({key: incident[key] for key in ("device_id", "device_type", "algorithm_version", "coverage", "features", "explanation") if key in incident}, indent=2))
+            "<section><h2>Incident "
+            + escape(str(incident["id"]))
+            + " evidence</h2><pre>"
+            + escape(
+                json.dumps(
+                    {
+                        key: incident[key]
+                        for key in (
+                            "device_id",
+                            "device_type",
+                            "algorithm_version",
+                            "coverage",
+                            "features",
+                            "explanation",
+                        )
+                        if key in incident
+                    },
+                    indent=2,
+                )
+            )
             + "</pre></section>"
         )
         rows.append(

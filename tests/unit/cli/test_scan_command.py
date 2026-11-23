@@ -1,7 +1,7 @@
 """Real CLI integration: no fake detector and no real host state."""
 
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from typer.testing import CliRunner
 
@@ -15,10 +15,25 @@ runner = CliRunner()
 def write_input(tmp_path, start=0, count=30, cpu=20, traffic=100, filename="telemetry.json"):
     observations = []
     for n in range(start, start + count):
-        observations.append({"timestamp": (datetime(2026, 1, 1, tzinfo=timezone.utc) + timedelta(minutes=n)).isoformat(),
-                             "window_seconds": 60, "sources": {"system": {"cpu_percent": cpu}, "network": {"bytes_out": traffic}}, "unavailable": {}})
+        observations.append(
+            {
+                "timestamp": (datetime(2026, 1, 1, tzinfo=UTC) + timedelta(minutes=n)).isoformat(),
+                "window_seconds": 60,
+                "sources": {"system": {"cpu_percent": cpu}, "network": {"bytes_out": traffic}},
+                "unavailable": {},
+            }
+        )
     path = tmp_path / filename
-    path.write_text(json.dumps({"schema_version": 1, "device_id": "lab-router", "device_type": "router", "observations": observations}))
+    path.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "device_id": "lab-router",
+                "device_type": "router",
+                "observations": observations,
+            }
+        )
+    )
     return path
 
 
@@ -38,7 +53,9 @@ def test_learn_scan_explain_report_end_to_end(tmp_path):
     report = tmp_path / "report.json"
     generated = runner.invoke(app, ["report", "--format", "json", "--output", str(report)])
     assert generated.exit_code == 0, generated.output
-    assert json.loads(report.read_text())["incidents"][0]["features"]["network"]["bytes_out"] == 10000
+    assert (
+        json.loads(report.read_text())["incidents"][0]["features"]["network"]["bytes_out"] == 10000
+    )
 
 
 def test_untrained_scan_reports_insufficient_evidence(tmp_path):
@@ -59,9 +76,13 @@ def test_malformed_input_has_clean_error(tmp_path):
 
 def test_local_scan_collects_once(monkeypatch):
     calls = []
+
     def collect(device_id):
         calls.append(device_id)
-        return DeviceObservation("local", "system", "2026-01-01T00:00:00Z", 1, {"system": {"cpu_percent": 20}}, {})
+        return DeviceObservation(
+            "local", "system", "2026-01-01T00:00:00Z", 1, {"system": {"cpu_percent": 20}}, {}
+        )
+
     monkeypatch.setattr(scan_module, "collect_device_observation", collect)
     result = runner.invoke(app, ["scan", "--json"])
     assert result.exit_code == 4

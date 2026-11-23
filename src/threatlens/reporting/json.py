@@ -9,11 +9,7 @@ def generate_json_report(
     Generate a machine-readable JSON report.
     """
 
-    suspicious_count = sum(
-        1
-        for incident in incidents
-        if incident.get("is_suspicious")
-    )
+    suspicious_count = sum(1 for incident in incidents if incident.get("is_suspicious"))
 
     payload = {
         "summary": {

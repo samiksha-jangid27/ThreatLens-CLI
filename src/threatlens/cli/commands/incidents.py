@@ -44,14 +44,10 @@ def incidents(
         return
 
     if not records:
-        console.print(
-            "[yellow]No incidents recorded.[/yellow]"
-        )
+        console.print("[yellow]No incidents recorded.[/yellow]")
         return
 
-    table = Table(
-        title="ThreatLens Incidents"
-    )
+    table = Table(title="ThreatLens Incidents")
 
     table.add_column("ID", justify="right")
     table.add_column("Timestamp")
@@ -60,16 +56,12 @@ def incidents(
     table.add_column("Status")
 
     for incident in records:
-        status = (
-            "SUSPICIOUS"
-            if incident["is_suspicious"]
-            else "OBSERVATION"
-        )
+        status = "SUSPICIOUS" if incident["is_suspicious"] else "OBSERVATION"
 
         table.add_row(
             str(incident["id"]),
             incident["timestamp"],
-            f'{incident["risk_score"]:.0f}',
+            f"{incident['risk_score']:.0f}",
             incident["severity"],
             status,
         )

@@ -4,7 +4,6 @@ import typer
 from rich.console import Console
 
 from threatlens.config import database_path
-from threatlens.storage.files import write_private_text
 from threatlens.reporting.html import (
     generate_html_report,
 )
@@ -17,6 +16,7 @@ from threatlens.reporting.terminal import (
 from threatlens.storage.database import (
     ThreatLensDatabase,
 )
+from threatlens.storage.files import write_private_text
 from threatlens.storage.repositories import (
     IncidentRepository,
 )
@@ -51,50 +51,32 @@ def report(
         "json",
         "html",
     }:
-        raise typer.BadParameter(
-            "Format must be terminal, json, or html."
-        )
+        raise typer.BadParameter("Format must be terminal, json, or html.")
 
     repository = _get_repository()
 
     incidents = repository.list_all()
 
     if format == "terminal":
-        print_terminal_report(
-            incidents
-        )
+        print_terminal_report(incidents)
         return
 
     if format == "json":
-        content = generate_json_report(
-            incidents
-        )
+        content = generate_json_report(incidents)
 
-        default_name = (
-            "threatlens-report.json"
-        )
+        default_name = "threatlens-report.json"
 
     else:
-        content = generate_html_report(
-            incidents
-        )
+        content = generate_html_report(incidents)
 
-        default_name = (
-            "threatlens-report.html"
-        )
+        default_name = "threatlens-report.html"
 
-    output_path = (
-        output
-        or Path.cwd() / default_name
-    )
+    output_path = output or Path.cwd() / default_name
 
     try:
         write_private_text(output_path, content)
     except OSError as error:
         typer.echo(f"Cannot write report: {error}", err=True)
-        raise typer.Exit(2)
+        raise typer.Exit(2) from None
 
-    console.print(
-        f"[green]Report written to:[/green] "
-        f"{output_path}"
-    )
+    console.print(f"[green]Report written to:[/green] {output_path}")

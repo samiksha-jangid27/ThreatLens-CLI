@@ -16,8 +16,12 @@ def status(json_output: bool = typer.Option(False, "--json")) -> None:
         devices = DeviceDetectionService(IncidentRepository(ThreatLensDatabase(path))).status()
     except (OSError, sqlite3.Error, ValueError) as error:
         typer.echo(f"ThreatLens: {error}", err=True)
-        raise typer.Exit(2)
-    result = {"database": str(path), "devices": devices, "baseline_policy": "frozen; explicit learning only"}
+        raise typer.Exit(2) from None
+    result = {
+        "database": str(path),
+        "devices": devices,
+        "baseline_policy": "frozen; explicit learning only",
+    }
     if json_output:
         typer.echo(json.dumps(result, indent=2))
     else:
@@ -25,4 +29,6 @@ def status(json_output: bool = typer.Option(False, "--json")) -> None:
         if not devices:
             typer.echo("No baselines learned. Run 'threatlens learn --help'.")
         for device in devices:
-            typer.echo(f"{device['device']}: {device['baseline_size']}/30 windows; ready={device['ready']}")
+            typer.echo(
+                f"{device['device']}: {device['baseline_size']}/30 windows; ready={device['ready']}"
+            )
