@@ -25,10 +25,12 @@ def collect_network_telemetry() -> NetworkTelemetry:
     udp_count = 0
     listening_ports: set[int] = set()
 
+    error = None
     try:
         raw_connections = psutil.net_connections(kind="inet")
-    except (psutil.AccessDenied, PermissionError):
+    except (psutil.AccessDenied, PermissionError) as exc:
         raw_connections = []
+        error = f"Network connections unavailable: {type(exc).__name__}"
 
     for connection in raw_connections:
         local_address, local_port = _extract_address(connection.laddr)
@@ -69,4 +71,6 @@ def collect_network_telemetry() -> NetworkTelemetry:
         udp_connection_count=udp_count,
         listening_port_count=len(listening_ports),
         connections=tuple(connections),
+        available=error is None,
+        error=error,
     )

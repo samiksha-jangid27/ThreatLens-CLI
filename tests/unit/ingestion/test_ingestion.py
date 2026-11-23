@@ -3,7 +3,7 @@ from threatlens.ingestion.normalizer import normalize_system_telemetry
 from threatlens.ingestion.validator import validate_system_telemetry
 
 
-def test_normalize_system_telemetry():
+def test_normalize_system_telemetry(fake_host):
     telemetry = collect_system_telemetry()
 
     data = normalize_system_telemetry(telemetry)
@@ -14,7 +14,7 @@ def test_normalize_system_telemetry():
     assert isinstance(data["process_count"], int)
 
 
-def test_validate_system_telemetry():
+def test_validate_system_telemetry(fake_host):
     telemetry = collect_system_telemetry()
 
     data = normalize_system_telemetry(telemetry)
@@ -22,7 +22,7 @@ def test_validate_system_telemetry():
     validate_system_telemetry(data)
 
 
-def test_validate_rejects_invalid_cpu():
+def test_validate_rejects_invalid_cpu(fake_host):
     telemetry = collect_system_telemetry()
     data = normalize_system_telemetry(telemetry)
 

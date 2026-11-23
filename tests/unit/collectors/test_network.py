@@ -4,7 +4,7 @@ from threatlens.collectors.network import collect_network_telemetry
 from threatlens.schema.network import NetworkConnection, NetworkTelemetry
 
 
-def test_network_collector_returns_network_telemetry():
+def test_network_collector_returns_network_telemetry(fake_host):
     telemetry = collect_network_telemetry()
 
     assert isinstance(telemetry, NetworkTelemetry)
@@ -15,7 +15,7 @@ def test_network_collector_returns_network_telemetry():
     assert telemetry.listening_port_count >= 0
 
 
-def test_network_connection_serializes_correctly():
+def test_network_connection_serializes_correctly(fake_host):
     connection = NetworkConnection(
         local_address="127.0.0.1",
         local_port=5000,
@@ -35,7 +35,7 @@ def test_network_connection_serializes_correctly():
     assert result["protocol"] == "tcp"
 
 
-def test_network_telemetry_serializes_connections():
+def test_network_telemetry_serializes_connections(fake_host):
     connection = NetworkConnection(
         local_address="127.0.0.1",
         local_port=5000,
@@ -62,3 +62,17 @@ def test_network_telemetry_serializes_connections():
     assert result["listening_port_count"] == 1
     assert len(result["connections"]) == 1
     assert result["connections"][0]["protocol"] == "tcp"
+
+
+def test_denied_network_is_unavailable(monkeypatch):
+    import psutil
+    from threatlens.features.network import extract_network_features
+    import pytest
+
+    def denied(kind):
+        raise psutil.AccessDenied()
+    monkeypatch.setattr(psutil, "net_connections", denied)
+    data = collect_network_telemetry()
+    assert not data.available
+    with pytest.raises(ValueError, match="unavailable"):
+        extract_network_features(data)

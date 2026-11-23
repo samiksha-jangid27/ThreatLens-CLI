@@ -13,6 +13,11 @@ def extract_network_features(
     serialized dictionary observations.
     """
 
+    if isinstance(network_data, NetworkTelemetry) and not network_data.available:
+        raise ValueError(network_data.error or "Network telemetry unavailable")
+    if isinstance(network_data, dict) and network_data.get("available") is False:
+        raise ValueError("Network telemetry unavailable")
+
     if isinstance(network_data, NetworkTelemetry):
         connections = [
             connection.to_dict()

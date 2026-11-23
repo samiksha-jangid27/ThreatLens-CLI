@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from pathlib import Path
 
 import psutil
 
@@ -9,13 +10,15 @@ def collect_system_telemetry() -> SystemTelemetry:
     """Collect basic system telemetry."""
 
     memory = psutil.virtual_memory()
-    disk = psutil.disk_usage("/")
+    disk = psutil.disk_usage(Path.home().anchor)
 
     now = datetime.now(timezone.utc)
 
+    cpu = psutil.cpu_percent(interval=1)
+    now = datetime.now(timezone.utc)
     return SystemTelemetry(
         timestamp=now,
-        cpu_percent=psutil.cpu_percent(interval=1),
+        cpu_percent=cpu,
         memory_percent=memory.percent,
         memory_available_mb=round(memory.available / (1024 * 1024), 2),
         load_average_1m=psutil.getloadavg()[0],

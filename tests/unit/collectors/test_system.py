@@ -4,7 +4,7 @@ from threatlens.collectors.system import collect_system_telemetry
 from threatlens.schema.telemetry import SystemTelemetry
 
 
-def test_collect_system_telemetry():
+def test_collect_system_telemetry(fake_host):
     telemetry = collect_system_telemetry()
 
     assert isinstance(telemetry, SystemTelemetry)
@@ -19,7 +19,7 @@ def test_collect_system_telemetry():
     assert 0 <= telemetry.disk_percent <= 100
 
 
-def test_system_telemetry_to_dict():
+def test_system_telemetry_to_dict(fake_host):
     telemetry = collect_system_telemetry()
 
     data = telemetry.to_dict()

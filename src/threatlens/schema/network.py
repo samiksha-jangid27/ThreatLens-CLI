@@ -36,11 +36,15 @@ class NetworkTelemetry:
     udp_connection_count: int
     listening_port_count: int
     connections: tuple[NetworkConnection, ...]
+    available: bool = True
+    error: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         """Convert network telemetry into a serializable dictionary."""
         return {
             "timestamp": self.timestamp.isoformat(),
+            "available": self.available,
+            "error": self.error,
             "connection_count": self.connection_count,
             "tcp_connection_count": self.tcp_connection_count,
             "udp_connection_count": self.udp_connection_count,

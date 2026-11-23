@@ -2,7 +2,7 @@ from threatlens.collectors.processes import collect_process_telemetry
 from threatlens.schema.process import ProcessTelemetry
 
 
-def test_process_schema_serializes_correctly():
+def test_process_schema_serializes_correctly(fake_host):
     process = ProcessTelemetry(
         pid=1234,
         name="python",
@@ -24,7 +24,7 @@ def test_process_schema_serializes_correctly():
     assert result["parent_pid"] == 1000
 
 
-def test_process_collector_returns_expected_structure():
+def test_process_collector_returns_expected_structure(fake_host):
     result = collect_process_telemetry()
 
     assert "timestamp" in result
@@ -35,7 +35,7 @@ def test_process_collector_returns_expected_structure():
     assert isinstance(result["processes"], list)
 
 
-def test_collected_processes_have_expected_fields():
+def test_collected_processes_have_expected_fields(fake_host):
     result = collect_process_telemetry()
 
     for process in result["processes"]:
