@@ -1,10 +1,10 @@
 import json
-from pathlib import Path
 
 import typer
 from rich.console import Console
 from rich.panel import Panel
 
+from threatlens.config import database_path
 from threatlens.explainability.explainer import (
     ThreatExplainer,
 )
@@ -15,27 +15,13 @@ from threatlens.storage.repositories import (
     IncidentRepository,
 )
 
-
 console = Console()
 
 
 def _get_repository() -> IncidentRepository:
     """Create the default ThreatLens incident repository."""
 
-    database_path = (
-        Path.home()
-        / ".threatlens"
-        / "threatlens.db"
-    )
-
-    database_path.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    return IncidentRepository(
-        ThreatLensDatabase(database_path)
-    )
+    return IncidentRepository(ThreatLensDatabase(database_path()))
 
 
 def explain(

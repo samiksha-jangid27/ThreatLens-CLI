@@ -3,6 +3,7 @@ from pathlib import Path
 import typer
 from rich.console import Console
 
+from threatlens.config import database_path
 from threatlens.reporting.html import (
     generate_html_report,
 )
@@ -19,27 +20,13 @@ from threatlens.storage.repositories import (
     IncidentRepository,
 )
 
-
 console = Console()
 
 
 def _get_repository() -> IncidentRepository:
     """Create the default ThreatLens repository."""
 
-    database_path = (
-        Path.home()
-        / ".threatlens"
-        / "threatlens.db"
-    )
-
-    database_path.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    return IncidentRepository(
-        ThreatLensDatabase(database_path)
-    )
+    return IncidentRepository(ThreatLensDatabase(database_path()))
 
 
 def report(
@@ -97,7 +84,7 @@ def report(
 
     output_path = (
         output
-        or Path.home() / default_name
+        or Path.cwd() / default_name
     )
 
     output_path.write_text(

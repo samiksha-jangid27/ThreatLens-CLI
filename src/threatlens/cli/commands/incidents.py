@@ -1,13 +1,12 @@
 import json
-from pathlib import Path
 
 import typer
 from rich.console import Console
 from rich.table import Table
 
+from threatlens.config import database_path
 from threatlens.storage.database import ThreatLensDatabase
 from threatlens.storage.repositories import IncidentRepository
-
 
 console = Console()
 
@@ -15,15 +14,7 @@ console = Console()
 def _get_repository() -> IncidentRepository:
     """Create the default ThreatLens incident repository."""
 
-    database_path = Path.home() / ".threatlens" / "threatlens.db"
-    database_path.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    return IncidentRepository(
-        ThreatLensDatabase(database_path)
-    )
+    return IncidentRepository(ThreatLensDatabase(database_path()))
 
 
 def incidents(

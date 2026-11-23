@@ -10,7 +10,12 @@ class ThreatLensDatabase:
 
     def connect(self) -> sqlite3.Connection:
         """Open a connection to the SQLite database."""
-        connection = sqlite3.connect(self.database_path)
+        self.database_path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        # Pre-create with private permissions before SQLite opens it.
+        import os
+        descriptor = os.open(self.database_path, os.O_CREAT | os.O_WRONLY, 0o600)
+        os.close(descriptor)
+        connection = sqlite3.connect(self.database_path, timeout=10)
         connection.row_factory = sqlite3.Row
         return connection
 
