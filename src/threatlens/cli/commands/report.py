@@ -3,6 +3,7 @@ from pathlib import Path
 import typer
 from rich.console import Console
 
+from threatlens.cli.errors import handle_errors
 from threatlens.config import database_path
 from threatlens.reporting.html import (
     generate_html_report,
@@ -30,6 +31,7 @@ def _get_repository() -> IncidentRepository:
     return IncidentRepository(ThreatLensDatabase(database_path()))
 
 
+@handle_errors
 def report(
     format: str = typer.Option(
         "terminal",

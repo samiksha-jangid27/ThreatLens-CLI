@@ -2,6 +2,7 @@ import typer
 from rich.console import Console
 from rich.panel import Panel
 
+from threatlens.cli.errors import handle_errors
 from threatlens.config import database_path
 from threatlens.detection.investigation import (
     IncidentInvestigator,
@@ -25,6 +26,7 @@ def _get_repository() -> IncidentRepository:
     return IncidentRepository(ThreatLensDatabase(database_path()))
 
 
+@handle_errors
 def investigate(
     incident_id: int = typer.Argument(
         ...,

@@ -247,3 +247,12 @@ def test_investigate_shows_evidence(
     assert "network_anomaly" in result.stdout
 
     assert "process_anomaly" in result.stdout
+
+
+def test_corrupt_database_is_reported_without_traceback(tmp_path, monkeypatch):
+    monkeypatch.setenv("THREATLENS_DATA_DIR", str(tmp_path))
+    (tmp_path / "threatlens.db").write_text("not a sqlite database")
+    result = runner.invoke(app, ["incidents", "--json"])
+    assert result.exit_code == 2
+    assert "ThreatLens:" in result.output
+    assert "Traceback" not in result.output

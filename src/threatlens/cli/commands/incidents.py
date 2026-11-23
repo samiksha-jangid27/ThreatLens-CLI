@@ -4,6 +4,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+from threatlens.cli.errors import handle_errors
 from threatlens.config import database_path
 from threatlens.storage.database import ThreatLensDatabase
 from threatlens.storage.repositories import IncidentRepository
@@ -17,6 +18,7 @@ def _get_repository() -> IncidentRepository:
     return IncidentRepository(ThreatLensDatabase(database_path()))
 
 
+@handle_errors
 def incidents(
     json_output: bool = typer.Option(
         False,
