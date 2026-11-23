@@ -10,15 +10,9 @@ def test_create_benchmark_scenarios():
 
     assert len(scenarios) == 10
 
-    assert (
-        scenarios[0].expected_anomaly
-        is False
-    )
+    assert scenarios[0].expected_anomaly is False
 
-    assert (
-        scenarios[-1].expected_anomaly
-        is True
-    )
+    assert scenarios[-1].expected_anomaly is True
 
 
 def test_calculate_metrics():
@@ -57,65 +51,31 @@ def test_calculate_metrics():
 def test_benchmark_runs():
     result = run_benchmark()
 
-    assert (
-        result["baseline_size"]
-        == 5
-    )
+    assert result["baseline_size"] == 5
 
-    assert (
-        result["scenario_count"]
-        == 10
-    )
+    assert result["scenario_count"] == 10
 
     metrics = result["metrics"]
 
-    assert (
-        metrics["true_positive"]
-        >= 1
-    )
+    assert metrics["true_positive"] >= 1
 
-    assert (
-        metrics["false_positive"]
-        >= 0
-    )
+    assert metrics["false_positive"] >= 0
 
-    assert (
-        0.0
-        <= metrics["accuracy"]
-        <= 1.0
-    )
+    assert 0.0 <= metrics["accuracy"] <= 1.0
 
-    assert (
-        0.0
-        <= metrics["precision"]
-        <= 1.0
-    )
+    assert 0.0 <= metrics["precision"] <= 1.0
 
-    assert (
-        0.0
-        <= metrics["recall"]
-        <= 1.0
-    )
+    assert 0.0 <= metrics["recall"] <= 1.0
 
-    assert (
-        0.0
-        <= metrics["f1"]
-        <= 1.0
-    )
+    assert 0.0 <= metrics["f1"] <= 1.0
 
-    assert (
-        0.0
-        <= metrics["false_positive_rate"]
-        <= 1.0
-    )
+    assert 0.0 <= metrics["false_positive_rate"] <= 1.0
 
 
 def test_benchmark_reports_scenario_results():
     result = run_benchmark()
 
-    assert len(
-        result["scenarios"]
-    ) == 10
+    assert len(result["scenarios"]) == 10
 
     for scenario in result["scenarios"]:
         assert "name" in scenario

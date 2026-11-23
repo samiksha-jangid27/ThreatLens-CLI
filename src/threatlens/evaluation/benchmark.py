@@ -208,66 +208,45 @@ def calculate_metrics(
 
     true_positive = sum(
         expected_value and predicted_value
-        for expected_value, predicted_value
-        in zip(expected, predicted)
+        for expected_value, predicted_value in zip(expected, predicted, strict=True)
     )
 
     true_negative = sum(
         not expected_value and not predicted_value
-        for expected_value, predicted_value
-        in zip(expected, predicted)
+        for expected_value, predicted_value in zip(expected, predicted, strict=True)
     )
 
     false_positive = sum(
         not expected_value and predicted_value
-        for expected_value, predicted_value
-        in zip(expected, predicted)
+        for expected_value, predicted_value in zip(expected, predicted, strict=True)
     )
 
     false_negative = sum(
         expected_value and not predicted_value
-        for expected_value, predicted_value
-        in zip(expected, predicted)
+        for expected_value, predicted_value in zip(expected, predicted, strict=True)
     )
 
     total = len(expected)
 
-    accuracy = (
-        (true_positive + true_negative) / total
-        if total
-        else 0.0
-    )
+    accuracy = (true_positive + true_negative) / total if total else 0.0
 
     precision = (
-        true_positive
-        / (true_positive + false_positive)
+        true_positive / (true_positive + false_positive)
         if (true_positive + false_positive)
         else 0.0
     )
 
     recall = (
-        true_positive
-        / (true_positive + false_negative)
+        true_positive / (true_positive + false_negative)
         if (true_positive + false_negative)
         else 0.0
     )
 
-    f1 = (
-        2 * precision * recall
-        / (precision + recall)
-        if (precision + recall)
-        else 0.0
-    )
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) else 0.0
 
-    normal_count = (
-        true_negative + false_positive
-    )
+    normal_count = true_negative + false_positive
 
-    false_positive_rate = (
-        false_positive / normal_count
-        if normal_count
-        else 0.0
-    )
+    false_positive_rate = false_positive / normal_count if normal_count else 0.0
 
     detection_rate = recall
 
@@ -297,17 +276,9 @@ def run_benchmark(
         threshold=3.0,
     )
 
-    baseline_data = (
-        baseline
-        if baseline is not None
-        else SYSTEM_BASELINE
-    )
+    baseline_data = baseline if baseline is not None else SYSTEM_BASELINE
 
-    benchmark_scenarios = (
-        scenarios
-        if scenarios is not None
-        else create_benchmark_scenarios()
-    )
+    benchmark_scenarios = scenarios if scenarios is not None else create_benchmark_scenarios()
 
     expected: list[bool] = []
     predicted: list[bool] = []
@@ -320,32 +291,19 @@ def run_benchmark(
             baseline_data,
         )
 
-        prediction = bool(
-            result["is_anomaly"]
-        )
+        prediction = bool(result["is_anomaly"])
 
-        expected.append(
-            scenario.expected_anomaly
-        )
+        expected.append(scenario.expected_anomaly)
 
-        predicted.append(
-            prediction
-        )
+        predicted.append(prediction)
 
         scenario_results.append(
             {
                 "name": scenario.name,
-                "expected_anomaly": (
-                    scenario.expected_anomaly
-                ),
+                "expected_anomaly": (scenario.expected_anomaly),
                 "predicted_anomaly": prediction,
-                "correct": (
-                    scenario.expected_anomaly
-                    == prediction
-                ),
-                "anomalous_features": result[
-                    "anomalous_features"
-                ],
+                "correct": (scenario.expected_anomaly == prediction),
+                "anomalous_features": result["anomalous_features"],
             }
         )
 
@@ -355,35 +313,19 @@ def run_benchmark(
     )
 
     return {
-        "baseline_size": len(
-            baseline_data
-        ),
-        "scenario_count": len(
-            benchmark_scenarios
-        ),
+        "baseline_size": len(baseline_data),
+        "scenario_count": len(benchmark_scenarios),
         "metrics": {
-            "true_positive": (
-                metrics.true_positive
-            ),
-            "true_negative": (
-                metrics.true_negative
-            ),
-            "false_positive": (
-                metrics.false_positive
-            ),
-            "false_negative": (
-                metrics.false_negative
-            ),
+            "true_positive": (metrics.true_positive),
+            "true_negative": (metrics.true_negative),
+            "false_positive": (metrics.false_positive),
+            "false_negative": (metrics.false_negative),
             "accuracy": metrics.accuracy,
             "precision": metrics.precision,
             "recall": metrics.recall,
             "f1": metrics.f1,
-            "false_positive_rate": (
-                metrics.false_positive_rate
-            ),
-            "detection_rate": (
-                metrics.detection_rate
-            ),
+            "false_positive_rate": (metrics.false_positive_rate),
+            "detection_rate": (metrics.detection_rate),
         },
         "scenarios": scenario_results,
     }

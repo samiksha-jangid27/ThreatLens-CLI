@@ -12,7 +12,9 @@ def test_full_pipeline_benchmark_reports_hard_cases_and_all_devices():
     assert result["metrics"]["false_negative"] >= 1
     assert result["metrics"]["true_positive"] >= 1
     assert any(row["alert_window"] == 2 for row in result["scenarios"])
-    assert result["ablations"]["robust_only"]["false_positive"] >= result["metrics"]["false_positive"]
+    assert (
+        result["ablations"]["robust_only"]["false_positive"] >= result["metrics"]["false_positive"]
+    )
 
 
 def test_metrics_reject_silently_truncated_inputs():
