@@ -239,9 +239,16 @@ class DeviceDetectionService:
                 if result["is_suspicious"]:
                     active = state.get("active_incident")
                     # One incident per uninterrupted episode, retaining the onset evidence.
-                    same_episode = active and set(
-                        result["correlation"]["triggered_signals"]
-                    ) == set(active["sources"])
+                    close_in_time = previous is not None and (
+                        timestamp_value(observation.timestamp)
+                        - timestamp_value(previous["timestamp"])
+                    ).total_seconds() <= max(300, 5 * observation.window_seconds)
+                    same_episode = (
+                        active
+                        and close_in_time
+                        and set(result["correlation"]["triggered_signals"])
+                        == set(active["sources"])
+                    )
                     result["incident_created"] = not bool(same_episode)
                     if same_episode:
                         result["incident_id"] = active["id"]

@@ -100,3 +100,11 @@ def test_repeated_alerts_reuse_episode_but_recovery_allows_new_incident(service)
     assert third["incident_created"]
     assert third["incident_id"] != first["incident_id"]
     assert len(service.repository.list_all()) == 2
+
+
+def test_long_gap_starts_a_new_incident_episode(service):
+    train(service)
+    first = service.scan([observation(30, 10000, 95)])[0]
+    later = service.scan([observation(90, 10000, 95)])[0]
+    assert later["incident_created"]
+    assert later["incident_id"] != first["incident_id"]
