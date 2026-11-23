@@ -16,7 +16,7 @@ from threatlens.cli.commands.investigate import (
     investigate,
 )
 from threatlens.cli.commands.scan import (
-    scan,
+    scan, learn, collect,
 )
 from threatlens.cli.commands.status import (
     status,
@@ -40,6 +40,8 @@ app.command()(explain)
 app.command()(report)
 app.command()(benchmark)
 app.command()(scan)
+app.command()(learn)
+app.command()(collect)
 
 if __name__ == "__main__":
     app()

@@ -1,434 +1,137 @@
+"""CLI orchestration for the common local/imported behavioral workflow."""
+
 import json
 from pathlib import Path
+import sqlite3
+import time
 
+import typer
 from rich.console import Console
 from rich.panel import Panel
+from rich.text import Text
 
-from threatlens.explainability.explainer import (
-    ThreatExplainer,
-)
-from threatlens.collectors.network import (
-    collect_network_telemetry,
-)
-from threatlens.collectors.processes import (
-    collect_process_telemetry,
-)
-from threatlens.collectors.system import (
-    collect_system_telemetry,
-)
-from threatlens.detection.pipeline import (
-    ThreatScanPipeline,
-)
-from threatlens.features.system import (
-    extract_system_features,
-)
-from threatlens.models.isolation_forest import (
-    IsolationForestDetector,
-)
-from threatlens.schema.telemetry import (
-    SystemTelemetry,
-)
-from threatlens.storage.database import (
-    ThreatLensDatabase,
-)
-from threatlens.storage.repositories import (
-    IncidentRepository,
-)
+from threatlens.collectors.device import collect_device_observation
+from threatlens.config import database_path
+from threatlens.detection.device import DeviceDetectionService
+from threatlens.ingestion.device import load_document
+from threatlens.schema.device import DeviceObservation, parse_document
+from threatlens.storage.database import ThreatLensDatabase
+from threatlens.storage.repositories import IncidentRepository
+from threatlens.storage.files import write_private_text
 
 console = Console()
 
-BASELINE_PATH = (
-    Path.home()
-    / ".threatlens"
-    / "system_baseline.json"
-)
 
-NETWORK_BASELINE_PATH = (
-    Path.home()
-    / ".threatlens"
-    / "network_baseline.json"
-)
-
-PROCESS_BASELINE_PATH = (
-    Path.home()
-    / ".threatlens"
-    / "process_baseline.json"
-)
-
-DATABASE_PATH = (
-    Path.home()
-    / ".threatlens"
-    / "threatlens.db"
-)
+def _service() -> DeviceDetectionService:
+    return DeviceDetectionService(IncidentRepository(ThreatLensDatabase(database_path())))
 
 
-def _load_baseline() -> list[dict[str, float]]:
-    """Load the stored system behavioral baseline."""
+def _local(device_id: str | None, sources: str | None) -> DeviceObservation:
+    observation = collect_device_observation(device_id)
+    if sources is not None:
+        names = set(sources.split(","))
+        if not names or names - {"system", "network", "process"}:
+            raise ValueError("--sources must be a comma-separated subset of system,network,process")
+        observation = DeviceObservation(observation.device_id, observation.device_type, observation.timestamp,
+                                        observation.window_seconds,
+                                        {k: v for k, v in observation.sources.items() if k in names},
+                                        {k: v for k, v in observation.unavailable.items() if k in names})
+    # Run local data through exactly the same validation as imported data.
+    return parse_document(_document([observation]))[0]
 
-    if not BASELINE_PATH.exists():
-        return []
 
-    with BASELINE_PATH.open(
-        "r",
-        encoding="utf-8",
-    ) as file:
-        return json.load(file)
+def _document(observations: list[DeviceObservation]) -> dict:
+    first = observations[0]
+    return {"schema_version": 1, "device_id": first.device_id, "device_type": first.device_type,
+            "observations": [{k: v for k, v in row.to_dict().items() if k not in {"device_id", "device_type"}} for row in observations]}
 
 
-def _save_baseline(
-    observations: list[dict[str, float]],
+def _error(error: Exception) -> None:
+    typer.echo(f"ThreatLens: {error}", err=True)
+    raise typer.Exit(2)
+
+
+def scan(
+    input_path: Path | None = typer.Option(None, "--input", help="Versioned device telemetry JSON."),
+    device_id: str | None = typer.Option(None, "--device-id", help="Stable identity for local collection."),
+    sources: str | None = typer.Option(None, "--sources", help="Local source profile, e.g. system,process."),
+    json_output: bool = typer.Option(False, "--json"),
+    fail_on_alert: bool = typer.Option(False, "--fail-on-alert", help="Exit 3 when a suspicious window is detected."),
 ) -> None:
-    """Persist the system behavioral baseline."""
-
-    BASELINE_PATH.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    with BASELINE_PATH.open(
-        "w",
-        encoding="utf-8",
-    ) as file:
-        json.dump(
-            observations,
-            file,
-            indent=2,
-        )
-
-
-def _load_json_baseline(
-    path: Path,
-) -> list[dict]:
-    """Load a JSON behavioral baseline."""
-
-    if not path.exists():
-        return []
-
-    with path.open(
-        "r",
-        encoding="utf-8",
-    ) as file:
-        return json.load(file)
-
-
-def _save_json_baseline(
-    path: Path,
-    observations: list[dict],
-) -> None:
-    """Persist a JSON behavioral baseline."""
-
-    path.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    with path.open(
-        "w",
-        encoding="utf-8",
-    ) as file:
-        json.dump(
-            observations,
-            file,
-            indent=2,
-        )
-
-
-def _get_repository() -> IncidentRepository:
-    """Create the default incident repository."""
-
-    DATABASE_PATH.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    return IncidentRepository(
-        ThreatLensDatabase(DATABASE_PATH)
-    )
-
-def _format_explanation(
-    explanation: dict,
-) -> str:
-    """Format detection evidence for terminal output."""
-
-    lines = []
-
-    if not explanation["evidence"]:
-        return "No anomalous behavioral evidence identified."
-
-    for evidence in explanation["evidence"]:
-        lines.append(
-            f"• {evidence['description']}"
-        )
-
-        details = evidence.get(
-            "details",
-            {},
-        )
-
-        anomalous_features = details.get(
-            "anomalous_features"
-        )
-
-        if anomalous_features:
-            lines.append(
-                "  Features: "
-                + ", ".join(
-                    anomalous_features
-                )
-            )
-
-    lines.append("")
-    lines.append(
-        f"Summary: {explanation['summary']}"
-    )
-
-    return "\n".join(lines)
-
-
-def scan() -> None:
-    """Run a multi-signal behavioral system scan."""
-
-    current = collect_system_telemetry()
-    current_network = collect_network_telemetry()
-    current_processes = collect_process_telemetry()
-
-    baseline = _load_baseline()
-
-    network_baseline = _load_json_baseline(
-        NETWORK_BASELINE_PATH
-    )
-
-    process_baseline = _load_json_baseline(
-        PROCESS_BASELINE_PATH
-    )
-
-    # ---------------------------------------------------------
-    # BASELINE COLLECTION
-    # ---------------------------------------------------------
-
-    if (
-        len(baseline) < 5
-        or len(network_baseline) < 5
-        or len(process_baseline) < 5
-    ):
-        current_features = extract_system_features(
-            current.to_dict()
-        )
-
-        baseline.append(current_features)
-
-        network_baseline.append(
-            current_network.to_dict()
-        )
-
-        process_baseline.append(
-            current_processes
-        )
-
-        # Keep only the latest 100 observations.
-        baseline = baseline[-100:]
-        network_baseline = network_baseline[-100:]
-        process_baseline = process_baseline[-100:]
-
-        _save_baseline(baseline)
-
-        _save_json_baseline(
-            NETWORK_BASELINE_PATH,
-            network_baseline,
-        )
-
-        _save_json_baseline(
-            PROCESS_BASELINE_PATH,
-            process_baseline,
-        )
-
-        console.print(
-            Panel(
-                f"System observations: "
-                f"{min(len(baseline), 5)}/5\n"
-                f"Network observations: "
-                f"{min(len(network_baseline), 5)}/5\n"
-                f"Process observations: "
-                f"{min(len(process_baseline), 5)}/5\n\n"
-                "ThreatLens needs at least 5 normal "
-                "observations for each telemetry source "
-                "before running anomaly detection.",
-                title="ThreatLens Baseline",
-            )
-        )
-
-        return
-
-    # ---------------------------------------------------------
-    # TRAIN BEHAVIORAL MODEL
-    # ---------------------------------------------------------
-
-    detector = IsolationForestDetector(
-        contamination=0.2,
-        random_state=42,
-    )
-
-    detector.fit(baseline)
-
-    # ---------------------------------------------------------
-    # RECONSTRUCT PREVIOUS SYSTEM TELEMETRY
-    # ---------------------------------------------------------
-
-    previous_features = baseline[-1]
-
-    previous = SystemTelemetry(
-        timestamp=current.timestamp,
-        cpu_percent=previous_features["cpu_percent"],
-        memory_percent=previous_features[
-            "memory_percent"
-        ],
-        memory_available_mb=previous_features[
-            "memory_available_mb"
-        ],
-        load_average_1m=previous_features[
-            "load_average_1m"
-        ],
-        process_count=int(
-            previous_features["process_count"]
-        ),
-        uptime_seconds=int(
-            previous_features["uptime_seconds"]
-        ),
-        disk_percent=previous_features[
-            "disk_percent"
-        ],
-    )
-
-    # ---------------------------------------------------------
-    # PREVIOUS NETWORK + PROCESS OBSERVATIONS
-    # ---------------------------------------------------------
-
-    previous_network = network_baseline[-1]
-
-    previous_processes = process_baseline[-1]
-
-    # ---------------------------------------------------------
-    # RUN MULTI-SIGNAL DETECTION PIPELINE
-    # ---------------------------------------------------------
-
-    pipeline = ThreatScanPipeline(
-        isolation_forest=detector,
-    )
-    explainer = ThreatExplainer()
-
-    result = pipeline.scan(
-    current=current,
-    previous=previous,
-    baseline=baseline,
-    network_baseline=network_baseline,
-    process_baseline=process_baseline,
-    current_network=current_network,
-    previous_network=previous_network,
-    current_processes=current_processes,
-    previous_processes=previous_processes,
-    )
-    explanation = explainer.explain(result)
-    # ---------------------------------------------------------
-    # SUSPICIOUS RESULT
-    # ---------------------------------------------------------
-
-    if result["is_suspicious"]:
-        repository = _get_repository()
-
-        incident = {
-            "timestamp": current.timestamp.isoformat(),
-            "signals": result["signals"],
-            "correlation": result["correlation"],
-            "risk": result["risk"],
-            "is_suspicious": result["is_suspicious"],
-        }
-
-        incident_id = repository.create(
-            incident
-        )
-
-        console.print(
-            Panel(
-                "[bold red]Status:[/bold red] "
-                "SUSPICIOUS\n"
-                f"[bold]Risk Score:[/bold] "
-                f"{result['risk']['risk_score']:.0f}/100\n"
-                f"[bold]Severity:[/bold] "
-                f"{result['risk']['severity']}\n"
-                f"[bold]Signals:[/bold] "
-                f"{', '.join(result['risk']['triggered_signals'])}\n"
-                f"[bold red]Incident created:[/bold red] "
-                f"#{incident_id}",
-                title="ThreatLens Scan",
-            )
-        )
-
-        console.print()
-        console.print(
-            Panel(
-                _format_explanation(explanation),
-                title="ThreatLens Evidence",
-            )
-        )
-
-    # ---------------------------------------------------------
-    # NORMAL RESULT
-    # ---------------------------------------------------------
-
+    """Assess local or imported telemetry against an explicitly learned baseline."""
+    try:
+        if input_path and (device_id or sources):
+            raise ValueError("--device-id and --sources apply only to local collection")
+        observations = load_document(input_path) if input_path else [_local(device_id, sources)]
+        results = _service().scan(observations)
+    except (OSError, ValueError, TypeError, sqlite3.Error) as error:
+        _error(error)
+    if json_output:
+        typer.echo(json.dumps({"results": results}, indent=2, allow_nan=False))
     else:
-        console.print(
-            Panel(
-                "[bold green]Status:[/bold green] "
-                "NORMAL\n"
-                f"[bold]Anomaly Score:[/bold] "
-                f"{result['model']['anomaly_score']:.4f}\n"
-                f"[bold]Temporal Signals:[/bold] "
-                f"{result['temporal']['signal_count']}\n"
-                f"[bold]Network Signal:[/bold] "
-                f"{result['signals'].get('network_anomaly', False)}\n"
-                f"[bold]Process Signal:[/bold] "
-                f"{result['signals'].get('process_anomaly', False)}\n\n"
-                "No correlated behavioral anomaly detected.",
-                title="ThreatLens Scan",
-            )
-        )
+        for result in results:
+            coverage = result.get("coverage", {})
+            text = f"Device: {result['device_type']} / {result['device_id']}\nStatus: {result['status']}\nBaseline: {result['baseline_size']} observations"
+            if "risk" in result:
+                text += f"\nRisk: {result['risk']['risk_score']:.0f}/100 ({result['risk']['severity']})"
+                text += f"\nCoverage: {'DEGRADED' if coverage['degraded'] else 'complete for trained profile'}"
+                text += f"\n{result['explanation']['summary']}"
+                for evidence in result["explanation"]["evidence"]:
+                    text += f"\n• {evidence['description']}"
+            else:
+                text += "\nRun 'threatlens learn' on trusted normal telemetry first."
+            if "incident_id" in result:
+                text += f"\nIncident created: #{result['incident_id']}"
+            console.print(Panel(Text(text), title="ThreatLens Scan"))
+    if any(row["status"] == "INSUFFICIENT_BASELINE" for row in results):
+        raise typer.Exit(4)
+    if fail_on_alert and any(row["is_suspicious"] for row in results):
+        raise typer.Exit(3)
 
-    # ---------------------------------------------------------
-    # LEARN ONLY FROM NORMAL BEHAVIOR
-    # ---------------------------------------------------------
 
-    if not result["is_suspicious"]:
-        current_features = extract_system_features(
-            current.to_dict()
-        )
+def learn(
+    input_path: Path | None = typer.Option(None, "--input"),
+    samples: int = typer.Option(30, "--samples", min=1, max=500),
+    interval: float = typer.Option(1.0, "--interval", min=0.0, max=3600.0, help="Pause between local one-second samples."),
+    device_id: str | None = typer.Option(None, "--device-id"),
+    sources: str | None = typer.Option(None, "--sources"),
+    replace: bool = typer.Option(False, "--replace", help="Replace this device's trusted baseline and previous state."),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Explicitly trust known-normal telemetry. Scans never update the baseline."""
+    try:
+        if input_path and (device_id or sources):
+            raise ValueError("--device-id and --sources apply only to local collection")
+        if input_path:
+            observations = load_document(input_path)
+        else:
+            observations = []
+            for number in range(samples):
+                if number:
+                    time.sleep(interval)
+                observations.append(_local(device_id, sources))
+        result = _service().learn(observations, replace=replace)
+    except (OSError, ValueError, TypeError, sqlite3.Error) as error:
+        _error(error)
+    typer.echo(json.dumps(result, indent=2) if json_output else
+               f"{result['device']}: {result['baseline_size']}/{result['required']} trusted windows; ready={result['ready']}. Baseline frozen.")
 
-        baseline.append(
-            current_features
-        )
 
-        network_baseline.append(
-            current_network.to_dict()
-        )
-
-        process_baseline.append(
-            current_processes
-        )
-
-        # Keep baselines bounded.
-        baseline = baseline[-100:]
-        network_baseline = network_baseline[-100:]
-        process_baseline = process_baseline[-100:]
-
-        _save_baseline(
-            baseline
-        )
-
-        _save_json_baseline(
-            NETWORK_BASELINE_PATH,
-            network_baseline,
-        )
-
-        _save_json_baseline(
-            PROCESS_BASELINE_PATH,
-            process_baseline,
-        )
+def collect(
+    output: Path = typer.Option(..., "--output", "-o"),
+    samples: int = typer.Option(1, "--samples", min=1, max=500),
+    interval: float = typer.Option(1.0, "--interval", min=0.0, max=3600.0),
+    device_id: str | None = typer.Option(None, "--device-id"),
+    sources: str | None = typer.Option(None, "--sources"),
+) -> None:
+    """Export aggregate local telemetry for inspection, learning, or offline scanning."""
+    try:
+        observations = []
+        for number in range(samples):
+            if number:
+                time.sleep(interval)
+            observations.append(_local(device_id, sources))
+        write_private_text(output, json.dumps(_document(observations), indent=2, allow_nan=False))
+    except (OSError, ValueError, TypeError) as error:
+        _error(error)
+    typer.echo(f"Telemetry written to {output}")
