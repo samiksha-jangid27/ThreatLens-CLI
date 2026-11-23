@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     env:
-      THREATLENS_DATA_DIR: ${{ runner.temp }}/threatlens-ci
+      THREATLENS_DATA_DIR: ${{ github.workspace }}/.threatlens-data
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
