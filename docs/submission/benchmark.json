@@ -1,0 +1,417 @@
+{
+  "evaluation_type": "held-out synthetic full pipeline; not real attack validation",
+  "algorithm_version": "source-consensus-v1",
+  "seed": 42,
+  "baseline_size": 60,
+  "scenario_count": 32,
+  "metrics": {
+    "true_positive": 8,
+    "true_negative": 16,
+    "false_positive": 4,
+    "false_negative": 4,
+    "accuracy": 0.75,
+    "precision": 0.6666666666666666,
+    "recall": 0.6666666666666666,
+    "f1": 0.6666666666666666,
+    "false_positive_rate": 0.2,
+    "detection_rate": 0.6666666666666666
+  },
+  "by_device": {
+    "system": {
+      "true_positive": 2,
+      "true_negative": 4,
+      "false_positive": 1,
+      "false_negative": 1,
+      "accuracy": 0.75,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.6666666666666666,
+      "false_positive_rate": 0.2,
+      "detection_rate": 0.6666666666666666
+    },
+    "router": {
+      "true_positive": 2,
+      "true_negative": 4,
+      "false_positive": 1,
+      "false_negative": 1,
+      "accuracy": 0.75,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.6666666666666666,
+      "false_positive_rate": 0.2,
+      "detection_rate": 0.6666666666666666
+    },
+    "firewall": {
+      "true_positive": 2,
+      "true_negative": 4,
+      "false_positive": 1,
+      "false_negative": 1,
+      "accuracy": 0.75,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.6666666666666666,
+      "false_positive_rate": 0.2,
+      "detection_rate": 0.6666666666666666
+    },
+    "network": {
+      "true_positive": 2,
+      "true_negative": 4,
+      "false_positive": 1,
+      "false_negative": 1,
+      "accuracy": 0.75,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.6666666666666666,
+      "false_positive_rate": 0.2,
+      "detection_rate": 0.6666666666666666
+    }
+  },
+  "ablations": {
+    "model_only": {
+      "true_positive": 8,
+      "true_negative": 8,
+      "false_positive": 12,
+      "false_negative": 4,
+      "accuracy": 0.5,
+      "precision": 0.4,
+      "recall": 0.6666666666666666,
+      "f1": 0.5,
+      "false_positive_rate": 0.6,
+      "detection_rate": 0.6666666666666666
+    },
+    "robust_only": {
+      "true_positive": 8,
+      "true_negative": 8,
+      "false_positive": 12,
+      "false_negative": 4,
+      "accuracy": 0.5,
+      "precision": 0.4,
+      "recall": 0.6666666666666666,
+      "f1": 0.5,
+      "false_positive_rate": 0.6,
+      "detection_rate": 0.6666666666666666
+    }
+  },
+  "scenarios": [
+    {
+      "device_type": "system",
+      "name": "normal",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "system",
+      "name": "benign_jitter",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "system",
+      "name": "transient_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "REVIEW"
+    },
+    {
+      "device_type": "system",
+      "name": "normal_after_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "system",
+      "name": "sustained_exfiltration_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 2,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "system",
+      "name": "multisource_compromise_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 1,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "system",
+      "name": "authorized_backup_hard_negative",
+      "expected_anomaly": false,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 1,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "system",
+      "name": "stealth_attack_hard_positive",
+      "expected_anomaly": true,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "router",
+      "name": "normal",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "router",
+      "name": "benign_jitter",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "router",
+      "name": "transient_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "REVIEW"
+    },
+    {
+      "device_type": "router",
+      "name": "normal_after_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "router",
+      "name": "sustained_exfiltration_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 2,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "router",
+      "name": "multisource_compromise_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 1,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "router",
+      "name": "authorized_backup_hard_negative",
+      "expected_anomaly": false,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 1,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "router",
+      "name": "stealth_attack_hard_positive",
+      "expected_anomaly": true,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "firewall",
+      "name": "normal",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "firewall",
+      "name": "benign_jitter",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "firewall",
+      "name": "transient_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "REVIEW"
+    },
+    {
+      "device_type": "firewall",
+      "name": "normal_after_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "firewall",
+      "name": "sustained_exfiltration_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 2,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "firewall",
+      "name": "multisource_compromise_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 1,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "firewall",
+      "name": "authorized_backup_hard_negative",
+      "expected_anomaly": false,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 1,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "firewall",
+      "name": "stealth_attack_hard_positive",
+      "expected_anomaly": true,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "network",
+      "name": "normal",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "network",
+      "name": "benign_jitter",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "network",
+      "name": "transient_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "REVIEW"
+    },
+    {
+      "device_type": "network",
+      "name": "normal_after_transfer",
+      "expected_anomaly": false,
+      "predicted_anomaly": false,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    },
+    {
+      "device_type": "network",
+      "name": "sustained_exfiltration_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 2,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "network",
+      "name": "multisource_compromise_simulation",
+      "expected_anomaly": true,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 2,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "network",
+      "name": "authorized_backup_hard_negative",
+      "expected_anomaly": false,
+      "predicted_anomaly": true,
+      "model_only": true,
+      "robust_only": true,
+      "alert_window": 2,
+      "final_status": "SUSPICIOUS"
+    },
+    {
+      "device_type": "network",
+      "name": "stealth_attack_hard_positive",
+      "expected_anomaly": true,
+      "predicted_anomaly": false,
+      "model_only": false,
+      "robust_only": false,
+      "alert_window": null,
+      "final_status": "NO_CORRELATED_ANOMALY"
+    }
+  ]
+}

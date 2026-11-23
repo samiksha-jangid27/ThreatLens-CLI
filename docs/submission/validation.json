@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-23",
+  "tests_passed": 153,
+  "coverage_percent": 82.33983286908078,
+  "local_platform": "macOS arm64",
+  "python": "3.14.3",
+  "ci_url": "https://github.com/samiksha-jangid27/ThreatLens-CLI/actions/runs/45190502068",
+  "ci_conclusion": "success",
+  "dependency_audit": "No known vulnerabilities",
+  "docker": "not run; daemon unavailable"
+}
