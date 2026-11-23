@@ -319,7 +319,7 @@ def build(benchmark, validation, diagram, output):
             ],
             [
                 "Container execution",
-                "Docker daemon unavailable locally; container runtime not verified",
+                validation["docker"],
             ],
         ],
         [1.8, 4.75],
@@ -376,10 +376,12 @@ def build(benchmark, validation, diagram, output):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--benchmark", type=Path, required=True)
-    parser.add_argument("--validation", type=Path, required=True)
-    parser.add_argument("--diagram", type=Path, required=True)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--benchmark", type=Path, default=Path("docs/submission/benchmark.json"))
+    parser.add_argument("--validation", type=Path, default=Path("docs/submission/validation.json"))
+    parser.add_argument("--diagram", type=Path, default=Path("docs/assets/architecture.png"))
+    parser.add_argument(
+        "--output", type=Path, default=Path("docs/submission/ThreatLens-Project-Report.docx")
+    )
     args = parser.parse_args()
     build(
         json.loads(args.benchmark.read_text()),

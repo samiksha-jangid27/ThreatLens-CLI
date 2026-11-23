@@ -38,3 +38,12 @@ To inspect the demo database manually, set `THREATLENS_DATA_DIR` to the demo's `
 Use the institution's required cover page, course name, roll number and supervisor details; these were not supplied and are not invented in the report. Include any required disclosure of AI-assisted development. Do not sign an originality declaration you cannot support. Read the learning guide and run the demo yourself so you can explain the implementation and its limits.
 
 Submit source and report together. Do not include `.venv`, real telemetry, private databases, caches or credentials. The wheel and source archive are technical install artifacts; public distribution and licensing decisions can be handled separately after submission.
+
+## Regenerate the editable report
+
+```bash
+python -m pip install ".[docs]"
+python scripts/build_submission_report.py
+```
+
+The builder reads the checked-in benchmark, validation summary and architecture image. Export the resulting Word file to PDF using Word or LibreOffice and inspect the pages before submitting an updated report. Update validation evidence before regenerating it; a document generator does not rerun the underlying tests.
