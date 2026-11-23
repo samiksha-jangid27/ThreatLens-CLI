@@ -2,44 +2,64 @@ name: ThreatLens CI
 
 on:
   push:
-    branches:
-      - main
-
   pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.11', '3.14']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    env:
+      THREATLENS_DATA_DIR: ${{ runner.temp }}/threatlens-ci
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-          cache: "pip"
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install
+        run: python -m pip install ".[dev]"
+      - name: Lint
+        run: python -m ruff check src tests scripts
+      - name: Format
+        run: python -m ruff format --check src tests scripts
+      - name: Test
+        run: python -m pytest -q --cov=threatlens --cov-report=xml
+      - name: Compile
+        run: python -m compileall -q src
+      - name: CLI
+        run: python -m threatlens --help
+      - name: Full detector benchmark
+        run: python -m threatlens benchmark --json
+      - name: Submission demo
+        run: python scripts/demo.py --output demo-artifacts
 
-      - name: Install project
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install build
+      - run: python -m build
+      - name: Install built wheel
+        run: python -m pip install dist/*.whl
+      - name: Check installed entry points outside source tree
+        working-directory: ${{ runner.temp }}
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install ".[dev]"
-
-      - name: Run tests
-        run: |
-          pytest -q
-
-      - name: Compile source
-        run: |
-          python -m compileall src
-
-      - name: Verify CLI
-        run: |
-          threatlens --help
-
-      - name: Run benchmark
-        run: |
-          threatlens benchmark
+          threatlens version
+          python -I -m threatlens --help
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-distributions
+          path: dist/*
