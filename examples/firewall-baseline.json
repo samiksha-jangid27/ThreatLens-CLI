@@ -1,0 +1,907 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-firewall",
+  "device_type": "firewall",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T00:00:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9927.954835211036,
+          "connection_count": 29.740644599502723
+        },
+        "firewall": {
+          "active_sessions": 99.44342069216168,
+          "denied_connections": 5.175495931274716
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:01:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9936.205858108557,
+          "connection_count": 27.753969878488565
+        },
+        "firewall": {
+          "active_sessions": 101.66159172033858,
+          "denied_connections": 4.933165630375708
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:02:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9891.520657927402,
+          "connection_count": 30.173827180051283
+        },
+        "firewall": {
+          "active_sessions": 101.16148868453361,
+          "denied_connections": 5.2908896716497855
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:03:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10328.318253399335,
+          "connection_count": 30.165760766165747
+        },
+        "firewall": {
+          "active_sessions": 96.3083919882759,
+          "denied_connections": 4.746334408128071
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:04:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10123.1710976056,
+          "connection_count": 31.966621240806074
+        },
+        "firewall": {
+          "active_sessions": 100.20828431951692,
+          "denied_connections": 4.973419176557304
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:05:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10265.888110200434,
+          "connection_count": 27.819682052986984
+        },
+        "firewall": {
+          "active_sessions": 98.4386134142772,
+          "denied_connections": 5.1225906331483815
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:06:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10436.702192689723,
+          "connection_count": 29.639055491017295
+        },
+        "firewall": {
+          "active_sessions": 101.88299929343955,
+          "denied_connections": 5.062053362332104
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:07:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10391.16340435182,
+          "connection_count": 28.33016667862774
+        },
+        "firewall": {
+          "active_sessions": 102.84125343792692,
+          "denied_connections": 4.621369902068715
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:08:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 8690.027288890575,
+          "connection_count": 29.089663907700746
+        },
+        "firewall": {
+          "active_sessions": 95.42094976827002,
+          "denied_connections": 5.219003060764102
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:09:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10332.132949806448,
+          "connection_count": 28.171387888056458
+        },
+        "firewall": {
+          "active_sessions": 104.23680711674,
+          "denied_connections": 4.749449293939413
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:10:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9956.878076831857,
+          "connection_count": 29.5591503330652
+        },
+        "firewall": {
+          "active_sessions": 100.57209928730461,
+          "denied_connections": 5.204659077885942
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:11:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10319.206895396223,
+          "connection_count": 30.524827652803815
+        },
+        "firewall": {
+          "active_sessions": 103.2497404890315,
+          "denied_connections": 5.119623009412529
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:12:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9686.5072673902,
+          "connection_count": 28.923943359275135
+        },
+        "firewall": {
+          "active_sessions": 97.65015862931993,
+          "denied_connections": 5.124831600119196
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:13:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9874.942214501309,
+          "connection_count": 33.50363133372082
+        },
+        "firewall": {
+          "active_sessions": 95.90353728906753,
+          "denied_connections": 4.725281350024461
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:14:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10384.236757734849,
+          "connection_count": 32.1327749720152
+        },
+        "firewall": {
+          "active_sessions": 102.5284634541963,
+          "denied_connections": 5.208954336491918
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:15:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10713.17248872108,
+          "connection_count": 29.858958785975545
+        },
+        "firewall": {
+          "active_sessions": 92.88520533430511,
+          "denied_connections": 4.866980862920322
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:16:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10476.447878658288,
+          "connection_count": 27.834482390882567
+        },
+        "firewall": {
+          "active_sessions": 100.16765660393631,
+          "denied_connections": 5.063309339835516
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:17:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9842.203917593164,
+          "connection_count": 31.085447979552146
+        },
+        "firewall": {
+          "active_sessions": 102.90389870763283,
+          "denied_connections": 5.580352129225183
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:18:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10309.983883886567,
+          "connection_count": 29.085894812035406
+        },
+        "firewall": {
+          "active_sessions": 97.19101203832984,
+          "denied_connections": 4.792104724689499
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:19:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10476.13677990791,
+          "connection_count": 29.14975074777945
+        },
+        "firewall": {
+          "active_sessions": 99.64869613149702,
+          "denied_connections": 5.187325654822419
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:20:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9638.268504674297,
+          "connection_count": 29.559513054573422
+        },
+        "firewall": {
+          "active_sessions": 90.79356867198042,
+          "denied_connections": 4.729380345240322
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:21:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9716.131793904075,
+          "connection_count": 30.623641482775007
+        },
+        "firewall": {
+          "active_sessions": 105.96746636221648,
+          "denied_connections": 4.995383296709072
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:22:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10130.682139599901,
+          "connection_count": 30.25195405282085
+        },
+        "firewall": {
+          "active_sessions": 105.42370556726802,
+          "denied_connections": 5.2233387996845515
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:23:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10136.84665770377,
+          "connection_count": 28.483583544832033
+        },
+        "firewall": {
+          "active_sessions": 104.51692657172298,
+          "denied_connections": 5.095261781988938
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:24:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10613.47077485711,
+          "connection_count": 29.95514011097818
+        },
+        "firewall": {
+          "active_sessions": 109.76550462241923,
+          "denied_connections": 4.910280914919545
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:25:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10796.530207131522,
+          "connection_count": 30.17267845891085
+        },
+        "firewall": {
+          "active_sessions": 97.41865495377249,
+          "denied_connections": 4.717888031801901
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:26:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9924.484724230582,
+          "connection_count": 32.134981539250774
+        },
+        "firewall": {
+          "active_sessions": 104.08187248307364,
+          "denied_connections": 5.172220966066501
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:27:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 8812.063713454401,
+          "connection_count": 31.06644630685506
+        },
+        "firewall": {
+          "active_sessions": 102.77926205459922,
+          "denied_connections": 4.862518428898668
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:28:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9686.307816909803,
+          "connection_count": 29.99653432227963
+        },
+        "firewall": {
+          "active_sessions": 108.62438131574366,
+          "denied_connections": 4.736224825144419
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:29:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9786.097482631858,
+          "connection_count": 32.04267712552588
+        },
+        "firewall": {
+          "active_sessions": 97.76924600286125,
+          "denied_connections": 4.908937131034765
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:30:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10048.888173644338,
+          "connection_count": 28.138065935046455
+        },
+        "firewall": {
+          "active_sessions": 101.09972715075007,
+          "denied_connections": 4.697595600756591
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:31:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10442.599155179072,
+          "connection_count": 30.004771234136985
+        },
+        "firewall": {
+          "active_sessions": 111.41715733423875,
+          "denied_connections": 5.070210128382759
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:32:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10682.844745216375,
+          "connection_count": 28.045104042423954
+        },
+        "firewall": {
+          "active_sessions": 99.38930328239067,
+          "denied_connections": 5.0807864135035254
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:33:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10872.860459185524,
+          "connection_count": 27.478626092968554
+        },
+        "firewall": {
+          "active_sessions": 104.95309839904411,
+          "denied_connections": 5.147838503453979
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:34:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10766.773097869065,
+          "connection_count": 31.068578277118082
+        },
+        "firewall": {
+          "active_sessions": 100.26035592551975,
+          "denied_connections": 4.86958758739546
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:35:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9375.91014107864,
+          "connection_count": 30.293134147354454
+        },
+        "firewall": {
+          "active_sessions": 99.04151615502344,
+          "denied_connections": 5.50506683451991
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:36:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9694.487586007577,
+          "connection_count": 30.48058776780767
+        },
+        "firewall": {
+          "active_sessions": 92.15499290162136,
+          "denied_connections": 4.901134355418455
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:37:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10130.57394004555,
+          "connection_count": 31.235940018779257
+        },
+        "firewall": {
+          "active_sessions": 107.24050843414051,
+          "denied_connections": 4.988962955917683
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:38:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9441.377560469557,
+          "connection_count": 30.68677559923731
+        },
+        "firewall": {
+          "active_sessions": 102.58493549206896,
+          "denied_connections": 5.122914585709568
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:39:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9649.856150412634,
+          "connection_count": 31.70007659638033
+        },
+        "firewall": {
+          "active_sessions": 100.43947955452258,
+          "denied_connections": 5.174956155428997
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:40:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10637.036620047224,
+          "connection_count": 30.913908480848775
+        },
+        "firewall": {
+          "active_sessions": 101.43258013990885,
+          "denied_connections": 5.538198808775131
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:41:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10121.851520486076,
+          "connection_count": 29.55605365084188
+        },
+        "firewall": {
+          "active_sessions": 100.55983518791516,
+          "denied_connections": 5.370692167109284
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:42:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10059.3562434434,
+          "connection_count": 30.779066482708817
+        },
+        "firewall": {
+          "active_sessions": 105.97865720166081,
+          "denied_connections": 4.871785347443293
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:43:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9136.715115373177,
+          "connection_count": 30.449134728324662
+        },
+        "firewall": {
+          "active_sessions": 101.14867397261985,
+          "denied_connections": 4.847997455359796
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:44:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10435.543190521208,
+          "connection_count": 30.911351065476854
+        },
+        "firewall": {
+          "active_sessions": 95.02503789200291,
+          "denied_connections": 5.1295546110053
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:45:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9901.947520548712,
+          "connection_count": 27.77546209468908
+        },
+        "firewall": {
+          "active_sessions": 102.26475116532984,
+          "denied_connections": 4.988696343330152
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:46:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9627.358550405066,
+          "connection_count": 30.784418380345123
+        },
+        "firewall": {
+          "active_sessions": 102.44046636096189,
+          "denied_connections": 4.855615704013926
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:47:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10200.17609526734,
+          "connection_count": 31.522597404288668
+        },
+        "firewall": {
+          "active_sessions": 96.43666682157149,
+          "denied_connections": 5.095222506850398
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:48:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10001.377875240654,
+          "connection_count": 33.399015465976326
+        },
+        "firewall": {
+          "active_sessions": 90.68848514610906,
+          "denied_connections": 5.173820982851615
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:49:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9846.877490109393,
+          "connection_count": 29.84970367675525
+        },
+        "firewall": {
+          "active_sessions": 109.50794488191634,
+          "denied_connections": 4.997856712184801
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:50:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 11120.471851887783,
+          "connection_count": 29.33677805187968
+        },
+        "firewall": {
+          "active_sessions": 101.75256020674055,
+          "denied_connections": 4.877288124581277
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:51:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9654.655993691058,
+          "connection_count": 30.0937246896773
+        },
+        "firewall": {
+          "active_sessions": 98.5871423732545,
+          "denied_connections": 5.050622895996607
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:52:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 8947.486066137917,
+          "connection_count": 33.0037015329144
+        },
+        "firewall": {
+          "active_sessions": 99.16501545609361,
+          "denied_connections": 5.435726376558498
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:53:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9496.44393694676,
+          "connection_count": 30.438803557086402
+        },
+        "firewall": {
+          "active_sessions": 115.82471050738442,
+          "denied_connections": 4.782567704223427
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:54:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9252.350113445867,
+          "connection_count": 29.18023569699504
+        },
+        "firewall": {
+          "active_sessions": 102.36244213661303,
+          "denied_connections": 5.173335010015324
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:55:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10645.183344010713,
+          "connection_count": 29.61448140241003
+        },
+        "firewall": {
+          "active_sessions": 91.98874620249849,
+          "denied_connections": 4.891242548881229
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:56:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10620.111347400878,
+          "connection_count": 30.698493979756936
+        },
+        "firewall": {
+          "active_sessions": 90.21530607312498,
+          "denied_connections": 4.991237122077961
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:57:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10699.084045661064,
+          "connection_count": 33.189822205425656
+        },
+        "firewall": {
+          "active_sessions": 102.80843319392389,
+          "denied_connections": 5.077325578199876
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:58:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9379.897166007135,
+          "connection_count": 28.735135689048743
+        },
+        "firewall": {
+          "active_sessions": 100.23457928753083,
+          "denied_connections": 5.125799435203382
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:59:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10290.092095559883,
+          "connection_count": 29.282687167298796
+        },
+        "firewall": {
+          "active_sessions": 94.24028885788242,
+          "denied_connections": 4.805554539725022
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

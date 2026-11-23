@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-system",
+  "device_type": "system",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T01:01:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20,
+          "process_count": 100
+        },
+        "network": {
+          "connection_count": 300,
+          "bytes_out": 100000
+        },
+        "process": {
+          "total_processes": 100,
+          "high_cpu_process_count": 2
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T01:02:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20,
+          "process_count": 100
+        },
+        "network": {
+          "connection_count": 300,
+          "bytes_out": 100000
+        },
+        "process": {
+          "total_processes": 100,
+          "high_cpu_process_count": 2
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

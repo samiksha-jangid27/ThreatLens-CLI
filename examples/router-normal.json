@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-router",
+  "device_type": "router",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T01:00:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20,
+          "memory_percent": 40
+        },
+        "network": {
+          "bytes_out": 10000,
+          "packets_out": 100
+        },
+        "routing": {
+          "route_count": 100,
+          "route_changes": 2
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-firewall",
+  "device_type": "firewall",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T01:00:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10000,
+          "connection_count": 30
+        },
+        "firewall": {
+          "active_sessions": 100,
+          "denied_connections": 5
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

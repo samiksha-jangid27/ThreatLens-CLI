@@ -1,0 +1,1147 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-router",
+  "device_type": "router",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T00:00:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.855909670422072,
+          "memory_percent": 39.65419279933696
+        },
+        "network": {
+          "bytes_out": 9944.342069216169,
+          "packets_out": 103.50991862549432
+        },
+        "routing": {
+          "route_count": 99.36205858108556,
+          "route_changes": 1.7005293171318085
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:01:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.332318344067716,
+          "memory_percent": 39.46532504300566
+        },
+        "network": {
+          "bytes_out": 9891.520657927402,
+          "packets_out": 100.57942393350427
+        },
+        "routing": {
+          "route_count": 101.16148868453361,
+          "route_changes": 2.2327117373198284
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:02:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.65663650679867,
+          "memory_percent": 40.221014354887664
+        },
+        "network": {
+          "bytes_out": 9630.839198827589,
+          "packets_out": 94.92668816256142
+        },
+        "routing": {
+          "route_count": 101.23171097605601,
+          "route_changes": 2.2622161654408095
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:03:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.041656863903384,
+          "memory_percent": 39.78735341245843
+        },
+        "network": {
+          "bytes_out": 10265.888110200434,
+          "packets_out": 92.73227350995661
+        },
+        "routing": {
+          "route_count": 98.4386134142772,
+          "route_changes": 2.098072506518705
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:04:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.873404385379448,
+          "memory_percent": 39.51874065468973
+        },
+        "network": {
+          "bytes_out": 10188.299929343955,
+          "packets_out": 101.24106724664207
+        },
+        "routing": {
+          "route_count": 103.9116340435182,
+          "route_changes": 1.7773555571503654
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:05:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.568250687585387,
+          "memory_percent": 36.97095921654972
+        },
+        "network": {
+          "bytes_out": 8690.027288890575,
+          "packets_out": 96.96554635900249
+        },
+        "routing": {
+          "route_count": 95.42094976827002,
+          "route_changes": 2.175202448611281
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:06:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.664265899612897,
+          "memory_percent": 37.56185051740861
+        },
+        "network": {
+          "bytes_out": 10423.680711674,
+          "packets_out": 94.98898587878826
+        },
+        "routing": {
+          "route_count": 99.56878076831858,
+          "route_changes": 1.9412200444086936
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:07:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.11441985746092,
+          "memory_percent": 41.63727262308753
+        },
+        "network": {
+          "bytes_out": 10319.206895396223,
+          "packets_out": 101.74942550934604
+        },
+        "routing": {
+          "route_count": 103.2497404890315,
+          "route_changes": 2.0956984075300236
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:08:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.3730145347804,
+          "memory_percent": 38.565257812366845
+        },
+        "network": {
+          "bytes_out": 9765.015862931992,
+          "packets_out": 102.4966320023839
+        },
+        "routing": {
+          "route_count": 98.74942214501309,
+          "route_changes": 2.4671508444961097
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:09:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.180707457813508,
+          "memory_percent": 37.80225080019569
+        },
+        "network": {
+          "bytes_out": 10384.236757734849,
+          "packets_out": 107.10924990671732
+        },
+        "routing": {
+          "route_count": 102.5284634541963,
+          "route_changes": 2.1671634691935346
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:10:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.426344977442163,
+          "memory_percent": 39.81194504796739
+        },
+        "network": {
+          "bytes_out": 9288.520533430512,
+          "packets_out": 97.33961725840643
+        },
+        "routing": {
+          "route_count": 104.76447878658288,
+          "route_changes": 1.7112643187843424
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:11:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.03353132078726,
+          "memory_percent": 40.506474718684125
+        },
+        "network": {
+          "bytes_out": 9842.203917593164,
+          "packets_out": 103.61815993184048
+        },
+        "routing": {
+          "route_count": 102.90389870763283,
+          "route_changes": 2.4642817033801463
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:12:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.619967767773137,
+          "memory_percent": 38.78119308271388
+        },
+        "network": {
+          "bytes_out": 9719.101203832985,
+          "packets_out": 95.84209449378997
+        },
+        "routing": {
+          "route_count": 104.7613677990791,
+          "route_changes": 1.8866334330372598
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:13:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.929739226299404,
+          "memory_percent": 41.49860523857935
+        },
+        "network": {
+          "bytes_out": 9638.268504674297,
+          "packets_out": 98.53171018191141
+        },
+        "routing": {
+          "route_count": 90.79356867198042,
+          "route_changes": 1.7835042761922573
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:14:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.43226358780815,
+          "memory_percent": 40.83152197703334
+        },
+        "network": {
+          "bytes_out": 10596.74663622165,
+          "packets_out": 99.90766593418144
+        },
+        "routing": {
+          "route_count": 101.30682139599901,
+          "route_changes": 2.0335938737094463
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:15:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.084741113453603,
+          "memory_percent": 41.78671039747641
+        },
+        "network": {
+          "bytes_out": 10136.84665770377,
+          "packets_out": 94.94527848277345
+        },
+        "routing": {
+          "route_count": 104.51692657172298,
+          "route_changes": 2.0762094255911503
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:16:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.22694154971422,
+          "memory_percent": 39.94018681463757
+        },
+        "network": {
+          "bytes_out": 10976.550462241923,
+          "packets_out": 98.20561829839089
+        },
+        "routing": {
+          "route_count": 107.96530207131522,
+          "route_changes": 2.0230237945214466
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:17:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.4837309907545,
+          "memory_percent": 37.74310425441521
+        },
+        "network": {
+          "bytes_out": 9924.484724230582,
+          "packets_out": 107.11660513083592
+        },
+        "routing": {
+          "route_count": 104.08187248307364,
+          "route_changes": 2.1377767728532007
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:18:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 17.624127426908803,
+          "memory_percent": 41.42192840914008
+        },
+        "network": {
+          "bytes_out": 10277.92620545992,
+          "packets_out": 97.25036857797336
+        },
+        "routing": {
+          "route_count": 96.86307816909802,
+          "route_changes": 1.9995379096372838
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:19:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.724876263148733,
+          "memory_percent": 37.88979860115535
+        },
+        "network": {
+          "bytes_out": 9786.097482631858,
+          "packets_out": 106.80892375175291
+        },
+        "routing": {
+          "route_count": 97.76924600286125,
+          "route_changes": 1.927149704827812
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:20:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.097776347288676,
+          "memory_percent": 37.51742124672861
+        },
+        "network": {
+          "bytes_out": 10109.972715075006,
+          "packets_out": 93.95191201513182
+        },
+        "routing": {
+          "route_count": 104.42599155179073,
+          "route_changes": 2.0006361645515978
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:21:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 22.283431466847752,
+          "memory_percent": 40.56168102706207
+        },
+        "network": {
+          "bytes_out": 10682.844745216375,
+          "packets_out": 93.48368014141317
+        },
+        "routing": {
+          "route_count": 99.38930328239067,
+          "route_changes": 2.0646291308028206
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:22:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.74572091837105,
+          "memory_percent": 36.638168123958074
+        },
+        "network": {
+          "bytes_out": 10495.309839904412,
+          "packets_out": 102.95677006907958
+        },
+        "routing": {
+          "route_count": 107.66773097869066,
+          "route_changes": 2.142477103615744
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:23:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.052071185103948,
+          "memory_percent": 38.95670069916368
+        },
+        "network": {
+          "bytes_out": 9375.91014107864,
+          "packets_out": 100.97711382451486
+        },
+        "routing": {
+          "route_count": 99.04151615502344,
+          "route_changes": 2.4040534676159284
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:24:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.38897517201515,
+          "memory_percent": 40.640783690410224
+        },
+        "network": {
+          "bytes_out": 9215.499290162135,
+          "packets_out": 98.02268710836911
+        },
+        "routing": {
+          "route_count": 101.3057394004555,
+          "route_changes": 2.164792002503901
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:25:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.4481016868281,
+          "memory_percent": 39.91170364734146
+        },
+        "network": {
+          "bytes_out": 9441.377560469557,
+          "packets_out": 102.2892519974577
+        },
+        "routing": {
+          "route_count": 102.58493549206896,
+          "route_changes": 2.098331668567654
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:26:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.299712300825266,
+          "memory_percent": 42.266768795173775
+        },
+        "network": {
+          "bytes_out": 10043.947955452257,
+          "packets_out": 103.49912310857992
+        },
+        "routing": {
+          "route_count": 106.37036620047223,
+          "route_changes": 2.12185446411317
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:27:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.286516027981772,
+          "memory_percent": 44.30559047020105
+        },
+        "network": {
+          "bytes_out": 10121.851520486076,
+          "packets_out": 98.52017883613959
+        },
+        "routing": {
+          "route_count": 100.55983518791516,
+          "route_changes": 2.296553733687427
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:28:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.1187124868868,
+          "memory_percent": 41.038755310278425
+        },
+        "network": {
+          "bytes_out": 10597.86572016608,
+          "packets_out": 97.43570694886586
+        },
+        "routing": {
+          "route_count": 91.36715115373177,
+          "route_changes": 2.059884630443288
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:29:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.22973479452397,
+          "memory_percent": 38.78397964287837
+        },
+        "network": {
+          "bytes_out": 10435.543190521208,
+          "packets_out": 103.03783688492285
+        },
+        "routing": {
+          "route_count": 95.02503789200291,
+          "route_changes": 2.1036436888042407
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:30:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.803895041097423,
+          "memory_percent": 37.033949459585436
+        },
+        "network": {
+          "bytes_out": 10226.475116532984,
+          "packets_out": 99.77392686660305
+        },
+        "routing": {
+          "route_count": 96.27358550405066,
+          "route_changes": 2.1045891173793496
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:31:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.48809327219238,
+          "memory_percent": 38.844925632111405
+        },
+        "network": {
+          "bytes_out": 10200.17609526734,
+          "packets_out": 105.07532468096223
+        },
+        "routing": {
+          "route_count": 96.43666682157149,
+          "route_changes": 2.0761780054803185
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:32:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.002755750481306,
+          "memory_percent": 44.53202062130177
+        },
+        "network": {
+          "bytes_out": 9068.848514610907,
+          "packets_out": 103.47641965703231
+        },
+        "routing": {
+          "route_count": 98.46877490109392,
+          "route_changes": 1.9799604902340335
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:33:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.90158897638327,
+          "memory_percent": 39.98285369747841
+        },
+        "network": {
+          "bytes_out": 11120.471851887783,
+          "packets_out": 97.78926017293227
+        },
+        "routing": {
+          "route_count": 101.75256020674055,
+          "route_changes": 1.9018304996650217
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:34:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.309311987382117,
+          "memory_percent": 40.124966252903064
+        },
+        "network": {
+          "bytes_out": 9858.714237325448,
+          "packets_out": 101.01245791993213
+        },
+        "routing": {
+          "route_count": 89.47486066137918,
+          "route_changes": 2.40049353772192
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:35:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.83300309121872,
+          "memory_percent": 43.485811012467984
+        },
+        "network": {
+          "bytes_out": 9496.44393694676,
+          "packets_out": 101.46267852362135
+        },
+        "routing": {
+          "route_count": 115.82471050738442,
+          "route_changes": 1.8260541633787422
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:36:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 18.504700226891735,
+          "memory_percent": 38.90698092932672
+        },
+        "network": {
+          "bytes_out": 10236.244213661303,
+          "packets_out": 103.46670020030648
+        },
+        "routing": {
+          "route_count": 106.45183344010714,
+          "route_changes": 1.948597520321337
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:37:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 18.3977492404997,
+          "memory_percent": 39.12994039104983
+        },
+        "network": {
+          "bytes_out": 10620.111347400878,
+          "packets_out": 102.32831326585645
+        },
+        "routing": {
+          "route_count": 90.21530607312498,
+          "route_changes": 1.9929896976623687
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:38:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.39816809132213,
+          "memory_percent": 44.25309627390087
+        },
+        "network": {
+          "bytes_out": 10280.843319392388,
+          "packets_out": 101.54651156399751
+        },
+        "routing": {
+          "route_count": 93.79897166007136,
+          "route_changes": 1.8313514252064989
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:39:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.046915857506164,
+          "memory_percent": 41.00639548162706
+        },
+        "network": {
+          "bytes_out": 10290.092095559883,
+          "packets_out": 97.60895722432932
+        },
+        "routing": {
+          "route_count": 94.24028885788242,
+          "route_changes": 1.8444436317800172
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:40:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 18.843025605740237,
+          "memory_percent": 41.286818365527985
+        },
+        "network": {
+          "bytes_out": 8843.85944697717,
+          "packets_out": 98.33360987195253
+        },
+        "routing": {
+          "route_count": 102.24939166050605,
+          "route_changes": 2.304402544932988
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:41:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.071299675050973,
+          "memory_percent": 42.00256787902822
+        },
+        "network": {
+          "bytes_out": 9800.497964109454,
+          "packets_out": 96.27798006733954
+        },
+        "routing": {
+          "route_count": 96.62803480781267,
+          "route_changes": 2.3054671563803666
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:42:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.994221143897747,
+          "memory_percent": 40.97479585292523
+        },
+        "network": {
+          "bytes_out": 11665.134431780885,
+          "packets_out": 99.83829313736925
+        },
+        "routing": {
+          "route_count": 103.101748255144,
+          "route_changes": 2.061518310511702
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:43:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.77811430987584,
+          "memory_percent": 44.63234269554303
+        },
+        "network": {
+          "bytes_out": 10753.302401518557,
+          "packets_out": 93.00260182689723
+        },
+        "routing": {
+          "route_count": 98.00076838857392,
+          "route_changes": 2.0856673076736576
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:44:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.783183215042047,
+          "memory_percent": 37.30310586037324
+        },
+        "network": {
+          "bytes_out": 8872.219206489099,
+          "packets_out": 90.46816515619109
+        },
+        "routing": {
+          "route_count": 99.6444426832939,
+          "route_changes": 1.9793593641920646
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:45:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.345219376114514,
+          "memory_percent": 38.460650444241885
+        },
+        "network": {
+          "bytes_out": 9387.881162046968,
+          "packets_out": 89.88477471210325
+        },
+        "routing": {
+          "route_count": 101.64593679373718,
+          "route_changes": 2.0740107916975554
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:46:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.992993670355713,
+          "memory_percent": 41.58159137595847
+        },
+        "network": {
+          "bytes_out": 9904.642209531528,
+          "packets_out": 106.74630481376742
+        },
+        "routing": {
+          "route_count": 99.31816544236726,
+          "route_changes": 1.8678327227363856
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:47:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.479421556696433,
+          "memory_percent": 38.83037671058921
+        },
+        "network": {
+          "bytes_out": 8917.131640249829,
+          "packets_out": 100.78163026492884
+        },
+        "routing": {
+          "route_count": 101.24942795881083,
+          "route_changes": 1.9275468378235803
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:48:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.286158529913585,
+          "memory_percent": 40.74360764871055
+        },
+        "network": {
+          "bytes_out": 10858.435293773846,
+          "packets_out": 100.19127576252491
+        },
+        "routing": {
+          "route_count": 97.46183196395147,
+          "route_changes": 1.881710559515414
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:49:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.930243561854837,
+          "memory_percent": 37.47046885791711
+        },
+        "network": {
+          "bytes_out": 9937.36965590096,
+          "packets_out": 100.30591132168391
+        },
+        "routing": {
+          "route_count": 109.22339343883095,
+          "route_changes": 2.1886947528226752
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:50:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.03402923564988,
+          "memory_percent": 38.57410291780152
+        },
+        "network": {
+          "bytes_out": 10334.960771618122,
+          "packets_out": 94.30308762725042
+        },
+        "routing": {
+          "route_count": 101.55980348345435,
+          "route_changes": 2.0837474520837715
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:51:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.233590583937765,
+          "memory_percent": 43.99875961032298
+        },
+        "network": {
+          "bytes_out": 10283.686831375331,
+          "packets_out": 90.48635848552746
+        },
+        "routing": {
+          "route_count": 102.76429943297904,
+          "route_changes": 1.9185176362219984
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:52:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.0013762158163,
+          "memory_percent": 40.931529581828364
+        },
+        "network": {
+          "bytes_out": 10195.26633365577,
+          "packets_out": 89.80424328482692
+        },
+        "routing": {
+          "route_count": 94.20840128193208,
+          "route_changes": 2.1545248317149186
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:53:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.30120424922929,
+          "memory_percent": 43.806305773325
+        },
+        "network": {
+          "bytes_out": 10901.584119326553,
+          "packets_out": 89.72231697684761
+        },
+        "routing": {
+          "route_count": 103.84741060468225,
+          "route_changes": 1.6167419597769792
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:54:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.613600728541996,
+          "memory_percent": 40.5066988056441
+        },
+        "network": {
+          "bytes_out": 9429.41560601148,
+          "packets_out": 110.0495047354557
+        },
+        "routing": {
+          "route_count": 103.21985435145436,
+          "route_changes": 1.6217702222097055
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:55:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.29346811746062,
+          "memory_percent": 38.53772018466924
+        },
+        "network": {
+          "bytes_out": 10055.64773998512,
+          "packets_out": 97.67402692722318
+        },
+        "routing": {
+          "route_count": 106.86746943134327,
+          "route_changes": 1.715342722363285
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:56:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.317405168261416,
+          "memory_percent": 43.62837668119995
+        },
+        "network": {
+          "bytes_out": 9586.519850514864,
+          "packets_out": 101.0532433802911
+        },
+        "routing": {
+          "route_count": 101.01000820475039,
+          "route_changes": 1.8620595622242824
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:57:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.647893622765253,
+          "memory_percent": 40.19410056361979
+        },
+        "network": {
+          "bytes_out": 9528.11624760844,
+          "packets_out": 108.81008052449425
+        },
+        "routing": {
+          "route_count": 103.95807498294901,
+          "route_changes": 1.9665786109954937
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:58:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.363325232556537,
+          "memory_percent": 38.43127475557895
+        },
+        "network": {
+          "bytes_out": 10615.470486280276,
+          "packets_out": 99.26760882729725
+        },
+        "routing": {
+          "route_count": 102.29719101932378,
+          "route_changes": 1.963108659821413
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:59:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.61640946981736,
+          "memory_percent": 39.768041739748234
+        },
+        "network": {
+          "bytes_out": 10381.926936238535,
+          "packets_out": 99.08394545089236
+        },
+        "routing": {
+          "route_count": 104.14793648559261,
+          "route_changes": 2.1344768218699275
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

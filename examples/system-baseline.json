@@ -1,0 +1,1147 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-system",
+  "device_type": "system",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T00:00:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.855909670422072,
+          "process_count": 99.1354819983424
+        },
+        "network": {
+          "connection_count": 29.833026207648505,
+          "bytes_out": 10350.991862549432
+        },
+        "process": {
+          "total_processes": 99.36205858108556,
+          "high_cpu_process_count": 1.7005293171318085
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:01:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.332318344067716,
+          "process_count": 98.66331260751416
+        },
+        "network": {
+          "connection_count": 29.674561973782208,
+          "bytes_out": 10057.942393350428
+        },
+        "process": {
+          "total_processes": 101.16148868453361,
+          "high_cpu_process_count": 2.2327117373198284
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:02:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.65663650679867,
+          "process_count": 100.55253588721916
+        },
+        "network": {
+          "connection_count": 28.89251759648277,
+          "bytes_out": 9492.668816256142
+        },
+        "process": {
+          "total_processes": 101.23171097605601,
+          "high_cpu_process_count": 2.2622161654408095
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:03:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.041656863903384,
+          "process_count": 99.46838353114607
+        },
+        "network": {
+          "connection_count": 30.797664330601304,
+          "bytes_out": 9273.227350995661
+        },
+        "process": {
+          "total_processes": 98.4386134142772,
+          "high_cpu_process_count": 2.098072506518705
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:04:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.873404385379448,
+          "process_count": 98.79685163672433
+        },
+        "network": {
+          "connection_count": 30.564899788031866,
+          "bytes_out": 10124.106724664207
+        },
+        "process": {
+          "total_processes": 103.9116340435182,
+          "high_cpu_process_count": 1.7773555571503654
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:05:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.568250687585387,
+          "process_count": 92.4273980413743
+        },
+        "network": {
+          "connection_count": 26.07008186667172,
+          "bytes_out": 9696.55463590025
+        },
+        "process": {
+          "total_processes": 95.42094976827002,
+          "high_cpu_process_count": 2.175202448611281
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:06:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.664265899612897,
+          "process_count": 93.90462629352152
+        },
+        "network": {
+          "connection_count": 31.271042135022,
+          "bytes_out": 9498.898587878824
+        },
+        "process": {
+          "total_processes": 99.56878076831858,
+          "high_cpu_process_count": 1.9412200444086936
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:07:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.11441985746092,
+          "process_count": 104.09318155771884
+        },
+        "network": {
+          "connection_count": 30.957620686188665,
+          "bytes_out": 10174.942550934604
+        },
+        "process": {
+          "total_processes": 103.2497404890315,
+          "high_cpu_process_count": 2.0956984075300236
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:08:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.3730145347804,
+          "process_count": 96.41314453091711
+        },
+        "network": {
+          "connection_count": 29.295047588795978,
+          "bytes_out": 10249.66320023839
+        },
+        "process": {
+          "total_processes": 98.74942214501309,
+          "high_cpu_process_count": 2.4671508444961097
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:09:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.180707457813508,
+          "process_count": 94.50562700048921
+        },
+        "network": {
+          "connection_count": 31.152710273204544,
+          "bytes_out": 10710.924990671732
+        },
+        "process": {
+          "total_processes": 102.5284634541963,
+          "high_cpu_process_count": 2.1671634691935346
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:10:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.426344977442163,
+          "process_count": 99.52986261991848
+        },
+        "network": {
+          "connection_count": 27.865561600291535,
+          "bytes_out": 9733.961725840643
+        },
+        "process": {
+          "total_processes": 104.76447878658288,
+          "high_cpu_process_count": 1.7112643187843424
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:11:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.03353132078726,
+          "process_count": 101.26618679671031
+        },
+        "network": {
+          "connection_count": 29.526611752779495,
+          "bytes_out": 10361.81599318405
+        },
+        "process": {
+          "total_processes": 102.90389870763283,
+          "high_cpu_process_count": 2.4642817033801463
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:12:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.619967767773137,
+          "process_count": 96.9529827067847
+        },
+        "network": {
+          "connection_count": 29.157303611498953,
+          "bytes_out": 9584.209449378997
+        },
+        "process": {
+          "total_processes": 104.7613677990791,
+          "high_cpu_process_count": 1.8866334330372598
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:13:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.929739226299404,
+          "process_count": 103.74651309644838
+        },
+        "network": {
+          "connection_count": 28.91480551402289,
+          "bytes_out": 9853.17101819114
+        },
+        "process": {
+          "total_processes": 90.79356867198042,
+          "high_cpu_process_count": 1.7835042761922573
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:14:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.43226358780815,
+          "process_count": 102.07880494258336
+        },
+        "network": {
+          "connection_count": 31.790239908664944,
+          "bytes_out": 9990.766593418144
+        },
+        "process": {
+          "total_processes": 101.30682139599901,
+          "high_cpu_process_count": 2.0335938737094463
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:15:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.084741113453603,
+          "process_count": 104.46677599369103
+        },
+        "network": {
+          "connection_count": 30.410539973111312,
+          "bytes_out": 9494.527848277345
+        },
+        "process": {
+          "total_processes": 104.51692657172298,
+          "high_cpu_process_count": 2.0762094255911503
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:16:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.22694154971422,
+          "process_count": 99.85046703659393
+        },
+        "network": {
+          "connection_count": 32.929651386725766,
+          "bytes_out": 9820.56182983909
+        },
+        "process": {
+          "total_processes": 107.96530207131522,
+          "high_cpu_process_count": 2.0230237945214466
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:17:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.4837309907545,
+          "process_count": 94.35776063603802
+        },
+        "network": {
+          "connection_count": 29.773454172691746,
+          "bytes_out": 10711.660513083592
+        },
+        "process": {
+          "total_processes": 104.08187248307364,
+          "high_cpu_process_count": 2.1377767728532007
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:18:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 17.624127426908803,
+          "process_count": 103.55482102285019
+        },
+        "network": {
+          "connection_count": 30.833778616379764,
+          "bytes_out": 9725.036857797337
+        },
+        "process": {
+          "total_processes": 96.86307816909802,
+          "high_cpu_process_count": 1.9995379096372838
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:19:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.724876263148733,
+          "process_count": 94.72449650288837
+        },
+        "network": {
+          "connection_count": 29.358292447895572,
+          "bytes_out": 10680.892375175292
+        },
+        "process": {
+          "total_processes": 97.76924600286125,
+          "high_cpu_process_count": 1.927149704827812
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:20:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.097776347288676,
+          "process_count": 93.79355311682153
+        },
+        "network": {
+          "connection_count": 30.32991814522502,
+          "bytes_out": 9395.191201513182
+        },
+        "process": {
+          "total_processes": 104.42599155179073,
+          "high_cpu_process_count": 2.0006361645515978
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:21:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 22.283431466847752,
+          "process_count": 101.40420256765518
+        },
+        "network": {
+          "connection_count": 32.04853423564912,
+          "bytes_out": 9348.368014141319
+        },
+        "process": {
+          "total_processes": 99.38930328239067,
+          "high_cpu_process_count": 2.0646291308028206
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:22:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.74572091837105,
+          "process_count": 91.59542030989518
+        },
+        "network": {
+          "connection_count": 31.485929519713235,
+          "bytes_out": 10295.677006907958
+        },
+        "process": {
+          "total_processes": 107.66773097869066,
+          "high_cpu_process_count": 2.142477103615744
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:23:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.052071185103948,
+          "process_count": 97.3917517479092
+        },
+        "network": {
+          "connection_count": 28.12773042323592,
+          "bytes_out": 10097.711382451485
+        },
+        "process": {
+          "total_processes": 99.04151615502344,
+          "high_cpu_process_count": 2.4040534676159284
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:24:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.38897517201515,
+          "process_count": 101.60195922602557
+        },
+        "network": {
+          "connection_count": 27.646497870486407,
+          "bytes_out": 9802.26871083691
+        },
+        "process": {
+          "total_processes": 101.3057394004555,
+          "high_cpu_process_count": 2.164792002503901
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:25:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.4481016868281,
+          "process_count": 99.77925911835365
+        },
+        "network": {
+          "connection_count": 28.32413268140867,
+          "bytes_out": 10228.92519974577
+        },
+        "process": {
+          "total_processes": 102.58493549206896,
+          "high_cpu_process_count": 2.098331668567654
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:26:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.299712300825266,
+          "process_count": 105.66692198793444
+        },
+        "network": {
+          "connection_count": 30.13184386635677,
+          "bytes_out": 10349.912310857993
+        },
+        "process": {
+          "total_processes": 106.37036620047223,
+          "high_cpu_process_count": 2.12185446411317
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:27:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.286516027981772,
+          "process_count": 110.76397617550262
+        },
+        "network": {
+          "connection_count": 30.365554561458225,
+          "bytes_out": 9852.017883613958
+        },
+        "process": {
+          "total_processes": 100.55983518791516,
+          "high_cpu_process_count": 2.296553733687427
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:28:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.1187124868868,
+          "process_count": 102.59688827569606
+        },
+        "network": {
+          "connection_count": 31.793597160498244,
+          "bytes_out": 9743.570694886585
+        },
+        "process": {
+          "total_processes": 91.36715115373177,
+          "high_cpu_process_count": 2.059884630443288
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:29:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.22973479452397,
+          "process_count": 96.95994910719592
+        },
+        "network": {
+          "connection_count": 31.306629571563626,
+          "bytes_out": 10303.783688492285
+        },
+        "process": {
+          "total_processes": 95.02503789200291,
+          "high_cpu_process_count": 2.1036436888042407
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:30:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.803895041097423,
+          "process_count": 92.5848736489636
+        },
+        "network": {
+          "connection_count": 30.679425349598954,
+          "bytes_out": 9977.392686660305
+        },
+        "process": {
+          "total_processes": 96.27358550405066,
+          "high_cpu_process_count": 2.1045891173793496
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:31:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.48809327219238,
+          "process_count": 97.11231408027851
+        },
+        "network": {
+          "connection_count": 30.600528285802017,
+          "bytes_out": 10507.532468096222
+        },
+        "process": {
+          "total_processes": 96.43666682157149,
+          "high_cpu_process_count": 2.0761780054803185
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:32:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.002755750481306,
+          "process_count": 111.33005155325442
+        },
+        "network": {
+          "connection_count": 27.206545543832718,
+          "bytes_out": 10347.641965703231
+        },
+        "process": {
+          "total_processes": 98.46877490109392,
+          "high_cpu_process_count": 1.9799604902340335
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:33:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.90158897638327,
+          "process_count": 99.95713424369603
+        },
+        "network": {
+          "connection_count": 33.36141555566335,
+          "bytes_out": 9778.926017293226
+        },
+        "process": {
+          "total_processes": 101.75256020674055,
+          "high_cpu_process_count": 1.9018304996650217
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:34:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.309311987382117,
+          "process_count": 100.31241563225765
+        },
+        "network": {
+          "connection_count": 29.576142711976345,
+          "bytes_out": 10101.245791993213
+        },
+        "process": {
+          "total_processes": 89.47486066137918,
+          "high_cpu_process_count": 2.40049353772192
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:35:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.83300309121872,
+          "process_count": 108.71452753116996
+        },
+        "network": {
+          "connection_count": 28.489331810840284,
+          "bytes_out": 10146.267852362134
+        },
+        "process": {
+          "total_processes": 115.82471050738442,
+          "high_cpu_process_count": 1.8260541633787422
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:36:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 18.504700226891735,
+          "process_count": 97.2674523233168
+        },
+        "network": {
+          "connection_count": 30.708732640983907,
+          "bytes_out": 10346.670020030648
+        },
+        "process": {
+          "total_processes": 106.45183344010714,
+          "high_cpu_process_count": 1.948597520321337
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:37:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 18.3977492404997,
+          "process_count": 97.82485097762458
+        },
+        "network": {
+          "connection_count": 31.860334042202638,
+          "bytes_out": 10232.831326585645
+        },
+        "process": {
+          "total_processes": 90.21530607312498,
+          "high_cpu_process_count": 1.9929896976623687
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:38:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.39816809132213,
+          "process_count": 110.63274068475218
+        },
+        "network": {
+          "connection_count": 30.842529958177167,
+          "bytes_out": 10154.651156399752
+        },
+        "process": {
+          "total_processes": 93.79897166007136,
+          "high_cpu_process_count": 1.8313514252064989
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:39:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.046915857506164,
+          "process_count": 102.51598870406764
+        },
+        "network": {
+          "connection_count": 30.870276286679648,
+          "bytes_out": 9760.895722432932
+        },
+        "process": {
+          "total_processes": 94.24028885788242,
+          "high_cpu_process_count": 1.8444436317800172
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:40:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 18.843025605740237,
+          "process_count": 103.21704591381996
+        },
+        "network": {
+          "connection_count": 26.53157834093151,
+          "bytes_out": 9833.360987195254
+        },
+        "process": {
+          "total_processes": 102.24939166050605,
+          "high_cpu_process_count": 2.304402544932988
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:41:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.071299675050973,
+          "process_count": 105.00641969757055
+        },
+        "network": {
+          "connection_count": 29.40149389232836,
+          "bytes_out": 9627.798006733954
+        },
+        "process": {
+          "total_processes": 96.62803480781267,
+          "high_cpu_process_count": 2.3054671563803666
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:42:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.994221143897747,
+          "process_count": 102.43698963231307
+        },
+        "network": {
+          "connection_count": 34.995403295342655,
+          "bytes_out": 9983.829313736926
+        },
+        "process": {
+          "total_processes": 103.101748255144,
+          "high_cpu_process_count": 2.061518310511702
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:43:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.77811430987584,
+          "process_count": 111.58085673885759
+        },
+        "network": {
+          "connection_count": 32.259907204555674,
+          "bytes_out": 9300.260182689723
+        },
+        "process": {
+          "total_processes": 98.00076838857392,
+          "high_cpu_process_count": 2.0856673076736576
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:44:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.783183215042047,
+          "process_count": 93.2577646509331
+        },
+        "network": {
+          "connection_count": 26.616657619467297,
+          "bytes_out": 9046.81651561911
+        },
+        "process": {
+          "total_processes": 99.6444426832939,
+          "high_cpu_process_count": 1.9793593641920646
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:45:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.345219376114514,
+          "process_count": 96.15162611060471
+        },
+        "network": {
+          "connection_count": 28.163643486140906,
+          "bytes_out": 8988.477471210324
+        },
+        "process": {
+          "total_processes": 101.64593679373718,
+          "high_cpu_process_count": 2.0740107916975554
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:46:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.992993670355713,
+          "process_count": 103.95397843989616
+        },
+        "network": {
+          "connection_count": 29.713926628594585,
+          "bytes_out": 10674.630481376742
+        },
+        "process": {
+          "total_processes": 99.31816544236726,
+          "high_cpu_process_count": 1.8678327227363856
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:47:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.479421556696433,
+          "process_count": 97.07594177647303
+        },
+        "network": {
+          "connection_count": 26.751394920749487,
+          "bytes_out": 10078.163026492883
+        },
+        "process": {
+          "total_processes": 101.24942795881083,
+          "high_cpu_process_count": 1.9275468378235803
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:48:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.286158529913585,
+          "process_count": 101.85901912177638
+        },
+        "network": {
+          "connection_count": 32.57530588132153,
+          "bytes_out": 10019.127576252491
+        },
+        "process": {
+          "total_processes": 97.46183196395147,
+          "high_cpu_process_count": 1.881710559515414
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:49:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.930243561854837,
+          "process_count": 93.67617214479279
+        },
+        "network": {
+          "connection_count": 29.81210896770288,
+          "bytes_out": 10030.59113216839
+        },
+        "process": {
+          "total_processes": 109.22339343883095,
+          "high_cpu_process_count": 2.1886947528226752
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:50:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.03402923564988,
+          "process_count": 96.4352572945038
+        },
+        "network": {
+          "connection_count": 31.004882314854363,
+          "bytes_out": 9430.308762725042
+        },
+        "process": {
+          "total_processes": 101.55980348345435,
+          "high_cpu_process_count": 2.0837474520837715
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:51:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.233590583937765,
+          "process_count": 109.99689902580745
+        },
+        "network": {
+          "connection_count": 30.851060494125996,
+          "bytes_out": 9048.635848552745
+        },
+        "process": {
+          "total_processes": 102.76429943297904,
+          "high_cpu_process_count": 1.9185176362219984
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:52:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.0013762158163,
+          "process_count": 102.32882395457092
+        },
+        "network": {
+          "connection_count": 30.585799000967313,
+          "bytes_out": 8980.424328482692
+        },
+        "process": {
+          "total_processes": 94.20840128193208,
+          "high_cpu_process_count": 2.1545248317149186
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:53:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.30120424922929,
+          "process_count": 109.5157644333125
+        },
+        "network": {
+          "connection_count": 32.70475235797966,
+          "bytes_out": 8972.23169768476
+        },
+        "process": {
+          "total_processes": 103.84741060468225,
+          "high_cpu_process_count": 1.6167419597769792
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:54:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 21.613600728541996,
+          "process_count": 101.26674701411024
+        },
+        "network": {
+          "connection_count": 28.28824681803444,
+          "bytes_out": 11004.95047354557
+        },
+        "process": {
+          "total_processes": 103.21985435145436,
+          "high_cpu_process_count": 1.6217702222097055
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:55:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.29346811746062,
+          "process_count": 96.3443004616731
+        },
+        "network": {
+          "connection_count": 30.16694321995536,
+          "bytes_out": 9767.402692722319
+        },
+        "process": {
+          "total_processes": 106.86746943134327,
+          "high_cpu_process_count": 1.715342722363285
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:56:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.317405168261416,
+          "process_count": 109.07094170299989
+        },
+        "network": {
+          "connection_count": 28.759559551544594,
+          "bytes_out": 10105.32433802911
+        },
+        "process": {
+          "total_processes": 101.01000820475039,
+          "high_cpu_process_count": 1.8620595622242824
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:57:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.647893622765253,
+          "process_count": 100.48525140904948
+        },
+        "network": {
+          "connection_count": 28.584348742825316,
+          "bytes_out": 10881.008052449426
+        },
+        "process": {
+          "total_processes": 103.95807498294901,
+          "high_cpu_process_count": 1.9665786109954937
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:58:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 19.363325232556537,
+          "process_count": 96.07818688894737
+        },
+        "network": {
+          "connection_count": 31.84641145884083,
+          "bytes_out": 9926.760882729726
+        },
+        "process": {
+          "total_processes": 102.29719101932378,
+          "high_cpu_process_count": 1.963108659821413
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:59:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "system": {
+          "cpu_percent": 20.61640946981736,
+          "process_count": 99.42010434937059
+        },
+        "network": {
+          "connection_count": 31.145780808715603,
+          "bytes_out": 9908.394545089235
+        },
+        "process": {
+          "total_processes": 104.14793648559261,
+          "high_cpu_process_count": 2.1344768218699275
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

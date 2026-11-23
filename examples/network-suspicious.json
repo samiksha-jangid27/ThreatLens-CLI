@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-network",
+  "device_type": "network",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T01:01:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 100000,
+          "unique_remote_addresses": 200
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T01:02:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 100000,
+          "unique_remote_addresses": 200
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-network",
+  "device_type": "network",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T00:00:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9927.954835211036,
+          "unique_remote_addresses": 19.82709639966848
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:01:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9944.342069216169,
+          "unique_remote_addresses": 20.701983725098863
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:02:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9936.205858108557,
+          "unique_remote_addresses": 18.502646585659043
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:03:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10166.159172033858,
+          "unique_remote_addresses": 19.73266252150283
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:04:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9891.520657927402,
+          "unique_remote_addresses": 20.115884786700857
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:05:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10116.14886845336,
+          "unique_remote_addresses": 21.163558686599142
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:06:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10328.318253399335,
+          "unique_remote_addresses": 20.110507177443832
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:07:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9630.839198827589,
+          "unique_remote_addresses": 18.985337632512284
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:08:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10123.1710976056,
+          "unique_remote_addresses": 21.311080827204048
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:09:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10020.828431951692,
+          "unique_remote_addresses": 19.893676706229215
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:10:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10265.888110200434,
+          "unique_remote_addresses": 18.546454701991323
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:11:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9843.86134142772,
+          "unique_remote_addresses": 20.490362532593526
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:12:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10436.702192689723,
+          "unique_remote_addresses": 19.759370327344865
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:13:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10188.299929343955,
+          "unique_remote_addresses": 20.248213449328414
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:14:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10391.16340435182,
+          "unique_remote_addresses": 18.88677778575183
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:15:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10284.125343792693,
+          "unique_remote_addresses": 18.48547960827486
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:16:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 8690.027288890575,
+          "unique_remote_addresses": 19.393109271800498
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:17:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9542.094976827002,
+          "unique_remote_addresses": 20.876012243056408
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:18:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10332.132949806448,
+          "unique_remote_addresses": 18.780925258704304
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:19:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10423.680711674,
+          "unique_remote_addresses": 18.99779717575765
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:20:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9956.878076831857,
+          "unique_remote_addresses": 19.706100222043467
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:21:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10057.20992873046,
+          "unique_remote_addresses": 20.818636311543766
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:22:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10319.206895396223,
+          "unique_remote_addresses": 20.34988510186921
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:23:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10324.97404890315,
+          "unique_remote_addresses": 20.478492037650117
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:24:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9686.5072673902,
+          "unique_remote_addresses": 19.282628906183422
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:25:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9765.015862931992,
+          "unique_remote_addresses": 20.499326400476782
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:26:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9874.942214501309,
+          "unique_remote_addresses": 22.33575422248055
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:27:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9590.353728906754,
+          "unique_remote_addresses": 18.901125400097843
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:28:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10384.236757734849,
+          "unique_remote_addresses": 21.421849981343467
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:29:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10252.84634541963,
+          "unique_remote_addresses": 20.835817345967673
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:30:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10713.17248872108,
+          "unique_remote_addresses": 19.905972523983696
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:31:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9288.520533430512,
+          "unique_remote_addresses": 19.467923451681287
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:32:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10476.447878658288,
+          "unique_remote_addresses": 18.556321593921712
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:33:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10016.76566039363,
+          "unique_remote_addresses": 20.253237359342062
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:34:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9842.203917593164,
+          "unique_remote_addresses": 20.723631986368098
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:35:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10290.389870763283,
+          "unique_remote_addresses": 22.321408516900732
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:36:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10309.983883886567,
+          "unique_remote_addresses": 19.39059654135694
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:37:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9719.101203832985,
+          "unique_remote_addresses": 19.168418898757995
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:38:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10476.13677990791,
+          "unique_remote_addresses": 19.433167165186298
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:39:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9964.869613149702,
+          "unique_remote_addresses": 20.749302619289676
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:40:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9638.268504674297,
+          "unique_remote_addresses": 19.70634203638228
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:41:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9079.356867198043,
+          "unique_remote_addresses": 18.917521380961286
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:42:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9716.131793904075,
+          "unique_remote_addresses": 20.41576098851667
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:43:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10596.74663622165,
+          "unique_remote_addresses": 19.981533186836288
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:44:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10130.682139599901,
+          "unique_remote_addresses": 20.167969368547233
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:45:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10542.370556726803,
+          "unique_remote_addresses": 20.893355198738206
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:46:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10136.84665770377,
+          "unique_remote_addresses": 18.989055696554686
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:47:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10451.692657172298,
+          "unique_remote_addresses": 20.381047127955753
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:48:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10613.47077485711,
+          "unique_remote_addresses": 19.970093407318785
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:49:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10976.550462241923,
+          "unique_remote_addresses": 19.64112365967818
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:50:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10796.530207131522,
+          "unique_remote_addresses": 20.115118972607235
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:51:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9741.86549537725,
+          "unique_remote_addresses": 18.871552127207604
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:52:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9924.484724230582,
+          "unique_remote_addresses": 21.423321026167184
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:53:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10408.187248307364,
+          "unique_remote_addresses": 20.688883864266003
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:54:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 8812.063713454401,
+          "unique_remote_addresses": 20.71096420457004
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:55:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10277.92620545992,
+          "unique_remote_addresses": 19.450073715594673
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:56:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9686.307816909803,
+          "unique_remote_addresses": 19.99768954818642
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:57:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 10862.438131574367,
+          "unique_remote_addresses": 18.944899300577674
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:58:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9786.097482631858,
+          "unique_remote_addresses": 21.361784750350584
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T00:59:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 9776.924600286125,
+          "unique_remote_addresses": 19.63574852413906
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "device_id": "synthetic-firewall",
+  "device_type": "firewall",
+  "observations": [
+    {
+      "timestamp": "2026-01-01T01:01:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 100000,
+          "connection_count": 300
+        },
+        "firewall": {
+          "active_sessions": 100,
+          "denied_connections": 5
+        }
+      },
+      "unavailable": {}
+    },
+    {
+      "timestamp": "2026-01-01T01:02:00+00:00",
+      "window_seconds": 60.0,
+      "sources": {
+        "network": {
+          "bytes_out": 100000,
+          "connection_count": 300
+        },
+        "firewall": {
+          "active_sessions": 100,
+          "denied_connections": 5
+        }
+      },
+      "unavailable": {}
+    }
+  ]
+}
