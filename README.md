@@ -34,6 +34,40 @@ On Windows, use `py -3 -m venv .venv`, then `.venv\Scripts\Activate.ps1` in Powe
 
 For the exact resolved development dependencies, install [uv](https://docs.astral.sh/uv/) and run `uv sync --frozen --extra dev`, then use `uv run threatlens --help`. The regular pip installation resolves within the declared version ranges.
 
+## Check the actual computer after cloning
+
+After installation, run:
+
+```bash
+python -m threatlens check
+```
+
+This reads the current computer's real system/process/socket telemetry and displays
+its available aggregate metrics and permission-related blind spots. It uses no
+synthetic fixtures, requires no baseline, and does not train, modify devices, or
+write detection state. Restricted sources are reported explicitly. It is a
+current-condition snapshot, not a malware scan or a verdict that the Mac is safe.
+
+For machine-readable output or an optional private snapshot:
+
+```bash
+python -m threatlens check --json
+python -m threatlens check --output live-snapshot.json
+```
+
+To assess behavioral deviations on that same computer, explicitly approve a
+known-normal learning period first. A system-only profile works without requiring
+privileged access to socket metadata:
+
+```bash
+python -m threatlens learn --sources system --samples 30 --interval 1
+python -m threatlens scan --sources system
+```
+
+Repeat scans to observe changes over time. Thirty samples are a readiness minimum,
+not proof that the training period represents every normal workload. An initially
+compromised host can contaminate trusted learning. A quiet scan is not proof of safety.
+
 ## Run the submission demo
 
 This uses synthetic fixtures and an isolated state directory. It does not attack or alter any device.
@@ -128,6 +162,7 @@ The full detector produced 8 true positives, 16 true negatives, 4 false positive
 
 | Command | Purpose |
 | --- | --- |
+| `check` | Inspect actual current computer metrics and visibility without training |
 | `learn` | Explicitly trust local samples or an imported batch |
 | `scan` | Assess one local sample or an imported batch |
 | `collect` | Export aggregate local telemetry |

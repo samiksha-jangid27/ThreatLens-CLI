@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased - 2026-11-24
+
+- Added a read-only `check` command for actual local metrics and visibility without a baseline.
+- Added a real-computer quickstart and regression tests separating snapshots from security assessments.
+
+
 ## 0.2.0 - 2026-11-23
 
 - Added versioned system/router/firewall/network imports and Zeek TSV conversion.
