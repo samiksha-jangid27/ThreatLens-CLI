@@ -3,6 +3,7 @@ import typer
 from threatlens.cli.commands.benchmark import (
     benchmark,
 )
+from threatlens.cli.commands.check import check
 from threatlens.cli.commands.explain import (
     explain,
 )
@@ -35,6 +36,7 @@ app = typer.Typer(
 
 
 app.command()(version)
+app.command()(check)
 app.command()(status)
 app.command()(incidents)
 app.command()(investigate)
